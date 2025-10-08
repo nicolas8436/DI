@@ -52,7 +52,7 @@ namespace Ejercicio3Colas
             Console.WriteLine("Hay " + de5A10 + " personas entre 5 y 10 años");
             Console.WriteLine("Hay " + de11A17 + " personas entre 11 y 17 años");
             Console.WriteLine("Hay " + mas18 + " personas con mas de 18 años");
-            Console.WriteLine("Se a recaudado "+Total+" euros");
+            Console.WriteLine("Se han recaudado "+ Total +" euros");
         }
     
    
