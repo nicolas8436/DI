@@ -14,11 +14,11 @@ namespace Ejercicio7Clase
     {
         private BBDD baseDatos;
 
-        // Propiedades para comunicar con Form1
+
         public bool CiudadAgregada { get; private set; }
         public string CodigoPais { get; private set; }
 
-        // Modifica el constructor para recibir la BBDD
+     
         public FormAgregar(BBDD baseDatos)
         {
             InitializeComponent();
@@ -39,14 +39,14 @@ namespace Ejercicio7Clase
 
         private void FormAgregar_Load(object sender, EventArgs e)
         {
-            // Poner el foco en el primer campo al cargar el formulario
+            
             txtBNombre.Focus();
         }
 
-        // Añade este método para el botón Agregar
+        // botón Agregar
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            // Validar campos obligatorios
+            // Validar campos
             if (string.IsNullOrWhiteSpace(txtBNombre.Text) ||
                 string.IsNullOrWhiteSpace(txtBCodPais.Text) ||
                 string.IsNullOrWhiteSpace(txtBDistrito.Text) ||
@@ -56,14 +56,14 @@ namespace Ejercicio7Clase
                 return;
             }
 
-            // Validar que la población sea un número válido
+            // Validar población
             if (!int.TryParse(txtBPoblacion.Text, out int poblacion) || poblacion < 0)
             {
                 MessageBox.Show("La poblacion debe ser un numero mayor o igual a 0", "Error");
                 return;
             }
 
-            // Validar longitud del código de país
+            // Validar longitud codigo
             if (txtBCodPais.Text.Length != 3)
             {
                 MessageBox.Show("El codigo de pais debe tener exactamente 3 caracteres", "Error");
@@ -72,7 +72,6 @@ namespace Ejercicio7Clase
 
             try
             {
-                // Llamar al método para agregar la ciudad
                 bool exito = baseDatos.AgregarCiudad(
                     txtBNombre.Text.Trim(),
                     txtBCodPais.Text.Trim().ToUpper(),
@@ -98,22 +97,6 @@ namespace Ejercicio7Clase
             {
                 MessageBox.Show($"Error al agregar la ciudad: {ex.Message}", "Error");
             }
-        }
-
-
-        //Solo num
-        private void txtPoblacion_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            {
-                e.Handled = true;
-            }
-        }
-
-        // Mayusculas
-        private void txtCodigoPais_TextChanged(object sender, EventArgs e)
-        {
-            txtBCodPais.CharacterCasing = CharacterCasing.Upper;
         }
     }
 }
