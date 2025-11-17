@@ -189,14 +189,16 @@ namespace Ejercicio5Clase
 
         }
 
-        private void CMBorrar_click(object sender, EventArgs e)
+        /*private void CMBorrar_click(object sender, EventArgs e)
         {
-            if () { 
-            TxtBNum1.Text = "";
+            if ()
+            {
+                TxtBNum1.Text = "";
             }
 
-            if () { 
-            TxtBNum2.Text = "";
+            if ()
+            {
+                TxtBNum2.Text = "";
             }
 
         }
@@ -216,12 +218,12 @@ namespace Ejercicio5Clase
         }
 
         private void CMRandom_click(object sender, EventArgs e)
-        {   
+        {
             Random rnd = new Random();
             if ()
             {
 
-                int numR = rnd.Next();
+                int numR = rnd.Next(1, 101);
 
                 String numRText = rnd.ToString();
                 TxtBNum1.Text = numRText;
@@ -236,6 +238,10 @@ namespace Ejercicio5Clase
                 TxtBNum2.Text = numRText;
             }
 
+        }*/
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
         }
     }
 }

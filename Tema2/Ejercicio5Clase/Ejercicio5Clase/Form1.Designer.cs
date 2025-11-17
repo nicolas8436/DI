@@ -70,7 +70,8 @@
             // MenuOpcArchivoSalir
             // 
             MenuOpcArchivoSalir.Name = "MenuOpcArchivoSalir";
-            MenuOpcArchivoSalir.Size = new Size(121, 26);
+            MenuOpcArchivoSalir.ShortcutKeys = Keys.Control | Keys.Alt | Keys.S;
+            MenuOpcArchivoSalir.Size = new Size(224, 26);
             MenuOpcArchivoSalir.Text = "Salir";
             MenuOpcArchivoSalir.Click += salir_click;
             // 
@@ -130,25 +131,24 @@
             ContextMenuNum1.ImageScalingSize = new Size(20, 20);
             ContextMenuNum1.Items.AddRange(new ToolStripItem[] { CMBorrar, iniciar0ToolStripMenuItem, randomToolStripMenuItem });
             ContextMenuNum1.Name = "ContextMenuNum1";
-            ContextMenuNum1.Size = new Size(211, 104);
+            ContextMenuNum1.Size = new Size(137, 76);
             // 
             // CMBorrar
             // 
             CMBorrar.Name = "CMBorrar";
-            CMBorrar.Size = new Size(210, 24);
+            CMBorrar.Size = new Size(136, 24);
             CMBorrar.Text = "Borrar";
-            //CMBorrar.Click += CMBorrar_click;
             // 
             // iniciar0ToolStripMenuItem
             // 
             iniciar0ToolStripMenuItem.Name = "iniciar0ToolStripMenuItem";
-            iniciar0ToolStripMenuItem.Size = new Size(210, 24);
+            iniciar0ToolStripMenuItem.Size = new Size(136, 24);
             iniciar0ToolStripMenuItem.Text = "Iniciar(0)";
             // 
             // randomToolStripMenuItem
             // 
             randomToolStripMenuItem.Name = "randomToolStripMenuItem";
-            randomToolStripMenuItem.Size = new Size(210, 24);
+            randomToolStripMenuItem.Size = new Size(136, 24);
             randomToolStripMenuItem.Text = "Random";
             // 
             // TxtBNum2
@@ -168,9 +168,9 @@
             // 
             // btnResultado
             // 
-            btnResultado.Location = new Point(173, 82);
+            btnResultado.Location = new Point(193, 84);
             btnResultado.Name = "btnResultado";
-            btnResultado.Size = new Size(94, 29);
+            btnResultado.Size = new Size(59, 29);
             btnResultado.TabIndex = 4;
             btnResultado.UseVisualStyleBackColor = true;
             btnResultado.Click += btnResultado_Click;
@@ -188,6 +188,7 @@
             MainMenuStrip = menuOpc;
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             menuOpc.ResumeLayout(false);
             menuOpc.PerformLayout();
             ContextMenuNum1.ResumeLayout(false);
