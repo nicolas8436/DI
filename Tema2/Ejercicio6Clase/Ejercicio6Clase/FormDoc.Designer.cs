@@ -34,6 +34,7 @@
             // richTxtFolio
             // 
             richTxtFolio.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            richTxtFolio.EnableAutoDragDrop = true;
             richTxtFolio.Location = new Point(1, 0);
             richTxtFolio.Name = "richTxtFolio";
             richTxtFolio.Size = new Size(797, 450);

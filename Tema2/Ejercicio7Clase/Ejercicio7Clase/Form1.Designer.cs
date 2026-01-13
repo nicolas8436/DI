@@ -154,6 +154,8 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(203, 124);
             listBox1.TabIndex = 11;
+            listBox1.Click += listBox1_Click;
+            listBox1.DoubleClick += listBox1_DoubleClick;
             // 
             // listBox2
             // 

@@ -23,11 +23,11 @@ namespace Ejercicio7Clase
         }
         private void btnConectar_Click(object sender, EventArgs e)
         {
-            if (baseDatos.Conectar(tbServidor.Text, tbPuerto.Text, tbUsuario.Text, tbContraseña.Text))
+            if (baseDatos.Conectar(tbServidor.Text, tbPuerto.Text, tbUsuario.Text, tbContraseña.Text))//Pasamos la info de los textbox para conectar
             {
-                dataGridView1.DataSource = baseDatos.ObtenerGrid();
+                dataGridView1.DataSource = baseDatos.ObtenerGrid();//Muestra en el gridview lo q obtenemos de la base de datos en el grid(en este caso es la tabla country)
             }
-            else
+            else//fallo conexion
             {
                 MessageBox.Show("Se ha producido un error al acceder a la BBDD");
             }
@@ -93,5 +93,17 @@ namespace Ejercicio7Clase
             //MessageBox.Show(temp);
             //return null; /// ojo cuidao con abusar con null.
         }
+
+        private void listBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+           /* string nombreSchemas = listBox1.SelectedValue.ToString();
+
+            listBox2.DataSource = baseDatos.ObtenerTablas(nombreSchemas);*/
+        }
     }
 }

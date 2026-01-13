@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Ej4._1.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Ej4._1"
+    xmlns:vista="clr-namespace:Ej4._1.Vista"
+    Title="Ej4._1">
+
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+    <ShellContent 
+        Title="home"
+        ContentTemplate="{DataTemplate vista:NewPage1 }"
+        Route="NewPage1" />
+    
+    <ShellContent 
+    Title="2ª Vista"
+    ContentTemplate="{DataTemplate vista:NewPage2 }"
+    Route="NewPage2" />
+
+</Shell>

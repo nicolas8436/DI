@@ -23,7 +23,7 @@ namespace Ejercicio6Clase
 
         private void richTxtFolio_TextChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void FormDoc_Load(object sender, EventArgs e)

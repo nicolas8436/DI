@@ -135,6 +135,7 @@
             listBox1.Size = new Size(213, 284);
             listBox1.TabIndex = 4;
             listBox1.Click += form1_load;
+            listBox1.SelectedIndexChanged += listBox1_SelectedIndexChanged;
             // 
             // comboBox1
             // 

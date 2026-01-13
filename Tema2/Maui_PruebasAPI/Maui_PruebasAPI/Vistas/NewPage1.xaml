@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui_PruebasAPI.Vistas.NewPage1"
+             Title="NewPage1">
+    <VerticalStackLayout>
+        <Grid>
+            <Entry x:Name="poblacion"  VerticalOptions="Start" HorizontalOptions="Start" Margin="20,20,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Button Text="Buscar" VerticalOptions="Start" HorizontalOptions="Start" Margin="170,20,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Picker x:Name="lista" VerticalOptions="Start" HorizontalOptions="Start" Margin="20,60,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Entry x:Name="lat" VerticalOptions="Start" HorizontalOptions="Start" Margin="330,20,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Entry x:Name="lon" VerticalOptions="Start" HorizontalOptions="Start" Margin="330,60,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Button Text="Calcular" VerticalOptions="Start" HorizontalOptions="Start" Margin="500,20,0,0" WidthRequest="140" HeightRequest="25"/>
+            <Entry x:Name="tiempo" VerticalOptions="Start" HorizontalOptions="Start" Margin="250,100,0,0" WidthRequest="300" HeightRequest="100"/>
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

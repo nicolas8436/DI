@@ -33,7 +33,7 @@ namespace Ejercicio7Clase
         {
             try
             {
-                string cadenaConexion = $"server={servidor}; port={puerto}; user id = {usuario}; password={passwd}; database=world; Allow Zero Datetime = True; CHARSET = UTF8";
+                string cadenaConexion = $"server={servidor}; port={puerto}; user id = {usuario}; password={passwd};database=world; Allow Zero Datetime = True; CHARSET = UTF8";
                 conexion = new MySqlConnection(cadenaConexion) ;
 
                 AbrirConexion();
@@ -53,17 +53,17 @@ namespace Ejercicio7Clase
         {
             try {
 
-                DataSet dataSet = new DataSet();
+                DataSet dataSet = new DataSet();//Creamos un data set vacio en el q vamos a guardar la info q saquemos de la BBDD
 
-                
-                using (var command = new MySqlCommand("SELECT * FROM country", conexion))
-                using (var adapter = new MySqlDataAdapter(command))
+                //using -> elimina de memoria al terminar
+                using (var command = new MySqlCommand("SELECT * FROM country", conexion))//Creamos con el command una consulta q ejecuta la select en la conexion q le pasamos
+                using (var adapter = new MySqlDataAdapter(command))//Creamos un adaptador para "Tradcir" y le pasamos el command para q lo "traduzca"
                 {
                     AbrirConexion();
-                    adapter.Fill(dataSet, "country");
+                    adapter.Fill(dataSet, "country");//Importante!!! -> Usamos el adapter para copiar los datos en el dataset y con ellos crar una tabla country
                     CerrarConexion();
 
-                    return dataSet.Tables["country"];
+                    return dataSet.Tables["country"];//De lo q copiamos en el data set copiamos la tabla q se llama country y la devolvemos 
                 }
 
             } catch (MySqlException e) 
@@ -137,6 +137,41 @@ namespace Ejercicio7Clase
                 return false;
             }
         }
+
+        /*Cuando se le de a conectar va a llenar el list box 1 con los esquemas de la base de datos.
+         muestra listas de strin, si se le pasa un objeto (q es lo q vamos a hacer) muestra el metodo toString de los objetos
+
+        public DataTable ObtenerSchemasBBDD() {
+            List<string> listaBBDD = new List<string>();
+            try
+            {
+                MySqlCommand micomando = new MySqlCommand("SHOW DATABASES", conexion);
+                MySqlDataAdapter adaptador = new MySqlDataAdapter(micomando);
+
+                AbrirConexion();
+                adaptador.Fill(dataSet, "Schemas");
+                CerrarConexion();
+
+                foreach (DataRow fila in dataSet.Tables["Schemas"].Rows)
+                {
+                    listaBBDD.Add(fila[0].ToString());
+                }
+                return listaBBDD;
+
+            }
+            catch (MySqlException e)
+            {
+                Console.WriteLine("Error al conectar a la base de datos");
+                return null;
+            }
+        }
+
+        public List<string> ObtenerTablas(string nombreSchemas)
+        { 
+        
+        }*/
+
+
 
     }
 }

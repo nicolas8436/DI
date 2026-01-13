@@ -40,7 +40,7 @@
             menuOpc.Items.AddRange(new ToolStripItem[] { menuOpcNuevo, menuOpcVentana });
             menuOpc.Location = new Point(0, 0);
             menuOpc.Name = "menuOpc";
-            menuOpc.Size = new Size(944, 28);
+            menuOpc.Size = new Size(908, 28);
             menuOpc.TabIndex = 1;
             menuOpc.Text = "menuStrip1";
             // 
@@ -61,7 +61,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(944, 558);
+            ClientSize = new Size(908, 540);
             Controls.Add(menuOpc);
             IsMdiContainer = true;
             MainMenuStrip = menuOpc;

@@ -60,12 +60,12 @@ namespace Ejercicio2Clase
 
         private void form1_load(object sender, EventArgs e)
         {
-           /* for (int i = 0; i < listBox1.Items.Count; i++)
-            {
-                comboBox1.Items.Add(listBox1.Items[i].ToString());
+            /* for (int i = 0; i < listBox1.Items.Count; i++)
+             {
+                 comboBox1.Items.Add(listBox1.Items[i].ToString());
 
-            }
-            comboBox1.Items.Add("Mazda");*/
+             }
+             comboBox1.Items.Add("Mazda");*/
 
             listaCoches = new List<Coche>();
             listaCoches.Add(new Coche("Audi", "R8"));
@@ -74,6 +74,11 @@ namespace Ejercicio2Clase
 
             listBox1.DataSource = listaCoches;
             comboBox1.DataSource = listaCoches;
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
