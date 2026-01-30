@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frutas.Resources.Styles.TemaClaro">
+    
+    <Color x:Key="TextoColorEtiquetas">Black</Color>
+    <Color x:Key="TextoColorBotones">White</Color>
+    <Color x:Key="TextoFondoBoton">Black</Color>
+    <Color x:Key="FondoColorInicial">White</Color>
+    <Color x:Key="FondoColorFinal">White</Color>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource TextoColorEtiquetas}"/>
+        <Setter Property="FontFamily" Value="Fruit"/>
+        <Setter Property="FontAttributes" Value="Italic"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="Titulo">
+        <Setter Property="TextColor" Value="{DynamicResource TextoColorEtiquetas}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTituloLabel}"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="Cuerpo">
+        <Setter Property="TextColor" Value="{DynamicResource TextoColorEtiquetas}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="CuerpoFocused">
+        <Setter Property="TextColor" Value="Yellow"/>
+        <Setter Property="FontSize" Value="Body"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="TituloFocused">
+        <Setter Property="TextColor" Value="Yellow"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource TextoColorBotones}"/>
+        <Setter Property="BackgroundColor" Value="{DynamicResource TextoFondoBoton}"/>
+        <Setter Property="FontFamily" Value="Fruit"/>
+        <Setter Property="FontSize" Value="Body"/>
+        <Setter Property="FontAttributes" Value="Italic"/>
+    </Style>
+</ResourceDictionary>

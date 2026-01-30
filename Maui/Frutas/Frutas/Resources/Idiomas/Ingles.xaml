@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frutas.Resources.Idiomas.Ingles">
+
+    <x:String x:Key="TituloContentPage">Strawberries</x:String>
+    <x:String x:Key="TextoVitaminaC">Vitamin C</x:String>
+    <x:String x:Key="TextoFibra">Fiber</x:String>
+    <x:String x:Key="TextoAntioxidantes">Antioxidants</x:String>
+    <x:String x:Key="TextoPotasio">Potassium</x:String>
+    <x:String x:Key="TextoAplicacion">English</x:String>
+    <x:String x:Key="TextoTemaPrincipal"> Main Teme</x:String>
+    <x:String x:Key="TextoTemaClaro">Light Teme</x:String>
+    <x:String x:Key="TextoTemaOscuro">Dark Teme</x:String>
+
+    <x:String x:Key="TextoTamanioAplicacion">Font size</x:String>
+</ResourceDictionary>

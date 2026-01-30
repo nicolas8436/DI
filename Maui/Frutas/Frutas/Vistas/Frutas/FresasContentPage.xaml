@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frutas.Vistas.Frutas.FresasContentPage"
+             Title="FresasContentPage">
+    
+    <ContentPage.Resources>
+        
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{DynamicResource FondoColorInicial}" Offset="0.0"/>
+                <GradientStop Color="{DynamicResource FondoColorFinal}" Offset="0.3"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Text="{DynamicResource TituloContentPage}" Style="{DynamicResource Titulo}"/>
+
+        <Image x:Name="imagenFresa" Grid.Column="1" Grid.Row="2" Source="fresa1.png"/>
+
+        <BoxView Grid.Column="1" Grid.Row="3" Color="White" Opacity="0.25" CornerRadius="10" Focused="BoxView_Focused" Unfocused="BoxView_Unfocused"/>
+        
+        <VerticalStackLayout Grid.Column="1" Grid.Row="3" HorizontalOptions="Center" VerticalOptions="Center">
+            <Label Text="{DynamicResource TextoVitaminaC}" Style="{DynamicResource Cuerpo}"/>
+            <Label Text="{DynamicResource TextoFibra}" Style="{DynamicResource Cuerpo}"/>
+            <Label Text="{DynamicResource TextoAntioxidantes}" Style="{DynamicResource Cuerpo}"/>
+            <Label Text="{DynamicResource TextoPotasio}" Style="{DynamicResource Cuerpo}"/>
+            <HorizontalStackLayout>
+                <Label Text="{DynamicResource TextoAplicacion}" Style="{DynamicResource Cuerpo}"/>
+                <Switch x:Name="interruptor" Toggled="Switch_Toggled"></Switch>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <RadioButton x:Name="rTPrincipal" GroupName="Tema" Content="{DynamicResource TextoTemaPrincipal}" IsChecked="True" CheckedChanged="RadioButton_CheckedChanged"/>
+                <RadioButton x:Name="rTClaro" GroupName="Tema" Content="{DynamicResource TextoTemaClaro}" CheckedChanged="RadioButton_CheckedChanged"/>
+                <RadioButton x:Name="rTOscuro" GroupName="Tema" Content="{DynamicResource TextoTemaOscuro}" CheckedChanged="RadioButton_CheckedChanged"/>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout>
+                <Label Text="{DynamicResource TextoTamanioAplicacion}" Style="{DynamicResource Cuerpo}"/>
+                <Slider Minimum="0.75" Maximum="2" Value="1.75" ValueChanged="Slider_ValueChanged" WidthRequest="100"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>
