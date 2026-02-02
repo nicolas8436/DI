@@ -29,13 +29,13 @@ namespace Maui_PruebasAPI.Servicios
                         jsonRespuesta = JsonDocument.Parse(respuesta);
                         for (int i = 0; i < jsonRespuesta.RootElement.GetArrayLength(); i++)
                         {
-                            Modelos.Localidad nuevaLocalidad = new Modelos.Localidad(//Hay q crear localidad
+                            /*Modelos.Localidad nuevaLocalidad = new Modelos.Localidad(//Hay q crear localidad
                                 jsonRespuesta.RootElement[i].GetProperty("lat").ToString(),
                                 jsonRespuesta.RootElement[i].GetProperty("lon").ToString(),
                                 jsonRespuesta.RootElement[i].GetProperty("name").ToString(),
                                 jsonRespuesta.RootElement[i].GetProperty("type").ToString(),
                                 jsonRespuesta.RootElement[i].GetProperty("display_name").ToString());
-                            listaCiudadesEncontradas.Add(nuevaLocalidad);
+                            listaCiudadesEncontradas.Add(nuevaLocalidad);*/
 
                         }
                         return listaCiudadesEncontradas;
