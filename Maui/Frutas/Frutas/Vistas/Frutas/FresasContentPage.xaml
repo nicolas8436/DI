@@ -7,7 +7,12 @@
     <ContentPage.Resources>
         
     </ContentPage.Resources>
-
+    <ContentPage.ToolbarItems >
+        <ToolbarItem Order="Secondary" Text="about us" IconImageSource="dotnet_bot.png"></ToolbarItem><!--Para que salga la imagen hay que ponerlo como primary o no poner order-->
+        <ToolbarItem Order="Secondary" Text="salir" IconImageSource="fresa1.png"></ToolbarItem>
+        <ToolbarItem Order="Secondary" Text="asadasd" IconImageSource="splash.png"></ToolbarItem>
+        
+    </ContentPage.ToolbarItems>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

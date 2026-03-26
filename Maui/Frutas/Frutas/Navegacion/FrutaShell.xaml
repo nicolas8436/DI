@@ -15,4 +15,9 @@
         Title="Melocoton"
         ContentTemplate="{DataTemplate pageFrutas:MelocotonContentPage}"
         Route="MelocotonContentPage" />
+    
+    <ShellContent
+    Title="Estadisticas SincFusion"
+    ContentTemplate="{DataTemplate pageFrutas:MelocotonContentPage}"
+    Route="MelocotonContentPage" />
 </Shell>

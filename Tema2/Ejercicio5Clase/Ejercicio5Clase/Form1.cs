@@ -11,7 +11,7 @@ namespace Ejercicio5Clase
 
         private void menuOpcAyuda_click(object sender, EventArgs e)
         {
-            MessageBox.Show("Llama al Psicologo");
+            MessageBox.Show("Ayuda");
         }
 
         private void Suma()
