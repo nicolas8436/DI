@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Resources.Styles.TemaPrincipal">
+
+    <x:Double x:Key="TamanioTextoLabel">16</x:Double>
+    <x:Double x:Key="TamanioTituloLabel">20</x:Double>
+    <x:Double x:Key="TamanioTituloGLabel">28</x:Double>
+
+
+    <!-- ============================== Cabecera y fondo ============================== -->
+    <Style TargetType="BoxView" x:Key="Cabecera">
+        <Setter Property="Color" Value="#95EA9A"/>
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="Divisor">
+        <Setter Property="Color" Value="Black"/>
+    </Style>
+
+    <Style TargetType="Shell" x:Key="CabeceraNavegacion">
+        <Setter Property="BackgroundColor" Value="#95EA9A"/>
+        <Setter Property="TitleColor" Value="Black"/>
+    </Style>
+
+    <Style TargetType="ContentPage" x:Key="Fondo">
+        <Setter Property="BackgroundColor" Value="White"/>
+    </Style>
+    
+    
+    <!-- ============================== Label ============================== -->
+    <!--Titulo Normal-->
+    <Style TargetType="Label" x:Key="Titulo">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTituloLabel}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="InterBold"/>
+    </Style>
+
+    <!--Titulo Grande-->
+    <Style TargetType="Label" x:Key="TituloG">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTituloGLabel}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="InterBold"/>
+    </Style>
+
+
+    <!--Cuerpo del texto-->
+    <Style TargetType="Label" x:Key="Cuerpo">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+    </Style>
+    
+    <!--Cuerpo negrita-->
+    <Style TargetType="Label" x:Key="CuerpoNegrita">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+    </Style>
+
+    <!-- ============================== Imagen ============================== -->
+    <!--Imagen de la cabecera-->
+    <Style TargetType="Image" x:Key="ImgCabecera">
+        <Setter Property="Source" Value="iconoprincipal.png"/>
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="WidthRequest" Value="40"/>
+        <Setter Property="Margin" Value="7,0,0,0"/>
+    </Style>
+
+
+    <!-- ============================== Entry ============================== -->
+    
+    <!--Contraseña-->
+    <Style TargetType="Entry" x:Key="EntryContra">
+        <Setter Property="PlaceholderColor" Value="Black"/>
+        <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="IsPassword" Value="True"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="300"/>
+    </Style>
+    
+    <!--Texto Normal-->
+    <Style TargetType="Entry" x:Key="EntryNormal">
+        <Setter Property="PlaceholderColor" Value="Black"/>
+        <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="300"/>
+    </Style>
+
+    <!-- ============================== Botones ============================== -->
+    
+    <!--Boton Inicio Sesion-->
+    <!--Boton Registrar-->
+    
+    <!--Boton Eliminar cuenta-->
+    <Style TargetType="Button" x:Key="BtnEliminar">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="Red"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    
+    <!--Btn Confirmar-->
+    <Style TargetType="Button" x:Key="BtnConfirmar">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="#397952"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <!--Btn Cancelar-->
+    <Style TargetType="Button" x:Key="BtnCancelar">
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="#29335C"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+
+    <!-- BtnConfigAulas -->
+    <Style TargetType="Button" x:Key="BtnConfigAulas">
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="#CDF2FF"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    
+    <!-- ============================== Border ============================== -->
+    <!--Border-->
+    <Style TargetType="Border" x:Key="Border">
+        <Setter Property="Stroke" Value="Gray"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/> 
+        <Setter Property="StrokeThickness" Value="1"/>
+    </Style>
+    <!--Cabecera border-->
+    <Style TargetType="Border" x:Key="CabeceraBorder">
+        <Setter Property="BackgroundColor" Value="#CDF2FF"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+    </Style>
+</ResourceDictionary>

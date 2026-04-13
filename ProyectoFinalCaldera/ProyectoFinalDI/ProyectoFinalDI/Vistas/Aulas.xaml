@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Vistas.Aulas"
+             Style="{DynamicResource Fondo}"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="50, *">
+
+        <!-- Cabecera verde -->
+        <BoxView Grid.Row="0" Style="{DynamicResource Cabecera}"/>
+
+        <!-- Contenido de la cabecera -->
+        <HorizontalStackLayout Grid.Row="0">
+            <Image Style="{DynamicResource ImgCabecera}"/>
+            <Label x:Name="TituloAula"
+                   Text="Aulas del centro"
+                   Style="{DynamicResource Titulo}"
+                   Margin="10,12,0,0"/>
+        </HorizontalStackLayout>
+
+        <!-- Cuerpo Aulas -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout>
+
+                <HorizontalStackLayout BackgroundColor="White"
+                                       VerticalOptions="Fill"
+                                       HorizontalOptions="Fill">
+
+                    <Border 
+                        WidthRequest="650"
+                        HeightRequest="250"
+                        Style="{DynamicResource Border}">
+
+                        <Grid RowDefinitions="Auto,*">
+
+                            <!-- CABECERA -->
+                            <Border Grid.Row="0"
+                                    Style="{DynamicResource CabeceraBorder}"
+                                    Margin="-15,-15,-15,0">
+
+                                <Label x:Name="AulaXX"
+                                       Text="Aula A27"
+                                       HorizontalOptions="Center"
+                                       Style="{DynamicResource Titulo}"/>
+                            </Border>
+
+                            <!-- CONTENIDO -->
+                            <VerticalStackLayout Grid.Row="1"
+                                                 Spacing="10"
+                                                 Padding="0,15,0,0">
+
+                                <Grid ColumnDefinitions="*,*">
+
+                                    <!-- IZQUIERDA -->
+                                    <VerticalStackLayout Grid.Column="0">
+
+                                        <Grid RowDefinitions="Auto,Auto"
+                                              ColumnDefinitions="*,*"
+                                              RowSpacing="5">
+
+                                            <Label Grid.Row="0" Grid.Column="0"
+                                                   Text="Temp Actual:"
+                                                   Style="{DynamicResource CuerpoNegrita}"
+                                                   Margin="0,30,0,50"/>
+
+                                            <Label Grid.Row="0" Grid.Column="1"
+                                                   x:Name="TempAct"
+                                                   Text="33°C"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,30,100,0"
+                                                   Style="{DynamicResource CuerpoNegrita}"/>
+
+                                            <Label Grid.Row="1" Grid.Column="0"
+                                                   Text="Temp Confort actual:"
+                                                   Margin="0,15,0,0"
+                                                   Style="{DynamicResource CuerpoNegrita}"/>
+
+                                            <Label Grid.Row="1" Grid.Column="1"
+                                                   x:Name="TempConf"
+                                                   Text="33°C"
+                                                   HorizontalOptions="End"
+                                                   Margin="0,15,100,0"
+                                                   Style="{DynamicResource CuerpoNegrita}"/>
+
+                                        </Grid>
+
+                                    </VerticalStackLayout>
+
+                                    <!-- DERECHA -->
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Center">
+
+                                        <Label Text="Estado caldera: "
+                                               x:Name="EstadoCalderaA27"
+                                               Style="{DynamicResource CuerpoNegrita}"
+                                               Margin="0,29,0,65"/>
+
+                                        <Button Text="Configurar"
+                                                Margin="0,-15,0,0"
+                                                Clicked="Config_A27"
+                                                Style="{DynamicResource BtnConfigAulas}"/>
+
+                                    </VerticalStackLayout>
+
+                                </Grid>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
+                    </Border>
+
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout BackgroundColor="White"
+                                       VerticalOptions="Fill"
+                                       HorizontalOptions="Fill">
+
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+</ContentPage>

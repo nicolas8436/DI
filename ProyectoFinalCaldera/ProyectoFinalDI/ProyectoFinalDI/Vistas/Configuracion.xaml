@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Vistas.Configuracion"
+             Title="Configuracion"
+             Style="{DynamicResource Fondo}"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <!-- Cabecera verde -->
+            <Grid RowDefinitions="50, *">
+
+                <BoxView 
+                Grid.Row="0"
+                Style="{DynamicResource Cabecera}"/>
+
+            <Image Style="{DynamicResource ImgCabecera}"/>
+            <!-- Cabecera verde -->
+
+            <!--Cuerpo del inicio de sesion-->
+            <Grid Grid.Row="1"  ColumnDefinitions="*">
+
+                <VerticalStackLayout Grid.Row="1" Margin="8,8,0,0">
+                    <!--Cabezera configuracion-->
+                    <Label Text="Configuracion"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <Label Text="Pagina de configuracion del usuario"
+                           Style="{DynamicResource Cuerpo}"
+                           Margin="0,0,0,50"/>
+                    <!--Cabezera configuracion-->
+
+                    <!--Radio button Tema-->
+                    <Label Text="Estilo de la aplicacion"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <HorizontalStackLayout Margin="0,0,0,35">
+                        <RadioButton x:Name="RBprincipal" GroupName="Tema" Content="Normal" IsChecked="True" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
+                        <RadioButton x:Name="RBoscuro" GroupName="Tema" Content="Oscuro" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
+                            <RadioButton x:Name="RBclaro" GroupName="Tema" Content="Claro" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,0,0"/>
+                    </HorizontalStackLayout>
+                    <!--Radio button-->
+
+                    <!--Tamaño de la letra-->
+                    <Label Text="Tamaño de la letra"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <HorizontalStackLayout Margin="0,0,0,35">
+                        <Label Text="0.75" Style="{DynamicResource Cuerpo}" Margin="15,6,0,0"/>
+                        <Slider Minimum="0.75" Maximum="1.5" Value="1" ValueChanged="Tamaño_ValueChanged" WidthRequest="100"/>
+                        <Label Text="1.5" Style="{DynamicResource Cuerpo}" Margin="15,6,0,0"/>
+                    </HorizontalStackLayout>
+                    <!--Tamaño de la letra-->
+
+                    <!--Idioma-->
+                    <Label Text="Seleccione un idioma"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <HorizontalStackLayout Margin="0,0,0,35">
+                        <Label Text="Español"
+                               Style="{DynamicResource Cuerpo}"
+                               Margin="0,12,15,0"/>
+                        
+                        <Switch x:Name="interruptor" Toggled="Idioma_Toggled"></Switch>
+
+                        <Label Text="Ingles"
+                               Style="{DynamicResource Cuerpo}"
+                               Margin="-100,11,0,0"/>
+
+                    </HorizontalStackLayout>
+                        
+                    <!--Idioma-->
+
+                    <!--Cambio contraseña-->
+                    <Label Text="Cambio de contraseña"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <Entry Placeholder="Introduzca la nueva contraseña"
+                           Margin="0,0,0,35"
+                           Style="{DynamicResource EntryContra}"/>
+                    <!--Cambio Contraseña-->
+
+                    <!--Eliminar Cuenta-->
+                    <Label Text="Eliminar cuenta"
+                           Style="{DynamicResource Titulo}"/>
+
+                    <Button Text="Eliminar Cuenta"
+                            Margin="10,0,0,0"
+                            Style="{DynamicResource BtnEliminar}"/>
+                    <!--Eliminar Cuenta-->
+
+
+                </VerticalStackLayout>
+
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

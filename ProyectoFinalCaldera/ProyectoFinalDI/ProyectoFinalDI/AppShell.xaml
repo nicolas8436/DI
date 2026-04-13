@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ProyectoFinalDI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ProyectoFinalDI"
+    xmlns:Vistas="clr-namespace:ProyectoFinalDI.Vistas"
+    xmlns:Otras="clr-namespace:ProyectoFinalDI.Vistas.OtrasPaginas"
+    FlyoutBehavior="Flyout"
+    FlyoutIcon="iconoprincipal"
+    Style="{DynamicResource CabeceraNavegacion}"
+    >
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+   
+
+    <!--<ShellContent
+            Title=""
+            ContentTemplate="{DataTemplate Vistas:Aulas}"
+            Route="Inicio"
+            Shell.NavBarIsVisible="False"
+            />
+    
+     <FlyoutItem Title="About" Icon="interrogacion_negro.png">
+        <ShellContent
+            ContentTemplate="{DataTemplate Otras:AcercaDe}"/>
+    </FlyoutItem>-->
+    
+        
+    
+    
+    <ShellContent
+            Title="Inicio"
+            ContentTemplate="{DataTemplate Vistas:Inicio}"
+            Route="Inicio"
+            Shell.NavBarIsVisible="False"/>
+
+    <ShellContent
+            Title="Acerca de"
+            ContentTemplate="{DataTemplate Otras:AcercaDe}"
+            Route="AcercaDe" 
+            Shell.NavBarIsVisible="False"/>
+    
+    <ShellContent
+            Title="Configuracion"
+            ContentTemplate="{DataTemplate Vistas:Configuracion}"
+            Route="Configuracion"
+            Shell.NavBarIsVisible="False"/>
+
+    <ShellContent
+            Title="Aulas"
+            ContentTemplate="{DataTemplate Vistas:Aulas}"
+            Route="Aulas"
+            Shell.NavBarIsVisible="False"/>
+
+    <ShellContent
+            Title="Aulas"
+            ContentTemplate="{DataTemplate Vistas:ListaUsr}"
+            Route="Aulas"
+            Shell.NavBarIsVisible="False"/>
+
+    <ShellContent
+            Title="Aulas"
+            ContentTemplate="{DataTemplate Vistas:Registro}"
+            Route="Aulas"
+            Shell.NavBarIsVisible="False"/>
+
+</Shell>

@@ -1,0 +1,40 @@
+﻿Aqui ponemos las distintas paginas sobre las que navegamos
+paginas normales y de inicio separadas
+
+
+====================================== Plantilla general para las paginas =======================================================================
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Vistas.Aulas"
+             Title="Aulas"
+             Style="{DynamicResource Fondo}"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <!-- Cabecera verde -->
+        <Grid RowDefinitions="50, *">
+
+            <BoxView 
+            Grid.Row="0"
+            Style="{DynamicResource Cabecera}"/>
+
+            <Image Style="{DynamicResource ImgCabecera}"/>
+            <!-- Cabecera verde -->
+
+            
+            <!--Cuerpo del inicio de sesion-->
+            <Grid Grid.Row="1"  ColumnDefinitions="*">
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>
