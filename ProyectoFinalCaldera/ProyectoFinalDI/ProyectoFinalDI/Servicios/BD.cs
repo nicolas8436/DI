@@ -1,10 +1,12 @@
-﻿using System;
+﻿using MySqlConnector;
+using ProyectoFinalDI.Vistas;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySqlConnector;
-using ProyectoFinalDI.Vistas;
+using static Android.Provider.ContactsContract.CommonDataKinds;
 
 namespace ProyectoFinalDI.Servicios
 {
@@ -340,7 +342,7 @@ namespace ProyectoFinalDI.Servicios
             try
             {
                 using (var comando = new MySqlCommand(
-                    "SELECT NOMBRE, ID_ROL, EMAIL, APELLIDOS FROM USUARIOS",
+                    "SELECT NOMBRE, ID_ROL, EMAIL, APELLIDOS, PASSWORD FROM USUARIOS",
                     conector))
                 using (var reader = comando.ExecuteReader())
                 {
@@ -372,6 +374,7 @@ namespace ProyectoFinalDI.Servicios
                             nombre = reader.GetString(0),
                             rol = tipoRol,
                             apellido = reader.GetString(3),
+                            contraseña = reader.GetString(4)
                         });
                     }
                 }
@@ -430,7 +433,7 @@ namespace ProyectoFinalDI.Servicios
 
                     if (count != 0)
                     {
-                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
+                        p.DisplayAlert("Error al registrar", "El usuario ya existe", "OK");
                         return false;
                     }
 
@@ -470,39 +473,50 @@ namespace ProyectoFinalDI.Servicios
         }//Registro SuperAdmin ==============================================================================================================================
 
         //Actualizacion SuperAdmin ==============================================================================================================================
-        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
+        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol, ObservableCollection<UsuarioRolClase> lista)
+        {
+            p.DisplayAlert("Error", "En la actualizacion", "OK");
+        }
+
+        /*internal async void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
         {
             int filas;
             try
             {
 
+
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
                 {
 
                     //Parametros
-                    comando.Parameters.AddWithValue("@usuario", Usr);
-                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+                    comando.Parameters.AddWithValue("@usuario", Usr.Trim());
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email.Trim());
 
                     //Convertir a numero para ver si hay alguno
-                    int count = Convert.ToInt32(comando.ExecuteScalar());
+                    int count = 0;
+                    count = Convert.ToInt32(comando.ExecuteScalar());
+
+                    if (Usr.Trim().Equals(seleccionado.email.ToString().Trim())) { count = 0; }
+
 
                     if (count != 0)
                     {
-                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
+                        await p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
                         return;
                     }
+
 
                 }
                 using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario,NOMBRE = @nombre , APELLIDOS = @apellidos , PASSWORD = @pass , ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
                 {
 
                     //Parametros
-                    comando.Parameters.AddWithValue("@usuario", Usr);
+                    comando.Parameters.AddWithValue("@usuario", Usr.Trim());
                     comando.Parameters.AddWithValue("@pass", Contra);
                     comando.Parameters.AddWithValue("@apellidos", Apellidos);
                     comando.Parameters.AddWithValue("@nombre", Nombre);
                     comando.Parameters.AddWithValue("@rol", rol);
-                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email.Trim());
 
                     filas = comando.ExecuteNonQuery();
                 }
@@ -526,67 +540,7 @@ namespace ProyectoFinalDI.Servicios
                 p.DisplayAlert("Error", "Error al Iniciar la sesion", "OK");
                 return;
             }
-        }
-
-
-        //No cambiamos contraseña -------------------------------------------------------------------------------------------------------------------------------
-        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Nombre, string Apellidos, int rol)
-        {
-            int filas;
-            try
-            {
-
-                using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
-                {
-
-                    //Parametros
-                    comando.Parameters.AddWithValue("@usuario", Usr);
-                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
-
-                    //Convertir a numero para ver si hay alguno
-                    int count = Convert.ToInt32(comando.ExecuteScalar());
-
-                    if (count != 0)
-                    {
-                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
-                        return;
-                    }
-
-                }
-                using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario, NOMBRE = @nombre , APELLIDOS = @apellidos, ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
-                {
-
-                    //Parametros
-                    comando.Parameters.AddWithValue("@usuario", Usr);
-                    comando.Parameters.AddWithValue("@apellidos", Apellidos);
-                    comando.Parameters.AddWithValue("@nombre", Nombre);
-                    comando.Parameters.AddWithValue("@rol", rol);
-                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
-
-
-                    filas = comando.ExecuteNonQuery();
-                }
-
-                if (filas > 0)  //Verificar que insertó
-                {
-                    p.DisplayAlert("Usuario Actualizado", "Usuario actualizado correctamente", "OK");
-                    return;
-                }
-                else
-                {
-                    p.DisplayAlert("Error", "No se pudo actualizar el usuario", "OK");
-                    return;
-                }
-
-
-            }
-            catch (MySqlException e)
-            {
-
-                p.DisplayAlert("Error", "Error al Iniciar la sesion", "OK");
-                return;
-            }
-        }
+        }*/
 
         //Actualizacion SuperAdmin ==============================================================================================================================
     }

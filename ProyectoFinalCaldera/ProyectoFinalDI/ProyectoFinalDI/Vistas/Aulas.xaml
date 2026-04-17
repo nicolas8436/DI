@@ -14,7 +14,7 @@
         <HorizontalStackLayout Grid.Row="0">
             <Image Style="{DynamicResource ImgCabecera}"/>
             <Label x:Name="TituloAula"
-                   Text="Aulas del centro"
+                   Text="{DynamicResource TituloCabeceraAulas}"
                    Style="{DynamicResource Titulo}"
                    VerticalOptions="Center"
                    Margin="10,0,0,0"/>
@@ -59,7 +59,7 @@
                                     <Grid RowDefinitions="Auto,Auto"
                                           ColumnDefinitions="*,*">
 
-                                        <Label Text="Temp Actual:"
+                                        <Label Text="{DynamicResource TempActAulas}"
                                                Margin="0,45,0,0"
                                                Style="{DynamicResource CuerpoNegrita}"/>
 
@@ -70,7 +70,7 @@
                                                Style="{DynamicResource CuerpoNegrita}"/>
 
                                         <Label Grid.Row="1"
-                                               Text="Temp Confort:"
+                                               Text="{DynamicResource TempConfAulas}"
                                                Margin="0,35,0,0"
                                                Style="{DynamicResource CuerpoNegrita}"/>
 
@@ -93,7 +93,7 @@
                                             HorizontalOptions="Center">
                                             <Label.FormattedText>
                                                 <FormattedString>
-                                                    <Span Text="Estado válvula: " 
+                                                    <Span Text="{DynamicResource ValvulaAulas}" 
                                                           Style="{DynamicResource CuerpoNegrita}"/>
                                                     <Span Text="{Binding EstadoCaldera}" 
                                                           Style="{DynamicResource CuerpoNegrita}"/>
@@ -101,7 +101,7 @@
                                             </Label.FormattedText>
                                         </Label>
 
-                                        <Button Text="Configurar"
+                                        <Button Text="{DynamicResource BtnConfAulas}"
                                                 CommandParameter="{Binding Nombre}"
                                                 Clicked="Configurar_Clicked"
                                                 Style="{DynamicResource BtnConfigAulas}"

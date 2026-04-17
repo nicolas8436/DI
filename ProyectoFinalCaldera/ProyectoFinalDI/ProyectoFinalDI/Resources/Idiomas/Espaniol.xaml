@@ -5,8 +5,11 @@
     
     
     <!-- ========================================= Pagina Aulas ========================================= -->
-    
-
+    <x:String x:Key="TituloCabeceraAulas">Aulas del centro</x:String>
+    <x:String x:Key="TempConfAulas">Temp Confort:</x:String>
+    <x:String x:Key="TempActAulas">Temp Actual:</x:String>
+    <x:String x:Key="ValvulaAulas">Estado válvula: </x:String>
+    <x:String x:Key="BtnConfAulas">Configurar</x:String>
 
     <!-- ========================================== Pagina Aula ========================================= -->
     <x:String x:Key="TituloCabeceraAula">Configuracion de aula</x:String>

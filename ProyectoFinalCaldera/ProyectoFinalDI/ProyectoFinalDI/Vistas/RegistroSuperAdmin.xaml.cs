@@ -1,4 +1,5 @@
 using ProyectoFinalDI.Servicios;
+using System.Collections.ObjectModel;
 using System.Security.Principal;
 using System.Text.RegularExpressions;
 
@@ -7,21 +8,26 @@ namespace ProyectoFinalDI.Vistas;
 public partial class RegistroSuperAdmin : ContentPage
 {
     UsuarioRolClase seleccionado;
+    ListaUsr actualizar;
 	private int rol = 3;
     private int opc = 0;
-	public RegistroSuperAdmin(int opc)//Agregar 
+
+    public RegistroSuperAdmin(int opc, ListaUsr p)//Agregar 
 	{
 		InitializeComponent();
         this.opc = opc;//Opc = 1
-
+        actualizar = p;//Para actualizar la lista
+        
         TituloRegistroEdicion.SetDynamicResource(Label.TextProperty, "TituloReg");
         TextoRegEdtUsr.SetDynamicResource(Label.TextProperty, "TextoRegUsr");
+
     }
 
-    public RegistroSuperAdmin(int opc, UsuarioRolClase usuarioSeleccionado)//Editar
+    public RegistroSuperAdmin(int opc, UsuarioRolClase usuarioSeleccionado, ListaUsr p)//Editar
     {
         InitializeComponent();
         this.opc = opc;//Opc = 2 
+        actualizar = p;//Para actualizar la lista
         seleccionado = usuarioSeleccionado;
 
         TituloRegistroEdicion.SetDynamicResource(Label.TextProperty, "TituloEdit");
@@ -34,22 +40,24 @@ public partial class RegistroSuperAdmin : ContentPage
 
     
 
-    public void BtnContinuar(object sender, EventArgs e)
+    public async void BtnContinuar(object sender, EventArgs e)
     {
-        if (opc == 2)
+
+        if (seleccionado != null)
         {
             Actualizacion(sender, e);
         }
-        else if (opc == 1)
+        else if (seleccionado == null)
         {
-            Registo(sender, e);
+            Registo(sender, e);       
         }
+        
     }
 
 
-    private void Registo(object sender, EventArgs e)
+    private async void Registo(object sender, EventArgs e)
     {
-        if (Usr.Text != null && Contra.Text != null && Nom.Text != null && Ape.Text != null) {
+        if (!string.IsNullOrWhiteSpace(Usr.Text) && !string.IsNullOrWhiteSpace(Contra.Text) && !string.IsNullOrWhiteSpace(Nom.Text) && !string.IsNullOrWhiteSpace(Ape.Text)) {
 
             if (!Regex.IsMatch(Usr.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
@@ -58,35 +66,38 @@ public partial class RegistroSuperAdmin : ContentPage
             } 
             else
             {
-                BD.Instance.Registro(this, Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol); 
+                BD.Instance.AbrirConexion(this);
+
+                BD.Instance.Registro(this, Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol);
+
+                BD.Instance.CerrarConexion(this);
+                actualizar.CargarUsuarios();
             }
-            
+            await Navigation.PopAsync();
         } else
         {
             DisplayAlert("Error", "Debe llenar todos los campos", "OK");
         }
     }
 
-    private void Actualizacion(object sender, EventArgs e)
-    {
-        if (Usr.Text != null  && Nom.Text != null && Ape.Text != null)
+    private async void Actualizacion(object sender, EventArgs e)
+    {  
+        if (!string.IsNullOrWhiteSpace(Usr.Text) && !string.IsNullOrWhiteSpace(Contra.Text) && !string.IsNullOrWhiteSpace(Nom.Text) && !string.IsNullOrWhiteSpace(Ape.Text))
         {
-            if (Contra.Text == null) { 
+            // Validar email siempre, independientemente de si hay contraseña o no
             if (!Regex.IsMatch(Usr.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
                 DisplayAlert("Error", "Debes usar un correo electronico valido", "OK");
-
-            }
-            else
-            {
-                BD.Instance.Actualizacion(this, seleccionado, Usr.Text, Nom.Text, Ape.Text, rol);
-            }
-            }
-            else
-            {
-                BD.Instance.Actualizacion(this, seleccionado ,Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol);
+                return;
             }
 
+            BD.Instance.AbrirConexion(this);
+      
+            BD.Instance.Actualizacion(this, seleccionado, Usr.Text.Trim(), Contra.Text, Nom.Text, Ape.Text, rol, lista);
+            
+            BD.Instance.CerrarConexion(this);
+            actualizar.CargarUsuarios();
+            await Navigation.PopAsync();
         }
         else
         {
@@ -116,7 +127,8 @@ public partial class RegistroSuperAdmin : ContentPage
 
     private void RellenarCampos(UsuarioRolClase usuarioSeleccionado){
 
-        Usr.Text = usuarioSeleccionado.email;
+        Usr.Text = usuarioSeleccionado.email.Trim();
+        Contra.Text = usuarioSeleccionado.contraseña;
         Nom.Text = usuarioSeleccionado.nombre;
         Ape.Text = usuarioSeleccionado.apellido;
 
