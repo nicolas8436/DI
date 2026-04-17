@@ -54,22 +54,12 @@
             Route="Configuracion"
             Shell.NavBarIsVisible="False"/>
 
-    <ShellContent
-            Title="Aulas"
-            ContentTemplate="{DataTemplate Vistas:Aulas}"
-            Route="Aulas"
-            Shell.NavBarIsVisible="False"/>
 
     <ShellContent
-            Title="Aulas"
+            Title="Lista Usr"
             ContentTemplate="{DataTemplate Vistas:ListaUsr}"
             Route="Aulas"
             Shell.NavBarIsVisible="False"/>
 
-    <ShellContent
-            Title="Aulas"
-            ContentTemplate="{DataTemplate Vistas:Registro}"
-            Route="Aulas"
-            Shell.NavBarIsVisible="False"/>
 
 </Shell>

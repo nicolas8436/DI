@@ -2,13 +2,24 @@
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProyectoFinalDI"
+             xmlns:styles="clr-namespace:ProyectoFinalDI.Resources.Styles"
+             xmlns:idiomas="clr-namespace:ProyectoFinalDI.Resources.Idiomas"
              x:Class="ProyectoFinalDI.App">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+                <!-- Tema -->
+                <styles:TemaPrincipal/>
+
+                <!-- Idioma -->
+                <idiomas:Espaniol/>
+
+                <!-- Tamaños -->
+                <styles:TamFuentes/>
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
+    
 </Application>

@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using ProyectoFinalDI.Servicios;
 
 namespace ProyectoFinalDI.Vistas;
 
@@ -10,16 +11,26 @@ public partial class Aulas : ContentPage
     {
         InitializeComponent();
 
-        ListaAulas = new ObservableCollection<AulaClase>
-        {
-            new AulaClase { Nombre="A23", TempActual="33°C", TempConfort="33°C", EstadoCaldera="Encendida" },
-            new AulaClase { Nombre="A24", TempActual="30°C", TempConfort="32°C", EstadoCaldera="Apagada" },
-            new AulaClase { Nombre="A25", TempActual="29°C", TempConfort="31°C", EstadoCaldera="Encendida" },
-            new AulaClase { Nombre="A26", TempActual="28°C", TempConfort="30°C", EstadoCaldera="Apagada" },
-            new AulaClase { Nombre="A27", TempActual="33°C", TempConfort="33°C", EstadoCaldera="Encendida" }
-        };
+        ListaAulas = new ObservableCollection<AulaClase>();
 
         BindingContext = this;
+
+        CargarAulas();
+    }
+
+    private void CargarAulas()
+    {
+        if (BD.Instance.AbrirConexion(this))
+        {
+            var datos = BD.Instance.ObtenerAulas(this);
+
+            ListaAulas.Clear();
+
+            foreach (var aula in datos)
+                ListaAulas.Add(aula);
+
+            BD.Instance.CerrarConexion(this);
+        }
     }
 
     private async void Configurar_Clicked(object sender, EventArgs e)

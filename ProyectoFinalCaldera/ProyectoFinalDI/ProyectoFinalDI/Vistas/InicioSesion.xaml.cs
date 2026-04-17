@@ -26,6 +26,7 @@ public partial class InicioSesion : ContentPage
 			bool inicioS = BD.Instance.InicioS(this, usuario, contraseña);
 
 			if (inicioS == true) {
+				Persona.Instance.SetRol(BD.Instance.ObtenerRol(this, usuario));
                 await Navigation.PushAsync(new Aulas());
             }
 			else 

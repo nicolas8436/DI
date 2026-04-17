@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Resources.Idiomas.Espaniol">
+    
+    
+    <!-- ========================================= Pagina Aulas ========================================= -->
+    
+
+
+    <!-- ========================================== Pagina Aula ========================================= -->
+    <x:String x:Key="TituloCabeceraAula">Configuracion de aula</x:String>
+    <x:String x:Key="TituloBorderAula">Aula</x:String>
+    <x:String x:Key="TempActAula">Temp actual:</x:String>
+    <x:String x:Key="TempConfAula">Temp Programada:</x:String>
+    <x:String x:Key="TempDefaultAula">N/A</x:String>
+    <x:String x:Key="NuevaTempAula">Nueva temp Confort:</x:String>
+    <x:String x:Key="BtnConfirmarAula">Confirmar</x:String>
+    <x:String x:Key="BtnCancelarAula">Cancelar</x:String>
+    
+    <!-- ===================================== Pagina Configuracion ===================================== -->
+    <x:String x:Key="TituloCabeceraConf">Configuracion</x:String>
+    <x:String x:Key="DescConf">Pagina de configuracion del usuario</x:String>
+    
+    <x:String x:Key="TituloEstiloAppConf">Estilo de la aplicacion:</x:String>
+    <x:String x:Key="NormalConf">Normal</x:String>
+    <x:String x:Key="OscuroConf">Oscuro</x:String>
+    <x:String x:Key="ClaroConf">Claro</x:String>
+    
+    <x:String x:Key="TituloTamLetraConf">Tamaño de la letra</x:String>
+
+    <x:String x:Key="TituloCambioIdiomaConf">Seleccione un idioma</x:String>
+    <x:String x:Key="EspaniolConf">Español</x:String>
+    <x:String x:Key="InglesConf">Ingles</x:String>
+
+    <x:String x:Key="TitCambioContraConf">Cambio de contraseña</x:String>
+    <x:String x:Key="PlaceholderCambioContraConf">Introduzca la nueva contraseña</x:String>
+
+    <x:String x:Key="TituloEliminarCuentaConf">Eliminar Cuenta</x:String>
+    <x:String x:Key="BtnEliminarCuentaConf">Eliminar Cuenta</x:String>
+
+
+
+    <!-- ======================================== Pagina Graficos ======================================= -->
+    
+    <!-- ======================================== Pagina Lista de Usr ======================================= -->
+    <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
+
+    <x:String x:Key="TituloListUsr">Lista de Usuarios</x:String>
+    <x:String x:Key="DescripcionListUsr">Pagina para la gestion de usuarios</x:String>
+    
+    <x:String x:Key="TituloUsrListUsr">Usuario</x:String>
+    <x:String x:Key="TituloRolListUsr">Rol</x:String>
+
+    <x:String x:Key="BtnAgregarLitUsr">Agregar</x:String>
+    <x:String x:Key="BtnEliminarListUsr">Eliminar</x:String>
+    <x:String x:Key="BtnEditarLitUsr">Editar</x:String>
+
+    <!-- ======================================== Pagina SuperA ======================================= -->
+    <x:String x:Key="TituloReg">Registro de Usuario</x:String>
+    <x:String x:Key="TituloEdit">Edicion de Usuario</x:String>
+
+    <x:String x:Key="TextoRegUsr">Registro de Usuario</x:String>
+    <x:String x:Key="TextoEdtUsr">Edicion de Usuario</x:String>
+
+    <x:String x:Key="SuperRol">Super</x:String>
+    <x:String x:Key="AdminRol">Admin</x:String>
+    <x:String x:Key="RegistradoRol">Usuario</x:String>
+    <!-- ======================================== Pagina Acerca de ======================================= -->
+
+
+</ResourceDictionary>

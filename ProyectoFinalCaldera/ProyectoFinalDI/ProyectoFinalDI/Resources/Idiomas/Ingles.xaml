@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Resources.Idiomas.Ingles">
+
+    <!-- ========================================= Pagina Aulas ========================================= -->
+
+
+
+    <!-- ========================================== Pagina Aula ========================================= -->
+    <x:String x:Key="TituloCabeceraAula">Classroom configuration</x:String>
+    <x:String x:Key="TituloBorderAula">Classroom</x:String>
+    <x:String x:Key="TempActAula">Current Temp:</x:String>
+    <x:String x:Key="TempConfAula">Programmed temp:</x:String>
+    <x:String x:Key="TempDefaultAula">N/A</x:String>
+    <x:String x:Key="NuevaTempAula">New Comfort Temp:</x:String>
+    <x:String x:Key="BtnConfirmarAula">Confirm</x:String>
+    <x:String x:Key="BtnCancelarAula">Cancel</x:String>
+
+    <!-- ===================================== Pagina Configuracion ===================================== -->
+    <x:String x:Key="TituloCabeceraConf">Settings</x:String>
+    <x:String x:Key="DescConf">User Ssettings Page</x:String>
+
+    <x:String x:Key="TituloEstiloAppConf">Application styles:</x:String>
+    <x:String x:Key="NormalConf">Normal</x:String>
+    <x:String x:Key="OscuroConf">Dark</x:String>
+    <x:String x:Key="ClaroConf">Light</x:String>
+
+    <x:String x:Key="TituloTamLetraConf">Font Size</x:String>
+
+    <x:String x:Key="TituloCambioIdiomaConf">Select a language</x:String>
+    <x:String x:Key="EspaniolConf">Spanish</x:String>
+    <x:String x:Key="InglesConf">English</x:String>
+
+    <x:String x:Key="TitCambioContraConf">Change Password</x:String>
+    <x:String x:Key="PlaceholderCambioContraConf">New Password</x:String>
+
+    <x:String x:Key="TituloEliminarCuentaConf">Delete Account</x:String>
+    <x:String x:Key="BtnEliminarCuentaConf">Delete Account</x:String>
+
+
+
+    <!-- ======================================== Pagina Graficos ======================================= -->
+
+
+    <x:String x:Key="TituloReg">Register user</x:String>
+    <x:String x:Key="TituloEdit">Edit user</x:String>
+</ResourceDictionary>
+

@@ -2,11 +2,144 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Vistas.ListaUsr"
-             Title="ListaUsr">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="ListaUsr"
+             Style="{DynamicResource Fondo}"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="50, *">
+
+        <!-- Cabecera verde -->
+        <BoxView Grid.Row="0" Style="{DynamicResource Cabecera}"/>
+
+        <!-- Contenido de la cabecera -->
+        <HorizontalStackLayout Grid.Row="0">
+            <Image Style="{DynamicResource ImgCabecera}"/>
+            <Label x:Name="TituloAula"
+                   Text="{DynamicResource TituloPagListUsr}"
+                   Style="{DynamicResource Titulo}"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0"/>
+        </HorizontalStackLayout>
+
+        <ScrollView Grid.Row="1" 
+                    Padding="15">
+            <VerticalStackLayout>
+
+                <Label HorizontalOptions="Start"
+                       Text="{DynamicResource TituloListUsr}"
+                       Style="{DynamicResource Titulo}"/>
+
+                <Label HorizontalOptions="Start"
+                       Text="{DynamicResource DescripcionListUsr}"
+                       Style="{DynamicResource Cuerpo}"/>
+
+                <!--Border-->
+                <Border Padding="10"
+                        Margin="100,80,100,10"
+                        HeightRequest="350"
+                        WidthRequest="450"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Style="{DynamicResource Border}">
+
+                    <Grid RowDefinitions="Auto,*">
+
+                        <!--Fila 1 Titulo-->
+                        <Border Style="{DynamicResource CabeceraBorder}"
+                                Margin="-10,-10,-10,0">
+
+                            <Grid ColumnDefinitions="*,*">
+                                <Label Grid.Column="0"
+                                       HorizontalOptions="Center"
+                                       Text="{DynamicResource TituloUsrListUsr}"
+                                       Style="{DynamicResource CuerpoNegrita}"/>
+
+                                <Label Grid.Column="1"
+                                       HorizontalOptions="Center"
+                                       Text="{DynamicResource TituloRolListUsr}"
+                                       Style="{DynamicResource CuerpoNegrita}"/>
+                            </Grid>
+                        </Border>
+                        <!--Fila 1 Titulo-->
+
+                        <!--Fila 2 Usuarios/Rol-->
+                        <CollectionView Grid.Row="1"
+                                        ItemsSource="{Binding ListaUsuarios}"
+                                        SelectionMode="Single"
+                                        SelectionChanged="OnSelectionChanged">
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Border Padding="5">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroup Name="CommonStates">
+
+                                                <VisualState Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <VisualState Name="Selected">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="LightGray"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                            </VisualStateGroup>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                        <Grid ColumnDefinitions="*,*">
+
+                                            <Label Text="{Binding nombre}"
+                                                   Grid.Column="0"
+                                                   Style="{DynamicResource Cuerpo}"
+                                                   HorizontalOptions="Center"
+                                                   Margin="0,10,0,0"/>
+
+                                            <Label Text="{Binding rol}"
+                                                   Grid.Column="1"
+                                                   Style="{DynamicResource Cuerpo}"
+                                                   HorizontalOptions="Center"
+                                                   Margin="0,10,0,0"/>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+                        <!--Fila 2 Usuarios/Rol-->
+
+                    </Grid>
+                </Border>
+                <!--Border-->
+
+                <!--Fila de botones-->
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button x:Name="BtnAgregarUsrListUsr"
+                            Clicked="BtnAgregarUsrListUsr_Clicked"
+                            Style="{DynamicResource BtnAgregarListUsrEstilo}"
+                            Text="{DynamicResource BtnAgregarLitUsr}"/>
+
+                    <Button x:Name="BtnEliminarUsrListUsr"
+                            Clicked="BtnEliminarUsrListUsr_Clicked"
+                            Style="{DynamicResource BtnEliminarListUsrEstilo}"
+                            Text="{DynamicResource BtnEliminarListUsr}"/>
+
+                    <Button x:Name="BtnEditarUsrListUsr"
+                            Clicked="BtnEditarUsrListUsr_Clicked"
+                            Style="{DynamicResource BtnEditarListUsrEstilo}"
+                            Text="{DynamicResource BtnEditarLitUsr}"/>
+                </HorizontalStackLayout>
+                <!--Fila de botones-->
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
 </ContentPage>

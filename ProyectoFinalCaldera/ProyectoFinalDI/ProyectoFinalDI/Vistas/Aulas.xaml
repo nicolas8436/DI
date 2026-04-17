@@ -5,14 +5,6 @@
              Style="{DynamicResource Fondo}"
              Shell.NavBarIsVisible="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <Grid RowDefinitions="50, *">
 
         <!-- Cabecera verde -->
@@ -24,111 +16,111 @@
             <Label x:Name="TituloAula"
                    Text="Aulas del centro"
                    Style="{DynamicResource Titulo}"
-                   Margin="10,12,0,0"/>
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0"/>
         </HorizontalStackLayout>
 
         <!-- Cuerpo Aulas -->
         <ScrollView Grid.Row="1">
-            <VerticalStackLayout>
+            <CollectionView ItemsSource="{Binding ListaAulas}">
 
-                <HorizontalStackLayout BackgroundColor="White"
-                                       VerticalOptions="Fill"
-                                       HorizontalOptions="Fill">
+                <!-- 2 columnas -->
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical" 
+                                     Span="2" 
+                                     VerticalItemSpacing="10" 
+                                     HorizontalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
 
-                    <Border 
-                        WidthRequest="650"
-                        HeightRequest="250"
-                        Style="{DynamicResource Border}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
 
-                        <Grid RowDefinitions="Auto,*">
+                        <Border Padding="10"
+                                Margin="10"
+                                HeightRequest="250"
+                                Style="{DynamicResource Border}">
 
-                            <!-- CABECERA -->
-                            <Border Grid.Row="0"
-                                    Style="{DynamicResource CabeceraBorder}"
-                                    Margin="-15,-15,-15,0">
+                            <Grid RowDefinitions="Auto,*">
 
-                                <Label x:Name="AulaXX"
-                                       Text="Aula A27"
-                                       HorizontalOptions="Center"
-                                       Style="{DynamicResource Titulo}"/>
-                            </Border>
+                                <!-- CABECERA -->
+                                <Border Style="{DynamicResource CabeceraBorder}"
+                                        Margin="-15,-15,-15,0">
 
-                            <!-- CONTENIDO -->
-                            <VerticalStackLayout Grid.Row="1"
-                                                 Spacing="10"
-                                                 Padding="0,15,0,0">
+                                    <Label Text="{Binding Nombre}"
+                                           HorizontalOptions="Center"
+                                           Style="{DynamicResource Titulo}"/>
+                                </Border>
 
-                                <Grid ColumnDefinitions="*,*">
+                                <!-- CONTENIDO -->
+                                <Grid Grid.Row="1" 
+                                      ColumnDefinitions="*,*">
 
                                     <!-- IZQUIERDA -->
-                                    <VerticalStackLayout Grid.Column="0">
+                                    <Grid RowDefinitions="Auto,Auto"
+                                          ColumnDefinitions="*,*">
 
-                                        <Grid RowDefinitions="Auto,Auto"
-                                              ColumnDefinitions="*,*"
-                                              RowSpacing="5">
+                                        <Label Text="Temp Actual:"
+                                               Margin="0,45,0,0"
+                                               Style="{DynamicResource CuerpoNegrita}"/>
 
-                                            <Label Grid.Row="0" Grid.Column="0"
-                                                   Text="Temp Actual:"
-                                                   Style="{DynamicResource CuerpoNegrita}"
-                                                   Margin="0,30,0,50"/>
+                                        <Label Text="{Binding TempActual}"
+                                               Grid.Column="1"
+                                               HorizontalOptions="Center"
+                                               Margin="0,45,0,0"
+                                               Style="{DynamicResource CuerpoNegrita}"/>
 
-                                            <Label Grid.Row="0" Grid.Column="1"
-                                                   x:Name="TempAct"
-                                                   Text="33°C"
-                                                   HorizontalOptions="End"
-                                                   Margin="0,30,100,0"
-                                                   Style="{DynamicResource CuerpoNegrita}"/>
+                                        <Label Grid.Row="1"
+                                               Text="Temp Confort:"
+                                               Margin="0,35,0,0"
+                                               Style="{DynamicResource CuerpoNegrita}"/>
 
-                                            <Label Grid.Row="1" Grid.Column="0"
-                                                   Text="Temp Confort actual:"
-                                                   Margin="0,15,0,0"
-                                                   Style="{DynamicResource CuerpoNegrita}"/>
+                                        <Label Grid.Row="1"
+                                               Grid.Column="1"
+                                               Margin="0,35,0,0"
+                                               Text="{Binding TempConfort}"
+                                               HorizontalOptions="Center"
+                                               Style="{DynamicResource CuerpoNegrita}"/>
 
-                                            <Label Grid.Row="1" Grid.Column="1"
-                                                   x:Name="TempConf"
-                                                   Text="33°C"
-                                                   HorizontalOptions="End"
-                                                   Margin="0,15,100,0"
-                                                   Style="{DynamicResource CuerpoNegrita}"/>
-
-                                        </Grid>
-
-                                    </VerticalStackLayout>
+                                    </Grid>
 
                                     <!-- DERECHA -->
                                     <VerticalStackLayout Grid.Column="1"
-                                                         HorizontalOptions="Center"
-                                                         VerticalOptions="Center">
+                                                         HorizontalOptions="Fill"
+                                                         VerticalOptions="Fill">
 
-                                        <Label Text="Estado caldera: "
-                                               x:Name="EstadoCalderaA27"
-                                               Style="{DynamicResource CuerpoNegrita}"
-                                               Margin="0,29,0,65"/>
+                                        <Label 
+                                            Margin="0,43,0,0"
+                                            HorizontalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Estado válvula: " 
+                                                          Style="{DynamicResource CuerpoNegrita}"/>
+                                                    <Span Text="{Binding EstadoCaldera}" 
+                                                          Style="{DynamicResource CuerpoNegrita}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
 
                                         <Button Text="Configurar"
-                                                Margin="0,-15,0,0"
-                                                Clicked="Config_A27"
-                                                Style="{DynamicResource BtnConfigAulas}"/>
+                                                CommandParameter="{Binding Nombre}"
+                                                Clicked="Configurar_Clicked"
+                                                Style="{DynamicResource BtnConfigAulas}"
+                                                Margin="0,32,0,0"
+                                                VerticalOptions="End"
+                                                HorizontalOptions="Center"/>
 
                                     </VerticalStackLayout>
 
                                 </Grid>
 
-                            </VerticalStackLayout>
+                            </Grid>
 
-                        </Grid>
+                        </Border>
 
-                    </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
 
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout BackgroundColor="White"
-                                       VerticalOptions="Fill"
-                                       HorizontalOptions="Fill">
-
-                </HorizontalStackLayout>
-
-            </VerticalStackLayout>
+            </CollectionView>
         </ScrollView>
 
     </Grid>

@@ -1,38 +1,19 @@
 using System.Security.Principal;
+using ProyectoFinalDI.Resources.Styles;
+using ProyectoFinalDI.Resources.Idiomas;
 
 namespace ProyectoFinalDI.Vistas;
 
 public partial class Configuracion : ContentPage
 {
-	public Configuracion()
-	{
-		InitializeComponent();
-	}
-
-    private void Idioma_Toggled(object sender, ToggledEventArgs e)
+    public Configuracion()
     {
-
+        InitializeComponent();
     }
 
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         ICollection<ResourceDictionary> miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
-
-        Double tamanioTextoLabelOriginal = 14;
-        Double tamanioTituloLabelOriginal = 18;
-
-        Double tamanioLabel = tamanioTextoLabelOriginal;
-        Double tamanioTitulo = tamanioTituloLabelOriginal;
-
-        if (miListaDiccionarios != null)
-        {
-            miListaDiccionarios.Clear();
-
-        }
-
-        miListaDiccionarios.Add(new Resources.Styles.TemaPrincipal());
-        App.Current.Resources["TamanioTextoLabel"] = tamanioLabel;
-        App.Current.Resources["TamanioTituloLabel"] = tamanioTitulo;
 
         if (RBprincipal.IsChecked)
         {
@@ -52,12 +33,30 @@ public partial class Configuracion : ContentPage
 
     private void Tamaño_ValueChanged(object sender, ValueChangedEventArgs e)
     {
-        Double tamanioTextoLabelOriginal = 14;
-        Double tamanioTituloLabelOriginal = 18;
+        Double tamanioTextoLabelOriginal = 16;
+        Double tamanioTituloLabelOriginal = 20;
+        Double tamanioTituloGLabelOriginal = 28;
 
         Slider miSlider = (Slider)sender;
 
         App.Current.Resources["TamanioTextoLabel"] = tamanioTextoLabelOriginal * miSlider.Value;
-        App.Current.Resources["TamanioTituloLabel"] = tamanioTextoLabelOriginal * miSlider.Value;
+        App.Current.Resources["TamanioTituloLabel"] = tamanioTituloLabelOriginal * miSlider.Value;
+        App.Current.Resources["TamanioTituloGLabel"] = tamanioTituloGLabelOriginal * miSlider.Value;
+    }
+
+    private void Idioma_Toggled(object sender, ToggledEventArgs e)
+    {
+        var diccionarios = Application.Current.Resources.MergedDictionaries;
+
+        var idiomaActual = diccionarios.FirstOrDefault(d =>
+            d is Espaniol || d is Ingles);
+
+        if (idiomaActual != null)
+            diccionarios.Remove(idiomaActual);
+
+        if (interruptor.IsToggled)
+            diccionarios.Add(new Ingles());
+        else
+            diccionarios.Add(new Espaniol());
     }
 }

@@ -5,13 +5,6 @@
              Title="Acerca de"
              Style="{DynamicResource Fondo}">
              
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
 
 

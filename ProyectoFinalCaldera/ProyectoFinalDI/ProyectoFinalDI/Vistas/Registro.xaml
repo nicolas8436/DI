@@ -5,14 +5,7 @@
              Title="Registro"
              BackgroundColor="White"
              Shell.NavBarIsVisible="False">
-    
-        <ContentPage.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </ContentPage.Resources>
+
 
         <ScrollView>
             <Grid>
@@ -29,7 +22,8 @@
                         <Label x:Name="TituloAula"
                         Text="Registro"
                         Style="{DynamicResource Titulo}"
-                        Margin="10,12,0,0"/>
+                        VerticalOptions="Center"
+                        Margin="10,0,0,0"/>
 
                     </HorizontalStackLayout>
                 </Grid>

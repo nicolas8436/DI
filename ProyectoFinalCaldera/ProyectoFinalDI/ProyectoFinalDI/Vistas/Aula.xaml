@@ -6,52 +6,44 @@
              Style="{DynamicResource Fondo}"
              Shell.NavBarIsVisible="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ScrollView>
 
-        <!-- Cabecera verde -->
         <Grid RowDefinitions="50, *">
 
-            <BoxView 
-                Grid.Row="0"
-                Style="{DynamicResource Cabecera}"/>
+            <!-- CABECERA VERDE -->
+            <BoxView Grid.Row="0"
+                     Style="{DynamicResource Cabecera}"/>
 
-            <HorizontalStackLayout BackgroundColor="Transparent">
+            <HorizontalStackLayout Grid.Row="0"
+                                   BackgroundColor="Transparent">
+
                 <Image Style="{DynamicResource ImgCabecera}"/>
 
                 <Label x:Name="TituloAula"
-                       Text="Estado del aula"
+                       Text="{DynamicResource TituloCabeceraAula}"
                        Style="{DynamicResource Titulo}"
-                       Margin="10,12,0,0"/>
-
+                       VerticalOptions="Center"
+                       Margin="10,0,0,0"/>
             </HorizontalStackLayout>
 
-            <!-- Cabecera verde -->
+            <!-- CONTENIDO -->
+            <Grid Grid.Row="1">
+                <VerticalStackLayout VerticalOptions="Center"
+                                     HorizontalOptions="Center">
 
-            <Grid Grid.Row="1" ColumnDefinitions="*">
-                <VerticalStackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <Border Style="{DynamicResource Border}"
+                            MinimumHeightRequest="350"
+                            MinimumWidthRequest="350">
 
-                    <Border 
-                        Style="{DynamicResource Border}"
-                        WidthRequest="350"
-                        HeightRequest="350">
+                        <Grid RowDefinitions="Auto,Auto">
 
-                        <Grid RowDefinitions="Auto,*">
-
-                            <!-- CABECERA -->
+                            <!-- CABECERA DEL BORDER -->
                             <Border Grid.Row="0"
                                     Style="{DynamicResource CabeceraBorder}"
                                     Margin="-15,-15,-15,0">
 
                                 <Label x:Name="AulaXX"
-                                       Text="Aula"
+                                       Text="{DynamicResource TituloBorderAula}"
                                        HorizontalOptions="Center"
                                        Style="{DynamicResource Titulo}"/>
                             </Border>
@@ -62,28 +54,29 @@
                                                  Padding="0,15,0,0">
 
                                 <Grid RowDefinitions="Auto,Auto"
-                                      ColumnDefinitions="*,*"
+                                      ColumnDefinitions="2*,*"
                                       RowSpacing="5">
 
                                     <Label Grid.Row="0" Grid.Column="0"
-                                           Text="Temp Actual:"
+                                           Text="{DynamicResource TempActAula}"
                                            Style="{DynamicResource CuerpoNegrita}"
                                            Margin="0,10,0,15"/>
 
                                     <Label Grid.Row="0" Grid.Column="1"
                                            x:Name="TempAct"
-                                           Text="33°C"
+                                           Text="{DynamicResource TempDefaultAula}"
                                            HorizontalOptions="End"
                                            Margin="0,10,0,0"
                                            Style="{DynamicResource CuerpoNegrita}"/>
 
                                     <Label Grid.Row="1" Grid.Column="0"
-                                           Text="Temp Confort actual:"
-                                           Style="{DynamicResource CuerpoNegrita}"/>
+                                           Text="{DynamicResource TempConfAula}"
+                                           Style="{DynamicResource CuerpoNegrita}"
+                                           LineBreakMode="WordWrap"/>
 
                                     <Label Grid.Row="1" Grid.Column="1"
                                            x:Name="TempConf"
-                                           Text="33°C"
+                                           Text="{DynamicResource TempDefaultAula}"
                                            HorizontalOptions="End"
                                            Style="{DynamicResource CuerpoNegrita}"/>
                                 </Grid>
@@ -92,10 +85,12 @@
                                          Style="{DynamicResource Divisor}"
                                          Margin="0,10,0,65"/>
 
-                                <Label Text="Nueva temp Confort:"
+                                <Label Text="{DynamicResource NuevaTempAula}"
                                        Style="{DynamicResource CuerpoNegrita}"/>
 
-                                <Grid ColumnDefinitions="*,Auto" ColumnSpacing="10">
+                                <Grid ColumnDefinitions="*,Auto"
+                                      ColumnSpacing="10">
+
                                     <Entry x:Name="NuevaTemp"
                                            Placeholder="Ej: 24"
                                            Keyboard="Numeric"
@@ -109,19 +104,25 @@
 
                     </Border>
 
+                    <!-- BOTONES -->
                     <HorizontalStackLayout HorizontalOptions="Center">
-                        <Button Text="Cancelar"
+
+                        <Button Text="{DynamicResource BtnCancelarAula}"
                                 Clicked="Cancelar_Clicked"
                                 Margin="7,-5,7,25"
                                 Style="{DynamicResource BtnCancelar}"/>
 
-                        <Button Text="Confirmar"
+                        <Button Text="{DynamicResource BtnConfirmarAula}"
                                 Clicked="Confirmar_Clicked"
                                 Margin="7,-5,7,25"
                                 Style="{DynamicResource BtnConfirmar}"/>
+
                     </HorizontalStackLayout>
+
                 </VerticalStackLayout>
             </Grid>
+
         </Grid>
+
     </ScrollView>
 </ContentPage>

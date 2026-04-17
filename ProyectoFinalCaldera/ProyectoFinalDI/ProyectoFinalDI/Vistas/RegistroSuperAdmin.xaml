@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Vistas.RegistroSuperAdmin"
+             Title="RegistroSuperAdmin"
+             Style="{DynamicResource Fondo}"
+         Shell.NavBarIsVisible="False">
+
+
+    <ScrollView>
+        <Grid>
+            <!-- Cabecera verde -->
+            <Grid RowDefinitions="50, *">
+
+                <BoxView 
+                Grid.Row="0"
+                Color="#95EA9A"/>
+
+                <HorizontalStackLayout BackgroundColor="Transparent">
+                    <Image Style="{DynamicResource ImgCabecera}"/>
+
+                    <Label x:Name="TituloRegistroEdicion"
+                    Style="{DynamicResource Titulo}"
+                    VerticalOptions="Center"
+                    Margin="10,0,0,0"/>
+
+                </HorizontalStackLayout>
+            </Grid>
+            <!-- Cabecera verde -->
+
+            <!--Cuerpo del inicio de sesion-->
+            <Grid ColumnDefinitions="35*,30*,35*">
+
+                <VerticalStackLayout Grid.Column="1">
+
+                    <!--Imagen-->
+                    <Image 
+                    Source="iconoprincipal.png"
+                    WidthRequest="80"
+                    Margin="0,120,0,60"/>
+
+                    <!--Mensaje inicie sesion con su cuenta-->
+                    <Label x:Name="TextoRegEdtUsr"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontFamily="Inter"
+                    />
+                    
+                    <!--Caja y texto usuario-->
+                    <Label 
+                    Text="Correo electronico"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontFamily="Inter"
+                    Margin="0, 30, 0, 0"/>
+
+                    <Entry 
+                    x:Name="Usr"
+                    Placeholder="Usuario"
+                    TextColor="Black"
+                    BackgroundColor="WhiteSmoke"
+                    />
+
+
+                    <!--Caja y texto contraseña-->
+                    <Label 
+                    Text="Contraseña"
+                    TextColor="Black"
+                    FontAttributes="Bold"
+                    FontFamily="Inter"
+                    Margin="0, 30, 0, 0"/>
+
+                    <Entry 
+                    x:Name="Contra"
+                    Placeholder="Contraseña"
+                    IsPassword="True"
+                    TextColor="Black"
+                    BackgroundColor="WhiteSmoke"/>
+
+                    <!--Caja y texto usuario-->
+                    <Label 
+                        Text="Nombre"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        FontFamily="Inter"
+                        Margin="0, 30, 0, 0"/>
+
+                    <Entry 
+                        x:Name="Nom"
+                        Placeholder="Nombre"
+                        TextColor="Black"
+                        BackgroundColor="WhiteSmoke"/>
+
+
+                    <!--Caja y texto usuario-->
+                    <Label 
+                        Text="Apellido/s"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        FontFamily="Inter"
+                        Margin="0, 30, 0, 0"/>
+
+                    <Entry 
+                        x:Name="Ape"
+                        Placeholder="Apellido"
+                        TextColor="Black"
+                        BackgroundColor="WhiteSmoke"/>
+
+                    
+
+                    <!--Radio button Rol-->
+                    <Label Text="{DynamicResource TituloRBSuperA}"
+       Style="{DynamicResource Titulo}"/>
+
+                    <HorizontalStackLayout Margin="0,0,0,35">
+                        <RadioButton x:Name="RBRegistrado" GroupName="Rol" Content="{DynamicResource RegistradoRol}" Style="{DynamicResource Cuerpo}" IsChecked="True" CheckedChanged="RBRol" Margin="0,0,0,0" />
+                        <RadioButton x:Name="RBAdmin" GroupName="Rol" Content="{DynamicResource AdminRol}" Style="{DynamicResource Cuerpo}" CheckedChanged="RBRol" Margin="0,0,15,0"/>
+                        <RadioButton x:Name="RBSuper" GroupName="Rol" Content="{DynamicResource SuperRol}" Style="{DynamicResource Cuerpo}" CheckedChanged="RBRol" Margin="0,0,15,0"/>
+                    </HorizontalStackLayout>
+                    <!--Radio button-->
+
+                    <!--Boton confirmacion-->
+                    <Button
+                        BackgroundColor="Black"
+                        Text="Continuar"
+                        TextColor="White"
+                        FontFamily="Inter"
+                        Clicked="Registo"
+                        HorizontalOptions="End"
+                        Margin="0, 15, 0, 40"
+                        />
+                </VerticalStackLayout>
+
+            </Grid>
+        </Grid>
+    </ScrollView>
+</ContentPage>

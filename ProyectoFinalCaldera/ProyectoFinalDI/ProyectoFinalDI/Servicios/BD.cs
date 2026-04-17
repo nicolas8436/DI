@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySqlConnector;
+using ProyectoFinalDI.Vistas;
 
 namespace ProyectoFinalDI.Servicios
 {
@@ -132,7 +133,7 @@ namespace ProyectoFinalDI.Servicios
         }//Registro ==============================================================================================================================
 
 
-        //TEMPERATURAS************************************************************************************************************************
+        //Datos************************************************************************************************************************
 
         //Confort=============================================================================================================================
         public String Temp_Conf(String aula, Page p)
@@ -144,16 +145,17 @@ namespace ProyectoFinalDI.Servicios
 
                     //Parametros
                     comando.Parameters.AddWithValue("@aula", aula);
-                   
+
 
                     //Convertir a String
-                    String temp = comando.ExecuteScalar().ToString();
+                    var temp = comando.ExecuteScalar();
 
                     if (temp == null)
                     {
-                        p.DisplayAlert("Error", "Error al buscar el aula seleccionada", "OK");
+                        return "0";
                     }
-                    return temp;
+
+                    return temp.ToString();
                 }
             }
             catch (MySqlException e) {
@@ -175,17 +177,51 @@ namespace ProyectoFinalDI.Servicios
                     comando.Parameters.AddWithValue("@aula", aula);
 
 
-                    //Convertir a String
-                    String temp = comando.ExecuteScalar().ToString();
+                    var result = comando.ExecuteScalar();
 
-                    if (temp == null)
+                    if (result == null)
                     {
-                        p.DisplayAlert("Error", "Error al buscar el aula seleccionada", "OK");
+                        return "0"; 
                     }
-                    return temp;
+                   
+                    return result.ToString();
                 }
             }
             catch (MySqlException e) {
+                p.DisplayAlert("Error", e.Message, "OK");
+                return null;
+            }
+        }
+        //Actual==============================================================================================================================
+
+        //Actual==============================================================================================================================
+        public String EstadoCal(String aula, Page p)
+        {
+            try
+            {
+                using (var comando = new MySqlCommand(
+                    "SELECT EST_VALVULA FROM ESTADOS_VAL WHERE COD_EST = @aula ORDER BY FECHA_INI DESC, HORA DESC, MINUT DESC, SEG DESC LIMIT 1;",
+                    conector))
+                {
+                    comando.Parameters.AddWithValue("@aula", aula);
+
+                    var result = comando.ExecuteScalar();
+
+                    if (result == null)
+                        return "Sin datos";
+
+                    string estado = result.ToString();
+
+                    if (estado == "C")
+                        return "Cerrado";
+                    else if (estado == "O")
+                        return "Abierto";
+                    else
+                        return estado;
+                }
+            }
+            catch (MySqlException e)
+            {
                 p.DisplayAlert("Error", e.Message, "OK");
                 return null;
             }
@@ -230,27 +266,328 @@ namespace ProyectoFinalDI.Servicios
         }
         //Cambio confort =====================================================================================================================
 
-        //TEMPERATURAS************************************************************************************************************************
+        //Datos ************************************************************************************************************************
 
-        // Sacar Aulas ===========================================================================================================================
-        public List<string> SacarAulas(Page p)
+        // Obtener Aulas ===========================================================================================================================
+        public List<AulaClase> ObtenerAulas(Page p)
         {
-            var lista = new List<string>();
+            var lista = new List<AulaClase>();
+            var aulas = new List<string>();
+
             try
             {
                 using (var comando = new MySqlCommand("SELECT COD_EST FROM ESTANCIAS", conector))
                 using (var reader = comando.ExecuteReader())
                 {
                     while (reader.Read())
-                        lista.Add(reader.GetString(0));
+                    {
+                        aulas.Add(reader.GetString(0));
+                    }
+                }
+
+                foreach (var aula in aulas)
+                {
+                    lista.Add(new AulaClase
+                    {
+                        Nombre = aula,
+                        TempActual = Temp_Act(aula, p) + "°C",
+                        TempConfort = Temp_Conf(aula, p) + "°C",
+                        EstadoCaldera = EstadoCal(aula, p)
+                    });
                 }
             }
-            catch (MySqlException e)
+            catch (MySqlException)
             {
                 p.DisplayAlert("Error", "Error al cargar las aulas", "OK");
             }
+
             return lista;
         }
-        // Sacar Aulas ===========================================================================================================================
+        // Obtener Aulas ===========================================================================================================================
+
+        // Obtener Rol ===========================================================================================================================
+        public int ObtenerRol(Page p, String email)
+        {
+            int Rol = 3;
+            try {
+                int count;
+                using (var comando = new MySqlCommand("SELECT ID_ROL FROM USUARIOS WHERE EMAIL = @email", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@email", email);
+
+                    //Convertir a numero para ver si hay alguno
+                    count = Convert.ToInt32(comando.ExecuteScalar());
+                }
+                return count;
+
+            } catch (MySqlException e) 
+            {
+                p.DisplayAlert("Error", "Error al obtener el rol, por seguridad se le dara el nivel mas bajo", "OK");
+                return 3;
+            }
+            
+        }
+        // Obtener Rol ===========================================================================================================================
+
+
+        // ObtenerUsuarios (y rol) ===============================================================================================================
+        public List<UsuarioRolClase> ObtenerUsuarios(Page p)
+        {
+            var lista = new List<UsuarioRolClase>();
+
+            try
+            {
+                using (var comando = new MySqlCommand(
+                    "SELECT NOMBRE, ID_ROL, EMAIL, APELLIDOS FROM USUARIOS",
+                    conector))
+                using (var reader = comando.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+
+                        int rol = reader.GetByte(1);
+                        String tipoRol = "";
+                        switch (rol)
+                        {
+                            case 1:
+                                tipoRol = "SuperAdmin";
+                                break;
+
+
+                            case 2:
+                                tipoRol = "Admin";
+                                break;
+
+                                
+                            case 3:
+                                tipoRol = "Usuario";
+                                break;
+                        }//Switch
+
+                        lista.Add(new UsuarioRolClase
+                        {
+                            email = reader.GetString(2),
+                            nombre = reader.GetString(0),
+                            rol = tipoRol,
+                            apellido = reader.GetString(3),
+                        });
+                    }
+                }
+            }
+            catch (MySqlException)
+            {
+                p.DisplayAlert("Error", "Error al cargar usuarios", "OK");
+            }
+
+            return lista;
+        }
+
+
+        // ObtenerUsuarios (y rol) ===============================================================================================================
+
+        // BorrarUsr ===============================================================================================================
+
+        internal void BorrarUsr(Page p, UsuarioRolClase usuarioSeleccionado){
+            int Rol = 3;
+            try
+            {
+                using (var comando = new MySqlCommand("DELETE FROM USUARIOS WHERE EMAIL = @email", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@email", usuarioSeleccionado.email);
+
+                    int filas = comando.ExecuteNonQuery();
+                }
+
+            }
+            catch (MySqlException e)
+            {
+                p.DisplayAlert("Error", "Error al eliminar al usuario", "OK");
+            }
+
+        }
+
+        // BorrarUsr ===============================================================================================================
+
+        //Registro SuperAdmin =================================================================
+        public bool Registro(Page p, String usuario, String contraseña, String nombre, String apellidos, int rol)
+        {
+            int filas;
+            try
+            {
+
+                using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", usuario);
+
+                    //Convertir a numero para ver si hay alguno
+                    int count = Convert.ToInt32(comando.ExecuteScalar());
+
+                    if (count != 0)
+                    {
+                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
+                        return false;
+                    }
+
+                }
+                using (var comando = new MySqlCommand("INSERT INTO USUARIOS (EMAIL, NOMBRE, APELLIDOS, PASSWORD, ID_ROL) VALUES (@usuario, @nombre, @apellidos, @pass, @rol)", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", usuario);
+                    comando.Parameters.AddWithValue("@pass", contraseña);
+                    comando.Parameters.AddWithValue("@apellidos", apellidos);
+                    comando.Parameters.AddWithValue("@nombre", nombre);
+                    comando.Parameters.AddWithValue("@rol", rol);
+
+                    filas = comando.ExecuteNonQuery();
+                }
+
+                if (filas > 0)  //Verificar que insertó
+                {
+                    p.DisplayAlert("Usuario Registrado", "Usuario registrado correctamente", "OK");
+                    return true;
+                }
+                else
+                {
+                    p.DisplayAlert("Error", "No se pudo registrar el usuario", "OK");
+                    return false;
+                }
+
+
+            }
+            catch (MySqlException e)
+            {
+
+                p.DisplayAlert("Error", "Error al Iniciar la sesion", "OK");
+                return false;
+            }
+        }//Registro SuperAdmin ==============================================================================================================================
+
+        //Actualizacion SuperAdmin ==============================================================================================================================
+        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
+        {
+            int filas;
+            try
+            {
+
+                using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", Usr);
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+
+                    //Convertir a numero para ver si hay alguno
+                    int count = Convert.ToInt32(comando.ExecuteScalar());
+
+                    if (count != 0)
+                    {
+                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
+                        return;
+                    }
+
+                }
+                using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario,NOMBRE = @nombre , APELLIDOS = @apellidos , PASSWORD = @pass , ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", Usr);
+                    comando.Parameters.AddWithValue("@pass", Contra);
+                    comando.Parameters.AddWithValue("@apellidos", Apellidos);
+                    comando.Parameters.AddWithValue("@nombre", Nombre);
+                    comando.Parameters.AddWithValue("@rol", rol);
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+
+                    filas = comando.ExecuteNonQuery();
+                }
+
+                if (filas > 0)  //Verificar que insertó
+                {
+                    p.DisplayAlert("Usuario Actualizado", "Usuario actualizado correctamente", "OK");
+                    return;
+                }
+                else
+                {
+                    p.DisplayAlert("Error", "No se pudo actualizar el usuario", "OK");
+                    return;
+                }
+
+
+            }
+            catch (MySqlException e)
+            {
+
+                p.DisplayAlert("Error", "Error al Iniciar la sesion", "OK");
+                return;
+            }
+        }
+
+
+        //No cambiamos contraseña -------------------------------------------------------------------------------------------------------------------------------
+        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Nombre, string Apellidos, int rol)
+        {
+            int filas;
+            try
+            {
+
+                using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", Usr);
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+
+                    //Convertir a numero para ver si hay alguno
+                    int count = Convert.ToInt32(comando.ExecuteScalar());
+
+                    if (count != 0)
+                    {
+                        p.DisplayAlert("Error", "Ese usuario ya existe", "OK");
+                        return;
+                    }
+
+                }
+                using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario, NOMBRE = @nombre , APELLIDOS = @apellidos, ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", Usr);
+                    comando.Parameters.AddWithValue("@apellidos", Apellidos);
+                    comando.Parameters.AddWithValue("@nombre", Nombre);
+                    comando.Parameters.AddWithValue("@rol", rol);
+                    comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
+
+
+                    filas = comando.ExecuteNonQuery();
+                }
+
+                if (filas > 0)  //Verificar que insertó
+                {
+                    p.DisplayAlert("Usuario Actualizado", "Usuario actualizado correctamente", "OK");
+                    return;
+                }
+                else
+                {
+                    p.DisplayAlert("Error", "No se pudo actualizar el usuario", "OK");
+                    return;
+                }
+
+
+            }
+            catch (MySqlException e)
+            {
+
+                p.DisplayAlert("Error", "Error al Iniciar la sesion", "OK");
+                return;
+            }
+        }
+
+        //Actualizacion SuperAdmin ==============================================================================================================================
     }
 }

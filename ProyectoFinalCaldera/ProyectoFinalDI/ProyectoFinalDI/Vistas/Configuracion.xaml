@@ -6,14 +6,7 @@
              Style="{DynamicResource Fondo}"
              Shell.NavBarIsVisible="False">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
+
     <ScrollView>
         <!-- Cabecera verde -->
             <Grid RowDefinitions="50, *">
@@ -21,8 +14,16 @@
                 <BoxView 
                 Grid.Row="0"
                 Style="{DynamicResource Cabecera}"/>
-
-            <Image Style="{DynamicResource ImgCabecera}"/>
+            <HorizontalStackLayout BackgroundColor="Transparent">
+                
+                <Image Style="{DynamicResource ImgCabecera}"/>
+                
+            <Label x:Name="TituloConf"
+                Text="{DynamicResource TituloCabeceraConf}"
+                Style="{DynamicResource Titulo}"
+                VerticalOptions="Center"
+                Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
             <!-- Cabecera verde -->
 
             <!--Cuerpo del inicio de sesion-->
@@ -30,27 +31,27 @@
 
                 <VerticalStackLayout Grid.Row="1" Margin="8,8,0,0">
                     <!--Cabezera configuracion-->
-                    <Label Text="Configuracion"
+                    <Label Text="{DynamicResource TituloCabeceraConf}"
                            Style="{DynamicResource Titulo}"/>
 
-                    <Label Text="Pagina de configuracion del usuario"
+                    <Label Text="{DynamicResource DescConf}"
                            Style="{DynamicResource Cuerpo}"
                            Margin="0,0,0,50"/>
                     <!--Cabezera configuracion-->
 
                     <!--Radio button Tema-->
-                    <Label Text="Estilo de la aplicacion"
+                    <Label Text="{DynamicResource TituloEstiloAppConf}"
                            Style="{DynamicResource Titulo}"/>
 
                     <HorizontalStackLayout Margin="0,0,0,35">
-                        <RadioButton x:Name="RBprincipal" GroupName="Tema" Content="Normal" IsChecked="True" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
-                        <RadioButton x:Name="RBoscuro" GroupName="Tema" Content="Oscuro" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
-                            <RadioButton x:Name="RBclaro" GroupName="Tema" Content="Claro" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,0,0"/>
+                        <RadioButton x:Name="RBprincipal" GroupName="Tema" Content="{DynamicResource NormalConf}" IsChecked="True" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
+                        <RadioButton x:Name="RBoscuro" GroupName="Tema" Content="{DynamicResource OscuroConf}" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,15,0"/>
+                        <RadioButton x:Name="RBclaro" GroupName="Tema" Content="{DynamicResource ClaroConf}" Style="{DynamicResource Cuerpo}" CheckedChanged="RadioButton_CheckedChanged" Margin="0,0,0,0"/>
                     </HorizontalStackLayout>
                     <!--Radio button-->
 
                     <!--Tamaño de la letra-->
-                    <Label Text="Tamaño de la letra"
+                    <Label Text="{DynamicResource TituloTamLetraConf}"
                            Style="{DynamicResource Titulo}"/>
 
                     <HorizontalStackLayout Margin="0,0,0,35">
@@ -61,17 +62,17 @@
                     <!--Tamaño de la letra-->
 
                     <!--Idioma-->
-                    <Label Text="Seleccione un idioma"
+                    <Label Text="{DynamicResource TituloCambioIdiomaConf}"
                            Style="{DynamicResource Titulo}"/>
 
                     <HorizontalStackLayout Margin="0,0,0,35">
-                        <Label Text="Español"
+                        <Label Text="{DynamicResource EspaniolConf}"
                                Style="{DynamicResource Cuerpo}"
                                Margin="0,12,15,0"/>
                         
                         <Switch x:Name="interruptor" Toggled="Idioma_Toggled"></Switch>
 
-                        <Label Text="Ingles"
+                        <Label Text="{DynamicResource InglesConf}"
                                Style="{DynamicResource Cuerpo}"
                                Margin="-100,11,0,0"/>
 
@@ -80,19 +81,19 @@
                     <!--Idioma-->
 
                     <!--Cambio contraseña-->
-                    <Label Text="Cambio de contraseña"
+                    <Label Text="{DynamicResource TitCambioContraConf}"
                            Style="{DynamicResource Titulo}"/>
 
-                    <Entry Placeholder="Introduzca la nueva contraseña"
+                    <Entry Placeholder="{DynamicResource PlaceholderCambioContraConf}"
                            Margin="0,0,0,35"
                            Style="{DynamicResource EntryContra}"/>
                     <!--Cambio Contraseña-->
 
                     <!--Eliminar Cuenta-->
-                    <Label Text="Eliminar cuenta"
+                    <Label Text="{DynamicResource TituloEliminarCuentaConf}"
                            Style="{DynamicResource Titulo}"/>
 
-                    <Button Text="Eliminar Cuenta"
+                    <Button Text="{DynamicResource BtnEliminarCuentaConf}"
                             Margin="10,0,0,0"
                             Style="{DynamicResource BtnEliminar}"/>
                     <!--Eliminar Cuenta-->
