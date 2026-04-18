@@ -16,7 +16,9 @@
                 Style="{DynamicResource Cabecera}"/>
             <HorizontalStackLayout BackgroundColor="Transparent">
                 
-                <Image Style="{DynamicResource ImgCabecera}"/>
+                <Image
+                    Source="iconoprincipal.png"
+                    Style="{DynamicResource ImgCabecera}"/>
                 
             <Label x:Name="TituloConf"
                 Text="{DynamicResource TituloCabeceraConf}"
@@ -81,12 +83,23 @@
                     <!--Idioma-->
 
                     <!--Cambio contraseña-->
+                    
                     <Label Text="{DynamicResource TitCambioContraConf}"
                            Style="{DynamicResource Titulo}"/>
-
+                    <HorizontalStackLayout Margin="0,5,0,35">
                     <Entry Placeholder="{DynamicResource PlaceholderCambioContraConf}"
-                           Margin="0,0,0,35"
-                           Style="{DynamicResource EntryContra}"/>
+                           Margin="0,0,0,0"
+                           Style="{DynamicResource EntryContra}"
+                           VerticalOptions="Center"/>
+                        
+                        <Button x:Name="Confirmar"
+                            Text="{DynamicResource BtnConfirmarAula}"
+                            Style="{DynamicResource BtnConfirmarConfig}"
+                               VerticalOptions="Center"
+                                Margin="10,0,0,0"
+                                Clicked="Confirmar_Clicked"/>
+
+                    </HorizontalStackLayout>
                     <!--Cambio Contraseña-->
 
                     <!--Eliminar Cuenta-->

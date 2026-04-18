@@ -44,7 +44,7 @@
 
 
 
-    <!-- ======================================== Pagina Graficos ======================================= -->
+    <!-- ======================================== Pagina Graficos (syncfusion) ======================================= -->
 
     <!-- ======================================== Pagina Lista de Usr ======================================= -->
     <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
@@ -66,10 +66,19 @@
     <x:String x:Key="TextoRegUsr">Registro de Usuario</x:String>
     <x:String x:Key="TextoEdtUsr">Edicion de Usuario</x:String>
 
+    <x:String x:Key="CorreoRegAdmin">Correo Electronico</x:String>
+    <x:String x:Key="ContraseñaRegAdmin">Contraseña</x:String>
+    <x:String x:Key="NombreRegAdmin">NombreRegAdmin</x:String>
+    <x:String x:Key="ApellidosRegAdmin">ApellidosRegAdmin</x:String>
+
     <x:String x:Key="SuperRol">Super</x:String>
     <x:String x:Key="AdminRol">Admin</x:String>
     <x:String x:Key="RegistradoRol">Usuario</x:String>
     <!-- ======================================== Pagina Acerca de ======================================= -->
-
+    <x:String x:Key="TituloCabeceraAcercaDe">Acerca de</x:String>
+    <x:String x:Key="Texto1AcercaDe">Pagina par el control y la monitorizacion de las aulas del instituto</x:String>
+    <x:String x:Key="Texto2AcercaDe">Creada con maui, usando distintas apis y syncfusion, sin animo de lucro</x:String>
+    <x:String x:Key="Texto3AcercaDe">Creada por Nicolas Hijon, 2ºDAM</x:String>
+    
 
 </ResourceDictionary>

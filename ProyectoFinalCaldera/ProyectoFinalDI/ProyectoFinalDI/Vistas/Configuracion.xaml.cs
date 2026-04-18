@@ -1,6 +1,6 @@
-using System.Security.Principal;
-using ProyectoFinalDI.Resources.Styles;
 using ProyectoFinalDI.Resources.Idiomas;
+using ProyectoFinalDI.Resources.Styles;
+using System.Security.Principal;
 
 namespace ProyectoFinalDI.Vistas;
 
@@ -13,23 +13,43 @@ public partial class Configuracion : ContentPage
 
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        ICollection<ResourceDictionary> miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
-
-        if (RBprincipal.IsChecked)
+        if (e.Value)
         {
-            miListaDiccionarios.Add(new Resources.Styles.TemaPrincipal());
-        }
+            var radioButton = sender as RadioButton;
+            if (radioButton == null) return;
 
-        if (RBoscuro.IsChecked)
-        {
-            miListaDiccionarios.Add(new Resources.Styles.TemaOscuro());
-        }
+            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            if (mergedDictionaries == null) return;
 
-        if (RBclaro.IsChecked)
-        {
-            miListaDiccionarios.Add(new Resources.Styles.TemaClaro());
+            // 1. Buscamos si ya existe un tema cargado para eliminarlo
+            // Comprobamos por el espacio de nombres de tus archivos de estilos
+            var temaExistente = mergedDictionaries.FirstOrDefault(d =>
+                d is ProyectoFinalDI.Resources.Styles.TemaClaro ||
+                d is ProyectoFinalDI.Resources.Styles.TemaOscuro ||
+                d is ProyectoFinalDI.Resources.Styles.TemaPrincipal);
+
+            if (temaExistente != null)
+            {
+                mergedDictionaries.Remove(temaExistente);
+            }
+
+            // 2. Añadimos el nuevo tema según la selección
+            if (radioButton == RBprincipal)
+            {
+                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaPrincipal());
+            }
+            else if (radioButton == RBoscuro)
+            {
+                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaOscuro());
+            }
+            else if (radioButton == RBclaro)
+            {
+                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaClaro());
+            }
         }
     }
+
+
 
     private void Tamaño_ValueChanged(object sender, ValueChangedEventArgs e)
     {
@@ -58,5 +78,10 @@ public partial class Configuracion : ContentPage
             diccionarios.Add(new Ingles());
         else
             diccionarios.Add(new Espaniol());
+    }
+
+    private void Confirmar_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

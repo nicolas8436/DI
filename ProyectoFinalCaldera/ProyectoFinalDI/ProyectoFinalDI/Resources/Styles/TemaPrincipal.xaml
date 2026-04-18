@@ -3,29 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Resources.Styles.TemaPrincipal">
 
+    <!--Colores-->
+    <Color x:Key="Blanco">#FFFFFF</Color>
+    <Color x:Key="VerdeClaro">#95EA9A</Color>
+    <Color x:Key="Negro">Black</Color>
+    <Color x:Key="Transparente">Transparent</Color>
+    <Color x:Key="GrisClaro">WhiteSmoke</Color>
+    <Color x:Key="Rojo">Red</Color>
+    <Color x:Key="VerdeOscuro">#397952</Color>
+    <Color x:Key="AzulOscuro">#29335C</Color>
+    <Color x:Key="AzulClaro">#CDF2FF</Color>
+    <Color x:Key="AzulVerdoso">#CDF2FF</Color>
+
     <!-- ============================== Cabecera y fondo ============================== -->
     <Style TargetType="BoxView" x:Key="Cabecera">
-        <Setter Property="Color" Value="#95EA9A"/>
+        <Setter Property="Color" Value="{StaticResource VerdeClaro}"/>
     </Style>
 
     <Style TargetType="BoxView" x:Key="Divisor">
-        <Setter Property="Color" Value="Black"/>
+        <Setter Property="Color" Value="{StaticResource Negro}"/>
     </Style>
 
     <Style TargetType="Shell" x:Key="CabeceraNavegacion">
-        <Setter Property="BackgroundColor" Value="#95EA9A"/>
-        <Setter Property="TitleColor" Value="Black"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource VerdeClaro}"/>
+        <Setter Property="TitleColor" Value="{StaticResource Negro}"/>
     </Style>
 
     <Style TargetType="ContentPage" x:Key="Fondo">
-        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Blanco}"/>
     </Style>
-    
-    
+
+
     <!-- ============================== Label ============================== -->
     <!--Titulo Normal-->
     <Style TargetType="Label" x:Key="Titulo">
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTituloLabel}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="FontAttributes" Value="Bold"/>
@@ -34,7 +46,7 @@
 
     <!--Titulo Grande-->
     <Style TargetType="Label" x:Key="TituloG">
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTituloGLabel}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="FontAttributes" Value="Bold"/>
@@ -44,15 +56,15 @@
 
     <!--Cuerpo del texto-->
     <Style TargetType="Label" x:Key="Cuerpo">
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="FontFamily" Value="Inter"/>
     </Style>
-    
+
     <!--Cuerpo negrita-->
     <Style TargetType="Label" x:Key="CuerpoNegrita">
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
@@ -61,68 +73,106 @@
     <!-- ============================== Imagen ============================== -->
     <!--Imagen de la cabecera-->
     <Style TargetType="Image" x:Key="ImgCabecera">
-        <Setter Property="Source" Value="iconoprincipal.png"/>
-        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparente}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="VerticalOptions" Value="Center"/>
         <Setter Property="WidthRequest" Value="40"/>
         <Setter Property="Margin" Value="7,0,0,0"/>
     </Style>
 
+    <Style TargetType="Image" x:Key="ImagenGrande">
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparente}"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+        <Setter Property="WidthRequest" Value="200"/>
+        <Setter Property="Margin" Value="7,0,0,0"/>
+    </Style>
+
 
     <!-- ============================== Entry ============================== -->
-    
+
     <!--Contraseña-->
     <Style TargetType="Entry" x:Key="EntryContra">
-        <Setter Property="PlaceholderColor" Value="Black"/>
-        <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource Negro}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource GrisClaro}"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="IsPassword" Value="True"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="WidthRequest" Value="300"/>
     </Style>
-    
+
     <!--Texto Normal-->
     <Style TargetType="Entry" x:Key="EntryNormal">
-        <Setter Property="PlaceholderColor" Value="Black"/>
-        <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="PlaceholderColor" Value="{StaticResource Negro}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource GrisClaro}"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="WidthRequest" Value="300"/>
     </Style>
 
+    <!--Contraseña Registro-->
+    <Style TargetType="Entry" x:Key="EntryContraReg">
+        <Setter Property="PlaceholderColor" Value="{StaticResource Negro}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource GrisClaro}"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
+        <Setter Property="IsPassword" Value="True"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="375"/>
+    </Style>
+
+    <!--Texto Normal Registro-->
+    <Style TargetType="Entry" x:Key="EntryNormalReg">
+        <Setter Property="PlaceholderColor" Value="{StaticResource Negro}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource GrisClaro}"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="WidthRequest" Value="375"/>
+    </Style>
+
     <!-- ============================== Botones ============================== -->
-    
+
     <!--Boton Inicio Sesion-->
     <!--Boton Registrar-->
-    
+
     <!--Boton Eliminar cuenta-->
     <Style TargetType="Button" x:Key="BtnEliminar">
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="Red"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Rojo}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="13"/>
     </Style>
-    
+
     <!--Btn Confirmar-->
     <Style TargetType="Button" x:Key="BtnConfirmar">
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#397952"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource VerdeOscuro}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
     </Style>
-    <!--Btn Cancelar-->
-    <Style TargetType="Button" x:Key="BtnCancelar">
-        <Setter Property="TextColor" Value="White"/>
+
+    <Style TargetType="Button" x:Key="BtnConfirmarConfig">
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#29335C"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource VerdeOscuro}"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="MinimumWidthRequest" Value="150"/>
+        <Setter Property="MinimumHeightRequest" Value="20"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+
+    </Style>
+    <!--Btn Cancelar-->
+    <Style TargetType="Button" x:Key="BtnCancelar">
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulOscuro}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
@@ -130,42 +180,42 @@
 
     <!-- BtnConfigAulas -->
     <Style TargetType="Button" x:Key="BtnConfigAulas">
-        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#CDF2FF"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulClaro}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
     </Style>
-    
-    <!--Botones de liasta Usr-->
+
+    <!--Botones de lista Usr-->
     <!--Boton Agregar-->
     <Style TargetType="Button" x:Key="BtnAgregarListUsrEstilo">
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#397952"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource VerdeOscuro}"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
     </Style>
     <!--Boton Eliminar-->
     <Style TargetType="Button" x:Key="BtnEliminarListUsrEstilo">
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#2F8A93"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulVerdoso}"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
     </Style>
     <!--Boton Actualizar-->
     <Style TargetType="Button" x:Key="BtnEditarListUsrEstilo">
-        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
-        <Setter Property="BackgroundColor" Value="#29335C"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulOscuro}"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
@@ -174,16 +224,16 @@
     <!-- ============================== Border ============================== -->
     <!--Border-->
     <Style TargetType="Border" x:Key="Border">
-        <Setter Property="Stroke" Value="Gray"/>
-        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="Stroke" Value="{StaticResource Negro}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparente}"/>
         <Setter Property="Padding" Value="15"/>
         <Setter Property="Margin" Value="10"/>
-        <Setter Property="StrokeShape" Value="RoundRectangle 10"/> 
+        <Setter Property="StrokeShape" Value="RoundRectangle 10"/>
         <Setter Property="StrokeThickness" Value="1"/>
     </Style>
     <!--Cabecera border-->
     <Style TargetType="Border" x:Key="CabeceraBorder">
-        <Setter Property="BackgroundColor" Value="#CDF2FF"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulClaro}"/>
         <Setter Property="Padding" Value="10"/>
         <Setter Property="StrokeThickness" Value="0"/>
     </Style>

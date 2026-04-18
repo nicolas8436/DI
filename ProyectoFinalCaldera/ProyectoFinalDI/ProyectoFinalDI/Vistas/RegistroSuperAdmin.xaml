@@ -12,12 +12,12 @@
             <!-- Cabecera verde -->
             <Grid RowDefinitions="50, *">
 
-                <BoxView 
-                Grid.Row="0"
-                Color="#95EA9A"/>
+                <BoxView Grid.Row="0" Style="{DynamicResource Cabecera}"/>
 
                 <HorizontalStackLayout BackgroundColor="Transparent">
-                    <Image Style="{DynamicResource ImgCabecera}"/>
+                    <Image
+                        Source="iconoprincipal.png"
+                        Style="{DynamicResource ImgCabecera}"/>
 
                     <Label x:Name="TituloRegistroEdicion"
                     Style="{DynamicResource Titulo}"
@@ -37,74 +37,58 @@
                     <Image 
                     Source="iconoprincipal.png"
                     WidthRequest="80"
-                    Margin="0,120,0,60"/>
-
-                    <!--Mensaje inicie sesion con su cuenta-->
-                    <Label x:Name="TextoRegEdtUsr"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    FontFamily="Inter"
-                    />
+                    Margin="0,120,0,60"
+                        BackgroundColor="Transparent"/>
                     
+                    <Label 
+                        x:Name="TextoRegEdtUsr"
+                    Style="{DynamicResource Titulo}"/>
                     <!--Caja y texto usuario-->
                     <Label 
-                    Text="Correo electronico"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    FontFamily="Inter"
+                    Text="{DynamicResource CorreoRegAdmin}"
+                        Style="{DynamicResource CuerpoNegrita}"
                     Margin="0, 30, 0, 0"/>
 
                     <Entry 
                     x:Name="Usr"
-                    Placeholder="Usuario"
-                    TextColor="Black"
-                    BackgroundColor="WhiteSmoke"
+                    Placeholder="{DynamicResource CorreoRegAdmin}"
+                    Style="{DynamicResource EntryNormalReg}"
                     />
 
 
                     <!--Caja y texto contraseña-->
                     <Label 
-                    Text="Contraseña"
-                    TextColor="Black"
-                    FontAttributes="Bold"
-                    FontFamily="Inter"
+                    Text="{DynamicResource ContraseñaRegAdmin}"
+                    Style="{DynamicResource CuerpoNegrita}"
                     Margin="0, 30, 0, 0"/>
 
                     <Entry 
                     x:Name="Contra"
-                    Placeholder="Contraseña"
-                    IsPassword="True"
-                    TextColor="Black"
-                    BackgroundColor="WhiteSmoke"/>
+                    Placeholder="{DynamicResource ContraseñaRegAdmin}"
+                    Style="{DynamicResource EntryContraReg}"/>
 
                     <!--Caja y texto usuario-->
                     <Label 
-                        Text="Nombre"
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        FontFamily="Inter"
+                        Text="{DynamicResource NombreRegAdmin}"
+                        Style="{DynamicResource CuerpoNegrita}"
                         Margin="0, 30, 0, 0"/>
 
                     <Entry 
                         x:Name="Nom"
-                        Placeholder="Nombre"
-                        TextColor="Black"
-                        BackgroundColor="WhiteSmoke"/>
+                        Placeholder="{DynamicResource NombreRegAdmin}"
+                        Style="{DynamicResource EntryNormalReg}"/>
 
 
                     <!--Caja y texto usuario-->
                     <Label 
-                        Text="Apellido/s"
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        FontFamily="Inter"
+                        Text="{DynamicResource ApellidosRegAdmin}"
+                        Style="{DynamicResource CuerpoNegrita}"
                         Margin="0, 30, 0, 0"/>
 
                     <Entry 
                         x:Name="Ape"
-                        Placeholder="Apellido"
-                        TextColor="Black"
-                        BackgroundColor="WhiteSmoke"/>
+                        Placeholder="{DynamicResource ApellidosRegAdmin}"
+                        Style="{DynamicResource EntryNormalReg}"/>
 
                     <!--ESTE ES_EL_DEL_ESCRITORIO-->
 
@@ -121,10 +105,8 @@
 
                     <!--Boton confirmacion-->
                     <Button
-                        BackgroundColor="Black"
-                        Text="Continuar"
-                        TextColor="White"
-                        FontFamily="Inter"
+                        Text="{DynamicResource BtnConfirmarAula}"
+                        Style="{DynamicResource BtnCancelar}"
                         Clicked="BtnContinuar"
                         HorizontalOptions="End"
                         Margin="0, 15, 0, 40"

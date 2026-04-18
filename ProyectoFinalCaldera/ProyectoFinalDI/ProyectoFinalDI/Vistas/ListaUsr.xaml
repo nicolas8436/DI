@@ -13,7 +13,9 @@
 
         <!-- Contenido de la cabecera -->
         <HorizontalStackLayout Grid.Row="0">
-            <Image Style="{DynamicResource ImgCabecera}"/>
+            <Image
+                Source="iconoprincipal.png"
+                Style="{DynamicResource ImgCabecera}"/>
             <Label x:Name="TituloAula"
                    Text="{DynamicResource TituloPagListUsr}"
                    Style="{DynamicResource Titulo}"
@@ -52,12 +54,12 @@
                                 <Label Grid.Column="0"
                                        HorizontalOptions="Center"
                                        Text="{DynamicResource TituloUsrListUsr}"
-                                       Style="{DynamicResource CuerpoNegrita}"/>
+                                       Style="{DynamicResource Titulo}"/>
 
                                 <Label Grid.Column="1"
                                        HorizontalOptions="Center"
                                        Text="{DynamicResource TituloRolListUsr}"
-                                       Style="{DynamicResource CuerpoNegrita}"/>
+                                       Style="{DynamicResource Titulo}"/>
                             </Grid>
                         </Border>
                         <!--Fila 1 Titulo-->

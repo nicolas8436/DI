@@ -4,15 +4,58 @@
              x:Class="ProyectoFinalDI.Vistas.OtrasPaginas.AcercaDe"
              Title="Acerca de"
              Style="{DynamicResource Fondo}">
-             
 
+    <ScrollView>
 
+        <Grid RowDefinitions="50, *">
 
+            <!-- CABECERA VERDE -->
+            <BoxView Grid.Row="0"
+                 Style="{DynamicResource Cabecera}"/>
 
-<VerticalStackLayout>
-        <Label 
-            Text="Pagina del acerca de "
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+            <HorizontalStackLayout Grid.Row="0"
+                               BackgroundColor="Transparent">
+
+                <Image Source="iconoprincipal.png" Style="{DynamicResource ImgCabecera}"/>
+
+                <Label x:Name="TituloAula"
+                   Text="{DynamicResource TituloCabeceraAcercaDe}"
+                   Style="{DynamicResource Titulo}"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+
+            <!-- CONTENIDO -->
+            <Grid Grid.Row="1"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill">
+
+                <VerticalStackLayout
+                    VerticalOptions="Fill">
+                    <Image
+                        Source="iconoprincipal.png"
+                        Style="{DynamicResource ImagenGrande}"
+                        Margin="0,125,0,75"/>
+
+                    <Label
+                        Text="{DynamicResource Texto1AcercaDe}"
+                        Style="{DynamicResource Titulo}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="{DynamicResource Texto2AcercaDe}"
+                        Style="{DynamicResource Titulo}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                </VerticalStackLayout>
+                <Label
+                        Text="{DynamicResource Texto3AcercaDe}"
+                        Style="{DynamicResource Titulo}"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"/>
+            </Grid>
+
+        </Grid>
+
+    </ScrollView>
 </ContentPage>

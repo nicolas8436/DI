@@ -12,7 +12,9 @@
 
         <!-- Contenido de la cabecera -->
         <HorizontalStackLayout Grid.Row="0">
-            <Image Style="{DynamicResource ImgCabecera}"/>
+            <Image
+                Source="iconoprincipal.png"
+                Style="{DynamicResource ImgCabecera}"/>
             <Label x:Name="TituloAula"
                    Text="{DynamicResource TituloCabeceraAulas}"
                    Style="{DynamicResource Titulo}"

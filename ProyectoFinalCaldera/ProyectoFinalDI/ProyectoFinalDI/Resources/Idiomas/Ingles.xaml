@@ -3,47 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Resources.Idiomas.Ingles">
 
-    <!-- ========================================= Pagina Aulas ========================================= -->
 
+    <!-- ========================================= Classrooms Page ========================================= -->
+    <x:String x:Key="TituloCabeceraAulas">Center classrooms</x:String>
+    <x:String x:Key="TempConfAulas">Comfort Temp:</x:String>
+    <x:String x:Key="TempActAulas">Current Temp:</x:String>
+    <x:String x:Key="ValvulaAulas">Valve status:</x:String>
+    <x:String x:Key="BtnConfAulas">Config</x:String>
 
-
-    <!-- ========================================== Pagina Aula ========================================= -->
-    <x:String x:Key="TituloCabeceraAula">Classroom configuration</x:String>
+    <!-- ========================================== Classroom Page ========================================= -->
+    <x:String x:Key="TituloCabeceraAula">Classroom config</x:String>
     <x:String x:Key="TituloBorderAula">Classroom</x:String>
-    <x:String x:Key="TempActAula">Current Temp:</x:String>
-    <x:String x:Key="TempConfAula">Programmed temp:</x:String>
+    <x:String x:Key="TempActAula">Current temp:</x:String>
+    <x:String x:Key="TempConfAula">Scheduled temp:</x:String>
     <x:String x:Key="TempDefaultAula">N/A</x:String>
-    <x:String x:Key="NuevaTempAula">New Comfort Temp:</x:String>
+    <x:String x:Key="NuevaTempAula">New comfort temp:</x:String>
     <x:String x:Key="BtnConfirmarAula">Confirm</x:String>
     <x:String x:Key="BtnCancelarAula">Cancel</x:String>
 
-    <!-- ===================================== Pagina Configuracion ===================================== -->
+    <!-- ===================================== Settings Page ===================================== -->
     <x:String x:Key="TituloCabeceraConf">Settings</x:String>
-    <x:String x:Key="DescConf">User Ssettings Page</x:String>
+    <x:String x:Key="DescConf">User settings page</x:String>
 
-    <x:String x:Key="TituloEstiloAppConf">Application styles:</x:String>
+    <x:String x:Key="TituloEstiloAppConf">App style:</x:String>
     <x:String x:Key="NormalConf">Normal</x:String>
     <x:String x:Key="OscuroConf">Dark</x:String>
     <x:String x:Key="ClaroConf">Light</x:String>
 
-    <x:String x:Key="TituloTamLetraConf">Font Size</x:String>
+    <x:String x:Key="TituloTamLetraConf">Font size</x:String>
 
-    <x:String x:Key="TituloCambioIdiomaConf">Select a language</x:String>
+    <x:String x:Key="TituloCambioIdiomaConf">Select language</x:String>
     <x:String x:Key="EspaniolConf">Spanish</x:String>
     <x:String x:Key="InglesConf">English</x:String>
 
-    <x:String x:Key="TitCambioContraConf">Change Password</x:String>
-    <x:String x:Key="PlaceholderCambioContraConf">New Password</x:String>
+    <x:String x:Key="TitCambioContraConf">Change password</x:String>
+    <x:String x:Key="PlaceholderCambioContraConf">Enter new password</x:String>
 
-    <x:String x:Key="TituloEliminarCuentaConf">Delete Account</x:String>
-    <x:String x:Key="BtnEliminarCuentaConf">Delete Account</x:String>
+    <x:String x:Key="TituloEliminarCuentaConf">Delete account</x:String>
+    <x:String x:Key="BtnEliminarCuentaConf">Delete account</x:String>
+
+    <!-- ======================================== Graphs Page (syncfusion) ======================================= -->
+
+    <!-- ======================================== User List Page ======================================= -->
+    <x:String x:Key="TituloPagListUsr">User Management</x:String>
+
+    <x:String x:Key="TituloListUsr">User List</x:String>
+    <x:String x:Key="DescripcionListUsr">User management page</x:String>
+
+    <x:String x:Key="TituloUsrListUsr">User</x:String>
+    <x:String x:Key="TituloRolListUsr">Role</x:String>
+
+    <x:String x:Key="BtnAgregarLitUsr">Add</x:String>
+    <x:String x:Key="BtnEliminarListUsr">Delete</x:String>
+    <x:String x:Key="BtnEditarLitUsr">Edit</x:String>
+
+    <!-- ======================================== SuperUser Page ======================================= -->
+    <x:String x:Key="TituloReg">User Registration</x:String>
+    <x:String x:Key="TituloEdit">User Edit</x:String>
+
+    <x:String x:Key="TextoRegUsr">User Registration</x:String>
+    <x:String x:Key="TextoEdtUsr">User Edit</x:String>
+
+    <x:String x:Key="CorreoRegAdmin">Email</x:String>
+    <x:String x:Key="ContraseñaRegAdmin">Password</x:String>
+    <x:String x:Key="NombreRegAdmin">First name</x:String>
+    <x:String x:Key="ApellidosRegAdmin">Last name</x:String>
+
+    <x:String x:Key="SuperRol">Super</x:String>
+    <x:String x:Key="AdminRol">Admin</x:String>
+    <x:String x:Key="RegistradoRol">User</x:String>
+
+    <!-- ======================================== About Page ======================================= -->
+    <x:String x:Key="TituloCabeceraAcercaDe">About</x:String>
+    <x:String x:Key="Texto1AcercaDe">Page for controlling and monitoring school classrooms</x:String>
+    <x:String x:Key="Texto2AcercaDe">Created with MAUI, using various APIs and Syncfusion, non-profit</x:String>
+    <x:String x:Key="Texto3AcercaDe">Created by Nicolas Hijon, 2ºDAM</x:String>
 
 
-
-    <!-- ======================================== Pagina Graficos ======================================= -->
-
-
-    <x:String x:Key="TituloReg">Register user</x:String>
-    <x:String x:Key="TituloEdit">Edit user</x:String>
 </ResourceDictionary>
-
