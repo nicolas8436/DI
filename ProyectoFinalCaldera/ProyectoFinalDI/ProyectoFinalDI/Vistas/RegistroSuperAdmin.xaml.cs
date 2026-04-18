@@ -7,21 +7,24 @@ namespace ProyectoFinalDI.Vistas;
 public partial class RegistroSuperAdmin : ContentPage
 {
     UsuarioRolClase seleccionado;
-	private int rol = 3;
+    private ListaUsr actualizar;
+    private int rol = 3;
     private int opc = 0;
-	public RegistroSuperAdmin(int opc)//Agregar 
+	public RegistroSuperAdmin(int opc, ListaUsr p)//Agregar 
 	{
 		InitializeComponent();
         this.opc = opc;//Opc = 1
+        actualizar = p;//Para actualizar la lista
 
         TituloRegistroEdicion.SetDynamicResource(Label.TextProperty, "TituloReg");
         TextoRegEdtUsr.SetDynamicResource(Label.TextProperty, "TextoRegUsr");
     }
 
-    public RegistroSuperAdmin(int opc, UsuarioRolClase usuarioSeleccionado)//Editar
+    public RegistroSuperAdmin(int opc, UsuarioRolClase usuarioSeleccionado, ListaUsr p)//Editar
     {
         InitializeComponent();
         this.opc = opc;//Opc = 2 
+        actualizar = p;//Para actualizar la lista
         seleccionado = usuarioSeleccionado;
 
         TituloRegistroEdicion.SetDynamicResource(Label.TextProperty, "TituloEdit");
@@ -44,6 +47,9 @@ public partial class RegistroSuperAdmin : ContentPage
         {
             Registo(sender, e);
         }
+
+        actualizar.CargarUsuarios();
+        Navigation.PopAsync();
     }
 
 
@@ -58,7 +64,9 @@ public partial class RegistroSuperAdmin : ContentPage
             } 
             else
             {
-                BD.Instance.Registro(this, Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol); 
+                BD.Instance.AbrirConexion(this);
+                BD.Instance.Registro(this, Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol);
+                BD.Instance.CerrarConexion(this);
             }
             
         } else
@@ -70,14 +78,15 @@ public partial class RegistroSuperAdmin : ContentPage
     private void Actualizacion(object sender, EventArgs e)
     {
         if (Usr.Text != null  && Nom.Text != null && Ape.Text != null)
-        {
-            if (Contra.Text == null) { 
+        {   
+            
             if (!Regex.IsMatch(Usr.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
                 DisplayAlert("Error", "Debes usar un correo electronico valido", "OK");
-
             }
-            else
+
+            BD.Instance.AbrirConexion(this);
+            if (Contra.Text == null) { 
             {
                 BD.Instance.Actualizacion(this, seleccionado, Usr.Text, Nom.Text, Ape.Text, rol);
             }
@@ -86,7 +95,7 @@ public partial class RegistroSuperAdmin : ContentPage
             {
                 BD.Instance.Actualizacion(this, seleccionado ,Usr.Text, Contra.Text, Nom.Text, Ape.Text, rol);
             }
-
+            BD.Instance.CerrarConexion(this);
         }
         else
         {

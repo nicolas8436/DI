@@ -2,11 +2,14 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Resources.Idiomas.Espaniol">
-    
-    
-    <!-- ========================================= Pagina Aulas ========================================= -->
-    
 
+
+    <!-- ========================================= Pagina Aulas ========================================= -->
+    <x:String x:Key="TituloCabeceraAulas">Aulas del centro</x:String>
+    <x:String x:Key="TempConfAulas">Temp Confort:</x:String>
+    <x:String x:Key="TempActAulas">Temp Actual:</x:String>
+    <x:String x:Key="ValvulaAulas">Estado válvula:</x:String>
+    <x:String x:Key="BtnConfAulas">Configurar</x:String>
 
     <!-- ========================================== Pagina Aula ========================================= -->
     <x:String x:Key="TituloCabeceraAula">Configuracion de aula</x:String>
@@ -17,16 +20,16 @@
     <x:String x:Key="NuevaTempAula">Nueva temp Confort:</x:String>
     <x:String x:Key="BtnConfirmarAula">Confirmar</x:String>
     <x:String x:Key="BtnCancelarAula">Cancelar</x:String>
-    
+
     <!-- ===================================== Pagina Configuracion ===================================== -->
     <x:String x:Key="TituloCabeceraConf">Configuracion</x:String>
     <x:String x:Key="DescConf">Pagina de configuracion del usuario</x:String>
-    
+
     <x:String x:Key="TituloEstiloAppConf">Estilo de la aplicacion:</x:String>
     <x:String x:Key="NormalConf">Normal</x:String>
     <x:String x:Key="OscuroConf">Oscuro</x:String>
     <x:String x:Key="ClaroConf">Claro</x:String>
-    
+
     <x:String x:Key="TituloTamLetraConf">Tamaño de la letra</x:String>
 
     <x:String x:Key="TituloCambioIdiomaConf">Seleccione un idioma</x:String>
@@ -42,13 +45,13 @@
 
 
     <!-- ======================================== Pagina Graficos ======================================= -->
-    
+
     <!-- ======================================== Pagina Lista de Usr ======================================= -->
     <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
 
     <x:String x:Key="TituloListUsr">Lista de Usuarios</x:String>
     <x:String x:Key="DescripcionListUsr">Pagina para la gestion de usuarios</x:String>
-    
+
     <x:String x:Key="TituloUsrListUsr">Usuario</x:String>
     <x:String x:Key="TituloRolListUsr">Rol</x:String>
 

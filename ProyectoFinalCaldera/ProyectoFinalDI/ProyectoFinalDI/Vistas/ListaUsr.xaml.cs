@@ -19,7 +19,7 @@ public partial class ListaUsr : ContentPage
         BindingContext = this;
     }
 
-    private void CargarUsuarios()//Cargar la lista con usuarios/roles
+    public void CargarUsuarios()//Cargar la lista con usuarios/roles
     {
         if (BD.Instance.AbrirConexion(this))
         {
@@ -41,7 +41,7 @@ public partial class ListaUsr : ContentPage
 
     private async void BtnAgregarUsrListUsr_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new RegistroSuperAdmin(1));
+        await Navigation.PushAsync(new RegistroSuperAdmin(1, this));
     }
 
     private async void BtnEliminarUsrListUsr_Clicked(object sender, EventArgs e)
@@ -80,6 +80,6 @@ public partial class ListaUsr : ContentPage
 
         DisplayAlert("Editar", $"Editar {usuarioSeleccionado.nombre}", "OK");
 
-        await Navigation.PushAsync(new RegistroSuperAdmin(2, usuarioSeleccionado));
+        await Navigation.PushAsync(new RegistroSuperAdmin(2, usuarioSeleccionado, this));
     }
 }

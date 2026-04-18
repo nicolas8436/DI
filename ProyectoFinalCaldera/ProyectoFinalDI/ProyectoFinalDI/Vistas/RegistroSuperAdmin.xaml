@@ -106,11 +106,11 @@
                         TextColor="Black"
                         BackgroundColor="WhiteSmoke"/>
 
-                    
+                    <!--ESTE ES_EL_DEL_ESCRITORIO-->
 
                     <!--Radio button Rol-->
-                    <Label Text="{DynamicResource TituloRBSuperA}"
-       Style="{DynamicResource Titulo}"/>
+                    <Label Text="{DynamicResource TituloRBSuperA}" 
+                    Style="{DynamicResource Titulo}"/>
 
                     <HorizontalStackLayout Margin="0,0,0,35">
                         <RadioButton x:Name="RBRegistrado" GroupName="Rol" Content="{DynamicResource RegistradoRol}" Style="{DynamicResource Cuerpo}" IsChecked="True" CheckedChanged="RBRol" Margin="0,0,0,0" />
@@ -125,7 +125,7 @@
                         Text="Continuar"
                         TextColor="White"
                         FontFamily="Inter"
-                        Clicked="Registo"
+                        Clicked="BtnContinuar"
                         HorizontalOptions="End"
                         Margin="0, 15, 0, 40"
                         />
