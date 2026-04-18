@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MySqlConnector;
+using ProyectoFinalDI.Vistas;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySqlConnector;
-using ProyectoFinalDI.Vistas;
 
 namespace ProyectoFinalDI.Servicios
 {
@@ -15,6 +15,7 @@ namespace ProyectoFinalDI.Servicios
 
         private MySqlConnection conector;
         private MySqlCommand comando;
+        private String actual;
         private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;";
 
 
@@ -69,6 +70,8 @@ namespace ProyectoFinalDI.Servicios
                     //Convertir a numero para ver si hay alguno
                     count = Convert.ToInt32(comando.ExecuteScalar());
                 }
+
+                this.actual = usuario;
                     return count > 0;
 
             }catch (MySqlException e) {
@@ -114,6 +117,7 @@ namespace ProyectoFinalDI.Servicios
                     if (filas > 0)  // ← Verificar que insertó
                     {
                         p.DisplayAlert("Usuario Registrado", "Usuario registrado correctamente", "OK");
+                        this.actual = usuario;
                         return true;
                     }
                     else
@@ -389,8 +393,7 @@ namespace ProyectoFinalDI.Servicios
 
         // BorrarUsr ===============================================================================================================
 
-        internal void BorrarUsr(Page p, UsuarioRolClase usuarioSeleccionado){
-            int Rol = 3;
+        public void BorrarUsr(Page p, UsuarioRolClase usuarioSeleccionado){
             try
             {
                 using (var comando = new MySqlCommand("DELETE FROM USUARIOS WHERE EMAIL = @email", conector))
@@ -470,7 +473,7 @@ namespace ProyectoFinalDI.Servicios
         }//Registro SuperAdmin ==============================================================================================================================
 
         //Actualizacion SuperAdmin ==============================================================================================================================
-        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
+        public void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
         {
             int filas;
             try
@@ -530,7 +533,7 @@ namespace ProyectoFinalDI.Servicios
 
 
         //No cambiamos contraseña -------------------------------------------------------------------------------------------------------------------------------
-        internal void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Nombre, string Apellidos, int rol)
+        public void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Nombre, string Apellidos, int rol)
         {
             int filas;
             try
@@ -589,5 +592,103 @@ namespace ProyectoFinalDI.Servicios
         }
 
         //Actualizacion SuperAdmin ==============================================================================================================================
+
+        //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+        //Obtener rol ==============================================================================================================================
+        public int ObtenerRol(Page p)
+        {
+            try
+            {
+                int rol;
+                using (var comando = new MySqlCommand("SELECT ID_ROL FROM USUARIOS WHERE EMAIL = @usuario", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", actual);
+
+
+                    rol = Convert.ToInt32(comando.ExecuteScalar());
+
+
+                }
+                return rol;
+            }
+            catch(MySqlException e)
+            {
+                p.DisplayAlert("Error", "Error eliminar su cuenta", "OK");
+                return 3;
+            }
+        }
+
+        //Obtener rol ==============================================================================================================================
+
+        //Eliminar Cuenta ==============================================================================================================================
+        public bool EliminarActual(Page p)
+        {
+            try
+            {
+                int filas;
+                using (var comando = new MySqlCommand("DELETE FROM USUARIOS WHERE EMAIL = @usuario", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", actual);
+
+
+                    filas = comando.ExecuteNonQuery();
+
+                    if (filas == 1)
+                    {
+                        p.DisplayAlert("Cuenta eliminada", "Su cuenta ha sido eliminada con exito", "OK"); 
+                        return true;
+                    }
+                }
+                p.DisplayAlert("Error", "No ha sido posible eliminar su cuenta", "OK");
+                return false;
+            }
+            catch (MySqlException e)
+            {
+                p.DisplayAlert("Error", "Error al eliminar la cuenta", "OK");
+                return false;
+            }
+        }
+
+        //Eliminar Cuenta ==============================================================================================================================
+
+        //Cambiar contraseña ==============================================================================================================================
+        public bool ContraseñaActual(Page p, String contraseña)
+        {
+            try
+            {
+                int filas;
+                using (var comando = new MySqlCommand("UPDATE USUARIOS SET PASSWORD = @pass WHERE EMAIL = @usuario", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@usuario", actual);
+                    comando.Parameters.AddWithValue("@pass", contraseña);
+
+
+                    filas = comando.ExecuteNonQuery();
+
+                    if (filas == 1)
+                    {
+                        p.DisplayAlert("Contraseña cambiada", "Su contraseña ha sido actualizada con exito", "OK");
+                        return true;
+                    }
+                }
+                p.DisplayAlert("Error", "No ha sido posible actualizar su contraseña", "OK");
+                return false;
+
+            }
+            catch (MySqlException e)
+            {
+                p.DisplayAlert("Error", "Error al cambiar la contraseña", "OK");
+                return false;
+            }
+        }
+
+        //Cambiar contraseña ==============================================================================================================================
+        //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
     }
 }

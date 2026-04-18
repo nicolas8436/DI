@@ -8,8 +8,7 @@
     xmlns:Otras="clr-namespace:ProyectoFinalDI.Vistas.OtrasPaginas"
     FlyoutBehavior="Flyout"
     FlyoutIcon="iconoprincipal"
-    Style="{DynamicResource CabeceraNavegacion}"
-    >
+    Style="{DynamicResource CabeceraNavegacion}">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -19,23 +18,6 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-   
-
-    <!--<ShellContent
-            Title=""
-            ContentTemplate="{DataTemplate Vistas:Aulas}"
-            Route="Inicio"
-            Shell.NavBarIsVisible="False"
-            />
-    
-     <FlyoutItem Title="About" Icon="interrogacion_negro.png">
-        <ShellContent
-            ContentTemplate="{DataTemplate Otras:AcercaDe}"/>
-    </FlyoutItem>-->
-    
-        
-    
-    
     <ShellContent
             Title="Inicio"
             ContentTemplate="{DataTemplate Vistas:Inicio}"
@@ -47,19 +29,18 @@
             ContentTemplate="{DataTemplate Otras:AcercaDe}"
             Route="AcercaDe" 
             Shell.NavBarIsVisible="False"/>
-    
+
     <ShellContent
+            x:Name="PestanaConfig"
             Title="Configuracion"
             ContentTemplate="{DataTemplate Vistas:Configuracion}"
             Route="Configuracion"
             Shell.NavBarIsVisible="False"/>
 
-
     <ShellContent
+            x:Name="PestanaListaUsr"
             Title="Lista Usr"
             ContentTemplate="{DataTemplate Vistas:ListaUsr}"
             Route="Aulas"
             Shell.NavBarIsVisible="False"/>
-
-
 </Shell>
