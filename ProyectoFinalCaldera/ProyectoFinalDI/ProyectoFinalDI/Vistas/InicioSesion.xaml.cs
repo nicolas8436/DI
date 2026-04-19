@@ -26,21 +26,15 @@ public partial class InicioSesion : ContentPage
                 return;
             }
 
-            // 2. Verificar credenciales
             bool loginExitoso = BD.Instance.InicioS(this, usuario, contraseña);
 
             if (loginExitoso)
             {
-                // 3. Obtener el rol y guardarlo en el Singleton global de Persona
                 int rolObtenido = BD.Instance.ObtenerRol(this, usuario);
                 Persona.Instance.SetRol(rolObtenido);
 
-                // 4. REINICIAR LA APP CON EL NUEVO SHELL
-                // Esto destruye el estado anterior y ejecuta el OnAppearing del Shell
                 Application.Current.MainPage = new AppShell();
 
-                // 5. NAVEGACIÓN INMEDIATA
-                // Saltamos directamente a la página de Aulas (dentro de las pestañas)
                 await Shell.Current.GoToAsync("//AulasPage");
 
                 BD.Instance.CerrarConexion(this);

@@ -66,7 +66,9 @@
                        Style="{DynamicResource Titulo}"/>
 
                 <HorizontalStackLayout>
-                    <Entry Grid.Column="0" 
+                    <Entry 
+                           x:Name="EntryContra"
+                           Grid.Column="0" 
                            Placeholder="{DynamicResource PlaceholderCambioContraConf}"
                            Style="{DynamicResource EntryContra}"
                            IsPassword="True"/>
@@ -85,7 +87,8 @@
                 <Button Text="{DynamicResource BtnEliminarCuentaConf}"
                         Style="{DynamicResource BtnEliminar}"
                         Margin="0,10,0,40"
-                        HorizontalOptions="Start"/>
+                        HorizontalOptions="Start"
+                        Clicked="Eliminar_Clicked"/>
 
             </VerticalStackLayout>
         </Grid>

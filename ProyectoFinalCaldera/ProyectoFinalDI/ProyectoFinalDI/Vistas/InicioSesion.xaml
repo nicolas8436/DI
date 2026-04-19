@@ -7,9 +7,8 @@
 
     <ScrollView>
         <Grid>
-            <!-- Cabecera verde -->
             <Grid RowDefinitions="50, *">
-                
+
                 <BoxView 
                     Grid.Row="0"
                     Color="#95EA9A"/>
@@ -20,40 +19,31 @@
                         Style="{DynamicResource ImgCabecera}"/>
 
                     <Label x:Name="TituloAula"
-                        Text="Inicio Sesion"
-                        Style="{DynamicResource Titulo}"
-                        VerticalOptions="Center"
-                        Margin="10,0,0,0"/>
-
+                           Text="Inicio Sesion"
+                           Style="{DynamicResource Titulo}"
+                           VerticalOptions="Center"
+                           Margin="10,0,0,0"/>
                 </HorizontalStackLayout>
             </Grid>
-            <!-- Cabecera verde -->
-            
-            <!--Cuerpo del inicio de sesion-->
             <Grid ColumnDefinitions="35*,30*,35*">
 
                 <VerticalStackLayout Grid.Column="1">
-                
-                    <!--Imagen-->
+
                     <Image 
                         Source="iconoprincipal.png"
                         WidthRequest="80"
                         Margin="0,120,0,60"/>
 
-                    <!--Mensaje inicie sesion con su cuenta-->
                     <Label Text="Inicie sesion con su cuenta"
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        FontFamily="Inter"
-                        />
-                    <!--Mensaje debajo de la negrita-->
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontFamily="Inter"/>
+
                     <Label 
                         Text="Inicie sesion con sus credenciales para acceder a la informacion acerca del sistema de calefaccion"
                         TextColor="Black"
                         FontFamily="Inter"/>
-                
-                
-                    <!--Caja y texto usuario-->
+
                     <Label 
                         Text="Usuario o correo electronico"
                         TextColor="Black"
@@ -65,18 +55,15 @@
                         x:Name="Usr"
                         Placeholder="Usuario"
                         TextColor="Black"
-                        BackgroundColor="WhiteSmoke"
-                        />
+                        BackgroundColor="WhiteSmoke"/>
 
-
-                    <!--Caja y texto contraseña-->
                     <Label 
                         Text="Contraseña"
                         TextColor="Black"
                         FontAttributes="Bold"
                         FontFamily="Inter"
                         Margin="0, 30, 0, 0"/>
-                
+
                     <Entry 
                         x:Name="Contra"
                         Placeholder="Contraseña"
@@ -84,7 +71,6 @@
                         TextColor="Black"
                         BackgroundColor="WhiteSmoke"/>
 
-                    <!--Boton confirmacion-->
                     <Button
                         BackgroundColor="Black"
                         Text="Continuar"
@@ -92,12 +78,10 @@
                         FontFamily="Inter"
                         Clicked="InicioS_Clicked"
                         HorizontalOptions="End"
-                        Margin="0, 15, 0, 40"
-                        />
-                </VerticalStackLayout>
+                        Margin="0, 15, 0, 40"/>
 
+                </VerticalStackLayout>
             </Grid>
         </Grid>
     </ScrollView>
 </ContentPage>
-<!--Hace falta descargar fuente inter-->

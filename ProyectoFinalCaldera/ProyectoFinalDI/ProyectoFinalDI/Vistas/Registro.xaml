@@ -6,128 +6,109 @@
              BackgroundColor="White"
              Shell.NavBarIsVisible="False">
 
+    <ScrollView>
+        <Grid>
+            <Grid RowDefinitions="50, *">
 
-        <ScrollView>
-            <Grid>
-                <!-- Cabecera verde -->
-                <Grid RowDefinitions="50, *">
-
-                    <BoxView 
+                <BoxView 
                     Grid.Row="0"
                     Color="#95EA9A"/>
 
-                    <HorizontalStackLayout BackgroundColor="Transparent">
+                <HorizontalStackLayout BackgroundColor="Transparent">
                     <Image
                         Source="iconoprincipal.png"
                         Style="{DynamicResource ImgCabecera}"/>
 
-                        <Label x:Name="TituloAula"
-                        Text="Registro"
-                        Style="{DynamicResource Titulo}"
-                        VerticalOptions="Center"
-                        Margin="10,0,0,0"/>
+                    <Label x:Name="TituloAula"
+                           Text="Registro"
+                           Style="{DynamicResource Titulo}"
+                           VerticalOptions="Center"
+                           Margin="10,0,0,0"/>
+                </HorizontalStackLayout>
+            </Grid>
+            <Grid ColumnDefinitions="35*,30*,35*">
 
-                    </HorizontalStackLayout>
-                </Grid>
-                <!-- Cabecera verde -->
+                <VerticalStackLayout Grid.Column="1">
 
-                <!--Cuerpo del inicio de sesion-->
-                <Grid ColumnDefinitions="35*,30*,35*">
-
-                    <VerticalStackLayout Grid.Column="1">
-
-                    <!--Imagen-->
-                        <Image 
+                    <Image 
                         Source="iconoprincipal.png"
                         WidthRequest="80"
                         Margin="0,120,0,60"/>
 
-                    <!--Mensaje inicie sesion con su cuenta-->
-                        <Label Text="Registre su nueva cuenta"
-                        TextColor="Black"
-                        FontAttributes="Bold"
-                        FontFamily="Inter"
-                        />
-                    <!--Mensaje debajo de la negrita-->
-                        <Label 
+                    <Label Text="Registre su nueva cuenta"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           FontFamily="Inter"/>
+
+                    <Label 
                         Text="Registrese con sus credenciales para acceder a la informacion acerca del sistema de calefaccion"
                         TextColor="Black"
                         FontFamily="Inter"/>
 
-
-                    <!--Caja y texto usuario-->
-                        <Label 
+                    <Label 
                         Text="Usuario o correo electronico"
                         TextColor="Black"
                         FontAttributes="Bold"
                         FontFamily="Inter"
                         Margin="0, 30, 0, 0"/>
 
-                        <Entry 
+                    <Entry 
                         x:Name="Usr"
                         Placeholder="Usuario"
                         TextColor="Black"
-                        BackgroundColor="WhiteSmoke"
-                        />
+                        BackgroundColor="WhiteSmoke"/>
 
-
-                    <!--Caja y texto contraseña-->
-                        <Label 
+                    <Label 
                         Text="Contraseña"
                         TextColor="Black"
                         FontAttributes="Bold"
                         FontFamily="Inter"
                         Margin="0, 30, 0, 0"/>
 
-                        <Entry 
+                    <Entry 
                         x:Name="Contra"
                         Placeholder="Contraseña"
                         IsPassword="True"
                         TextColor="Black"
                         BackgroundColor="WhiteSmoke"/>
 
-                    <!--Caja y texto usuario-->
-                        <Label 
-                            Text="Nombre"
-                            TextColor="Black"
-                            FontAttributes="Bold"
-                            FontFamily="Inter"
-                            Margin="0, 30, 0, 0"/>
+                    <Label 
+                        Text="Nombre"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        FontFamily="Inter"
+                        Margin="0, 30, 0, 0"/>
 
-                        <Entry 
-                            x:Name="Nom"
-                            Placeholder="Nombre"
-                            TextColor="Black"
-                            BackgroundColor="WhiteSmoke"/>
-                        
-                        
-                    <!--Caja y texto usuario-->
-                        <Label 
-                            Text="Apellido/s"
-                            TextColor="Black"
-                            FontAttributes="Bold"
-                            FontFamily="Inter"
-                            Margin="0, 30, 0, 0"/>
+                    <Entry 
+                        x:Name="Nom"
+                        Placeholder="Nombre"
+                        TextColor="Black"
+                        BackgroundColor="WhiteSmoke"/>
 
-                        <Entry 
-                            x:Name="Ape"
-                            Placeholder="Apellido"
-                            TextColor="Black"
-                            BackgroundColor="WhiteSmoke"/>
+                    <Label 
+                        Text="Apellido/s"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        FontFamily="Inter"
+                        Margin="0, 30, 0, 0"/>
 
-                    <!--Boton confirmacion-->
-                        <Button
+                    <Entry 
+                        x:Name="Ape"
+                        Placeholder="Apellido"
+                        TextColor="Black"
+                        BackgroundColor="WhiteSmoke"/>
+
+                    <Button
                         BackgroundColor="Black"
                         Text="Continuar"
                         TextColor="White"
                         FontFamily="Inter"
                         Clicked="Registro_Clicked"
                         HorizontalOptions="End"
-                        Margin="0, 15, 0, 40"
-                        />
-                    </VerticalStackLayout>
+                        Margin="0, 15, 0, 40"/>
 
-                </Grid>
+                </VerticalStackLayout>
             </Grid>
-        </ScrollView>
-    </ContentPage>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -6,117 +6,102 @@
 
     <Shell.TitleView>
         <HorizontalStackLayout HorizontalOptions="Fill">
-            <Image  Style="{DynamicResource ImgCabecera}"/>
+            <Image Style="{DynamicResource ImgCabecera}"/>
 
             <Label x:Name="TituloAula"
-               Text="{DynamicResource TituloCabeceraAulas}"
-               Style="{DynamicResource Titulo}"
-               VerticalOptions="Center"
-               Margin="10,0,0,0"/>
+                   Text="{DynamicResource TituloCabeceraAulas}"
+                   Style="{DynamicResource Titulo}"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0"/>
         </HorizontalStackLayout>
     </Shell.TitleView>
-    
-        
-        <ScrollView Grid.Row="0">
-            <CollectionView ItemsSource="{Binding ListaAulas}">
 
-                <!-- 2 columnas -->
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" 
-                                     Span="2" 
-                                     VerticalItemSpacing="10" 
-                                     HorizontalItemSpacing="5"/>
-                </CollectionView.ItemsLayout>
+    <ScrollView Grid.Row="0">
+        <CollectionView ItemsSource="{Binding ListaAulas}">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical" 
+                                 Span="2" 
+                                 VerticalItemSpacing="10" 
+                                 HorizontalItemSpacing="5"/>
+            </CollectionView.ItemsLayout>
 
-                        <Border Padding="10"
-                                Margin="10"
-                                HeightRequest="250"
-                                Style="{DynamicResource Border}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
 
-                            <Grid RowDefinitions="Auto,*">
+                    <Border Padding="10"
+                            Margin="10"
+                            HeightRequest="250"
+                            Style="{DynamicResource Border}">
 
-                                <!-- CABECERA -->
-                                <Border Style="{DynamicResource CabeceraBorder}"
-                                        Margin="-15,-15,-15,0">
+                        <Grid RowDefinitions="Auto,*">
 
-                                    <Label Text="{Binding Nombre}"
-                                           HorizontalOptions="Center"
-                                           Style="{DynamicResource Titulo}"/>
-                                </Border>
+                            <Border Style="{DynamicResource CabeceraBorder}"
+                                    Margin="-15,-15,-15,0">
 
-                                <!-- CONTENIDO -->
-                                <Grid Grid.Row="1" 
+                                <Label Text="{Binding Nombre}"
+                                       HorizontalOptions="Center"
+                                       Style="{DynamicResource Titulo}"/>
+                            </Border>
+
+                            <Grid Grid.Row="1" 
+                                  ColumnDefinitions="*,*">
+
+                                <Grid RowDefinitions="Auto,Auto"
                                       ColumnDefinitions="*,*">
 
-                                    <!-- IZQUIERDA -->
-                                    <Grid RowDefinitions="Auto,Auto"
-                                          ColumnDefinitions="*,*">
+                                    <Label Text="{DynamicResource TempActAulas}"
+                                           Margin="0,45,0,0"
+                                           Style="{DynamicResource CuerpoNegrita}"/>
 
-                                        <Label Text="{DynamicResource TempActAulas}"
-                                               Margin="0,45,0,0"
-                                               Style="{DynamicResource CuerpoNegrita}"/>
+                                    <Label Text="{Binding TempActual}"
+                                           Grid.Column="1"
+                                           HorizontalOptions="Center"
+                                           Margin="0,45,0,0"
+                                           Style="{DynamicResource CuerpoNegrita}"/>
 
-                                        <Label Text="{Binding TempActual}"
-                                               Grid.Column="1"
-                                               HorizontalOptions="Center"
-                                               Margin="0,45,0,0"
-                                               Style="{DynamicResource CuerpoNegrita}"/>
+                                    <Label Grid.Row="1"
+                                           Text="{DynamicResource TempConfAulas}"
+                                           Margin="0,35,0,0"
+                                           Style="{DynamicResource CuerpoNegrita}"/>
 
-                                        <Label Grid.Row="1"
-                                               Text="{DynamicResource TempConfAulas}"
-                                               Margin="0,35,0,0"
-                                               Style="{DynamicResource CuerpoNegrita}"/>
-
-                                        <Label Grid.Row="1"
-                                               Grid.Column="1"
-                                               Margin="0,35,0,0"
-                                               Text="{Binding TempConfort}"
-                                               HorizontalOptions="Center"
-                                               Style="{DynamicResource CuerpoNegrita}"/>
-
-                                    </Grid>
-
-                                    <!-- DERECHA -->
-                                    <VerticalStackLayout Grid.Column="1"
-                                                         HorizontalOptions="Fill"
-                                                         VerticalOptions="Fill">
-
-                                        <Label 
-                                            Margin="0,43,0,0"
-                                            HorizontalOptions="Center">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{DynamicResource ValvulaAulas}" 
-                                                          Style="{DynamicResource CuerpoNegrita}"/>
-                                                    <Span Text="{Binding EstadoCaldera}" 
-                                                          Style="{DynamicResource CuerpoNegrita}"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>
-
-                                        <Button Text="{DynamicResource BtnConfAulas}"
-                                                CommandParameter="{Binding Nombre}"
-                                                Clicked="Configurar_Clicked"
-                                                Style="{DynamicResource BtnConfigAulas}"
-                                                Margin="0,32,0,0"
-                                                VerticalOptions="End"
-                                                HorizontalOptions="Center"/>
-
-                                    </VerticalStackLayout>
-
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Margin="0,35,0,0"
+                                           Text="{Binding TempConfort}"
+                                           HorizontalOptions="Center"
+                                           Style="{DynamicResource CuerpoNegrita}"/>
                                 </Grid>
 
+                                <VerticalStackLayout Grid.Column="1"
+                                                     HorizontalOptions="Fill"
+                                                     VerticalOptions="Fill">
+
+                                    <Label Margin="0,43,0,0"
+                                           HorizontalOptions="Center">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{DynamicResource ValvulaAulas}" 
+                                                      Style="{DynamicResource CuerpoNegrita}"/>
+                                                <Span Text="{Binding EstadoCaldera}" 
+                                                      Style="{DynamicResource CuerpoNegrita}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <Button Text="{DynamicResource BtnConfAulas}"
+                                            CommandParameter="{Binding Nombre}"
+                                            Clicked="Configurar_Clicked"
+                                            Style="{DynamicResource BtnConfigAulas}"
+                                            Margin="0,32,0,0"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
                             </Grid>
-
-                        </Border>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-            </CollectionView>
-        </ScrollView>
-
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
 </ContentPage>

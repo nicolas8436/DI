@@ -5,10 +5,11 @@ namespace ProyectoFinalDI.Vistas;
 
 public partial class Registro : ContentPage
 {
-	public Registro()
-	{
-		InitializeComponent();
-	}
+
+    public Registro()
+    {
+        InitializeComponent();
+    }
 
     private async void Registro_Clicked(object sender, EventArgs e)
     {
@@ -16,29 +17,63 @@ public partial class Registro : ContentPage
 
         if (prueba == true)
         {
-            String usuario = Usr.Text;
-            String contraseña = Contra.Text;
-            String nombre = Nom.Text;
-            String apellidos = Ape.Text;
-            if (usuario == null || contraseña == null || nombre == null || apellidos == null)
+            string usuario = Usr.Text;
+            string contraseña = Contra.Text;
+            string nombre = Nom.Text;
+            string apellidos = Ape.Text;
+
+            
+            if (string.IsNullOrWhiteSpace(usuario) ||
+                string.IsNullOrWhiteSpace(contraseña) ||
+                string.IsNullOrWhiteSpace(nombre) ||
+                string.IsNullOrWhiteSpace(apellidos))
             {
-                await DisplayAlert("Error", "No puedes dejar campos vacios", "OK");
+                await DisplayAlert("Error", "No puedes dejar campos vacíos", "OK");
+                BD.Instance.CerrarConexion(this); 
                 return;
             }
 
-            if (!Regex.IsMatch(usuario, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$") )
+            if (contraseña.Length < 8)
             {
-                await DisplayAlert("Error", "Debes usar un correo electronico valido", "OK");
+                await DisplayAlert("Contraseña no valida", "La contraseña tiene que tener minimo 8 caracteres", "OK");
+                BD.Instance.CerrarConexion(this);
+                return;
+            }
+
+
+
+                if (!Regex.IsMatch(usuario, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+            {
+                await DisplayAlert("Error", "Debes usar un correo electrónico válido", "OK");
+                BD.Instance.CerrarConexion(this); 
                 return;
             }
 
             bool registroS = BD.Instance.Registro(this, usuario, contraseña, nombre, apellidos);
 
-            if (registroS == true)
+            
+
+            if (registroS)
             {
-                await Navigation.PushAsync(new Aulas());
+                int rolObtenido = BD.Instance.ObtenerRol(this, usuario);
+                Persona.Instance.SetRol(rolObtenido);
+
+                Application.Current.MainPage = new AppShell();
+
+                await Shell.Current.GoToAsync("//AulasPage");
+
+                BD.Instance.CerrarConexion(this);
             }
+            else
+            {
+                await DisplayAlert("Error", "Usuario o contraseña incorrectos", "OK");
+                BD.Instance.CerrarConexion(this);
+            }
+
             BD.Instance.CerrarConexion(this);
+        
+        
+
         }
     }
 }

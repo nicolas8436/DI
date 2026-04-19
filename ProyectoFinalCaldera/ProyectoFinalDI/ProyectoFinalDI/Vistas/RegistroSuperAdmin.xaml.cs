@@ -16,8 +16,9 @@ public partial class RegistroSuperAdmin : ContentPage
         InitializeComponent();
         this.opc = opc; // Opc = 1
         actualizar = p; // Para actualizar la lista
-   
-        this.SetDynamicResource(Page.TitleProperty, "TituloReg");
+
+        // Actualizamos el título de la barra superior (TitleView) y el del cuerpo
+        LabelTituloBarra.SetDynamicResource(Label.TextProperty, "TituloReg");
         TextoRegEdtUsr.SetDynamicResource(Label.TextProperty, "TextoRegUsr");
     }
 
@@ -28,7 +29,8 @@ public partial class RegistroSuperAdmin : ContentPage
         actualizar = p; // Para actualizar la lista
         seleccionado = usuarioSeleccionado;
 
-        this.SetDynamicResource(Page.TitleProperty, "TituloEdit");
+        // Actualizamos el título de la barra superior (TitleView) y el del cuerpo
+        LabelTituloBarra.SetDynamicResource(Label.TextProperty, "TituloEdit");
         TextoRegEdtUsr.SetDynamicResource(Label.TextProperty, "TextoEdtUsr");
 
         RellenarCampos(seleccionado);
@@ -54,6 +56,14 @@ public partial class RegistroSuperAdmin : ContentPage
         if (!string.IsNullOrWhiteSpace(Usr.Text) && !string.IsNullOrWhiteSpace(Contra.Text) &&
             !string.IsNullOrWhiteSpace(Nom.Text) && !string.IsNullOrWhiteSpace(Ape.Text))
         {
+
+            if (Contra.Text.Length < 8)
+            {
+                DisplayAlert("Contraseña no valida", "La contraseña tiene que tener minimo 8 caracteres", "OK");
+                BD.Instance.CerrarConexion(this);
+                return;
+            }
+
             if (!Regex.IsMatch(Usr.Text, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
             {
                 DisplayAlert("Error", "Debes usar un correo electronico valido", "OK");

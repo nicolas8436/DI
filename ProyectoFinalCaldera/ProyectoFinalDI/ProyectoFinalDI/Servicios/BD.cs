@@ -20,6 +20,12 @@ namespace ProyectoFinalDI.Servicios
 
 
         private BD() { }
+
+        public void setActual(String act)
+        {
+            actual = act;
+        }
+
         public bool AbrirConexion(Page page) {//Abrir conexion ======================================================
         try{
                 conector = new MySqlConnection(cadConexion);
@@ -639,12 +645,11 @@ namespace ProyectoFinalDI.Servicios
 
                     if (filas == 1)
                     {
-                        p.DisplayAlert("Cuenta eliminada", "Su cuenta ha sido eliminada con exito", "OK"); 
                         return true;
                     }
                 }
-                p.DisplayAlert("Error", "No ha sido posible eliminar su cuenta", "OK");
                 return false;
+                
             }
             catch (MySqlException e)
             {
@@ -673,7 +678,6 @@ namespace ProyectoFinalDI.Servicios
 
                     if (filas == 1)
                     {
-                        p.DisplayAlert("Contraseña cambiada", "Su contraseña ha sido actualizada con exito", "OK");
                         return true;
                     }
                 }

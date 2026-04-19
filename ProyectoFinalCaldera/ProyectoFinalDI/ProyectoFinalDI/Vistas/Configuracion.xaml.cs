@@ -1,5 +1,7 @@
 using ProyectoFinalDI.Resources.Idiomas;
 using ProyectoFinalDI.Resources.Styles;
+using ProyectoFinalDI.Servicios;
+using System.Diagnostics.Contracts;
 using System.Security.Principal;
 
 namespace ProyectoFinalDI.Vistas;
@@ -80,8 +82,54 @@ public partial class Configuracion : ContentPage
             diccionarios.Add(new Espaniol());
     }
 
-    private void Confirmar_Clicked(object sender, EventArgs e)
+    private async void Confirmar_Clicked(object sender, EventArgs e)
     {
+        String contra = EntryContra.Text;
 
+        if (contra != "" && contra != null && contra.Length >= 8)
+        {
+            BD.Instance.AbrirConexion(this);
+            bool cambio = BD.Instance.ContraseñaActual(this, contra);
+            
+            if (cambio)
+            {
+                await DisplayAlert("Contraseña actualizada", "Tu contraseña ha sido actualizada correctamente.", "OK");
+
+                BD.Instance.CerrarConexion(this);
+            }
+            else
+            {
+                await DisplayAlert("Error", "No se a podido actualizar la contraseña en este momento.", "OK");
+                BD.Instance.CerrarConexion(this);
+            }
+        
+        } else
+        {
+            await DisplayAlert("Contraseña no valida", "La contraseña debe tener mas de 8 caracteres", "OK");
+        }
+    }
+
+    private async void Eliminar_Clicked(object sender, EventArgs e)
+    {
+        BD.Instance.AbrirConexion(this);
+        bool borrado = BD.Instance.EliminarActual(this);
+
+        if (borrado)
+        {
+
+            Persona.Instance.SetRol(0);
+            BD.Instance.setActual(null);
+
+            await DisplayAlert("Cuenta eliminada", "Tu cuenta ha sido borrada correctamente.", "OK");
+            BD.Instance.CerrarConexion(this);
+
+            Application.Current.MainPage = new AppShell();
+            await Shell.Current.GoToAsync("//PantallaInicio");
+        }
+        else
+        {
+            await DisplayAlert("Error", "No se pudo eliminar la cuenta en este momento.", "OK");
+            BD.Instance.CerrarConexion(this);
+        }
     }
 }

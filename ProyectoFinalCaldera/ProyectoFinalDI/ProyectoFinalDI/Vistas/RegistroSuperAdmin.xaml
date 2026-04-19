@@ -6,15 +6,18 @@
              Style="{DynamicResource Fondo}">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="Auto, *" HorizontalOptions="Fill">
-            <HorizontalStackLayout Grid.Column="0" VerticalOptions="Center">
+        <Grid ColumnDefinitions="Auto, *" 
+              HorizontalOptions="Fill">
+            <HorizontalStackLayout Grid.Column="0" 
+                                   VerticalOptions="Center">
                 <Image Source="iconoprincipal.png" 
                        HeightRequest="35" 
                        WidthRequest="35"
                        Aspect="AspectFit"
                        Margin="5,0,0,0"/>
 
-                <Label Text="{DynamicResource TituloReg}"
+                <Label x:Name="LabelTituloBarra"
+                       Text="{DynamicResource TituloReg}"
                        Style="{DynamicResource Titulo}"
                        VerticalOptions="Center"
                        FontSize="16"
@@ -25,67 +28,60 @@
 
     <ScrollView>
         <Grid ColumnDefinitions="10*,80*,10*">
-            <VerticalStackLayout Grid.Column="1" Spacing="5" HorizontalOptions="Center">
+            <VerticalStackLayout Grid.Column="1" 
+                                 Spacing="5" 
+                                 HorizontalOptions="Center">
 
-                <Image 
-                    Source="iconoprincipal.png"
-                    WidthRequest="80"
-                    HeightRequest="80"
-                    Margin="0,40,0,20"
-                    BackgroundColor="Transparent"/>
+                <Image Source="iconoprincipal.png"
+                       WidthRequest="80"
+                       HeightRequest="80"
+                       Margin="0,40,0,20"
+                       BackgroundColor="Transparent"/>
 
-                <Label 
-                    x:Name="TextoRegEdtUsr"
-                    Text="Gestión de Usuario"
-                    HorizontalTextAlignment="Center"
-                    Style="{DynamicResource Titulo}"/>
+                <Label x:Name="TextoRegEdtUsr"
+                       Text="Gestión de Usuario"
+                       HorizontalTextAlignment="Center"
+                       Style="{DynamicResource Titulo}"/>
 
-                <Label 
-                    Text="{DynamicResource CorreoRegAdmin}"
-                    Style="{DynamicResource CuerpoNegrita}"
-                    Margin="0, 20, 0, 0"/>
+                <Label Text="{DynamicResource CorreoRegAdmin}"
+                       Style="{DynamicResource CuerpoNegrita}"
+                       Margin="0, 20, 0, 0"/>
 
-                <Entry 
-                    x:Name="Usr"
-                    Placeholder="{DynamicResource CorreoRegAdmin}"
-                    Style="{DynamicResource EntryNormalReg}"/>
+                <Entry x:Name="Usr"
+                       Placeholder="{DynamicResource CorreoRegAdmin}"
+                       Style="{DynamicResource EntryNormalReg}"/>
 
-                <Label 
-                    Text="{DynamicResource ContraseñaRegAdmin}"
-                    Style="{DynamicResource CuerpoNegrita}"
-                    Margin="0, 20, 0, 0"/>
+                <Label Text="{DynamicResource ContraseñaRegAdmin}"
+                       Style="{DynamicResource CuerpoNegrita}"
+                       Margin="0, 20, 0, 0"/>
 
-                <Entry 
-                    x:Name="Contra"
-                    IsPassword="True"
-                    Placeholder="{DynamicResource ContraseñaRegAdmin}"
-                    Style="{DynamicResource EntryContraReg}"/>
+                <Entry x:Name="Contra"
+                       IsPassword="True"
+                       Placeholder="{DynamicResource ContraseñaRegAdmin}"
+                       Style="{DynamicResource EntryContraReg}"/>
 
-                <Label 
-                    Text="{DynamicResource NombreRegAdmin}"
-                    Style="{DynamicResource CuerpoNegrita}"
-                    Margin="0, 20, 0, 0"/>
+                <Label Text="{DynamicResource NombreRegAdmin}"
+                       Style="{DynamicResource CuerpoNegrita}"
+                       Margin="0, 20, 0, 0"/>
 
-                <Entry 
-                    x:Name="Nom"
-                    Placeholder="{DynamicResource NombreRegAdmin}"
-                    Style="{DynamicResource EntryNormalReg}"/>
+                <Entry x:Name="Nom"
+                       Placeholder="{DynamicResource NombreRegAdmin}"
+                       Style="{DynamicResource EntryNormalReg}"/>
 
-                <Label 
-                    Text="{DynamicResource ApellidosRegAdmin}"
-                    Style="{DynamicResource CuerpoNegrita}"
-                    Margin="0, 20, 0, 0"/>
+                <Label Text="{DynamicResource ApellidosRegAdmin}"
+                       Style="{DynamicResource CuerpoNegrita}"
+                       Margin="0, 20, 0, 0"/>
 
-                <Entry 
-                    x:Name="Ape"
-                    Placeholder="{DynamicResource ApellidosRegAdmin}"
-                    Style="{DynamicResource EntryNormalReg}"/>
+                <Entry x:Name="Ape"
+                       Placeholder="{DynamicResource ApellidosRegAdmin}"
+                       Style="{DynamicResource EntryNormalReg}"/>
 
                 <Label Text="{DynamicResource TituloRBSuperA}" 
                        Style="{DynamicResource Titulo}"
                        Margin="0,30,0,10"/>
 
-                <HorizontalStackLayout Spacing="10" Margin="0,0,0,30">
+                <HorizontalStackLayout Spacing="10" 
+                                       Margin="0,0,0,30">
                     <RadioButton x:Name="RBRegistrado" 
                                  GroupName="Rol" 
                                  Content="{DynamicResource RegistradoRol}" 
@@ -106,13 +102,12 @@
                                  CheckedChanged="RBRol" />
                 </HorizontalStackLayout>
 
-                <Button
-                    Text="{DynamicResource BtnConfirmarAula}"
-                    Style="{DynamicResource BtnEditarListUsrEstilo}"
-                    Clicked="BtnContinuar"
-                    HorizontalOptions="Center"
-                    WidthRequest="200"
-                    Margin="0, 0, 0, 40"/>
+                <Button Text="{DynamicResource BtnConfirmarAula}"
+                        Style="{DynamicResource BtnEditarListUsrEstilo}"
+                        Clicked="BtnContinuar"
+                        HorizontalOptions="Center"
+                        WidthRequest="200"
+                        Margin="0, 0, 0, 40"/>
 
             </VerticalStackLayout>
         </Grid>
