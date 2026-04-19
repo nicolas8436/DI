@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Vistas.Aulas"
+             x:Name="PagAulas"
              Style="{DynamicResource Fondo}">
 
     <Shell.TitleView>
@@ -17,7 +18,23 @@
     </Shell.TitleView>
 
     <ScrollView Grid.Row="0">
-        <CollectionView ItemsSource="{Binding ListaAulas}">
+
+        <VerticalStackLayout Padding="10" Spacing="20">
+
+            <Border Style="{DynamicResource BorderAPI}">
+                <VerticalStackLayout Spacing="5">
+                    <HorizontalStackLayout HorizontalOptions="Fill">
+                        <Label x:Name="LblCiudad"  VerticalOptions="Center" HorizontalTextAlignment="Center" Style="{DynamicResource CuerpoNegrita}" Margin="0,0,7,0"/>
+                        <Label x:Name="LblTemp" Style="{DynamicResource Titulo}" HorizontalTextAlignment="Center" />
+                        <Label x:Name="LblHumedad" VerticalOptions="Center" HorizontalOptions="End" Margin="130,0,0,0" Style="{DynamicResource CuerpoNegrita}" />
+                    </HorizontalStackLayout>
+
+                    <Image x:Name="ImgClima" HeightRequest="80" HorizontalOptions="Center" />
+                    
+                </VerticalStackLayout>
+            </Border>
+
+            <CollectionView ItemsSource="{Binding ListaAulas}">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" 
@@ -89,13 +106,15 @@
                                         </Label.FormattedText>
                                     </Label>
 
-                                    <Button Text="{DynamicResource BtnConfAulas}"
+                                    <Button x:Name="BotonConfig"
+                                            Text="{DynamicResource BtnConfAulas}"
                                             CommandParameter="{Binding Nombre}"
                                             Clicked="Configurar_Clicked"
                                             Style="{DynamicResource BtnConfigAulas}"
                                             Margin="0,32,0,0"
                                             VerticalOptions="End"
-                                            HorizontalOptions="Center"/>
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding BindingContext.configurar, Source={x:Reference PagAulas}}"/>
                                 </VerticalStackLayout>
                             </Grid>
                         </Grid>
@@ -103,5 +122,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

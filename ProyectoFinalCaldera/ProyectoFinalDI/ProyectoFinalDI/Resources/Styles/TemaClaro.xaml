@@ -236,4 +236,13 @@
         <Setter Property="Padding" Value="10"/>
         <Setter Property="StrokeThickness" Value="0"/>
     </Style>
+
+    <!--Border API-->
+    <Style TargetType="Border" x:Key="BorderAPI">
+        <Setter Property="StrokeShape" Value="RoundRectangle 20"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulClaro}"/>
+        <Setter Property="Padding" Value="15"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="MinimumWidthRequest" Value="400"/>
+    </Style>
 </ResourceDictionary>

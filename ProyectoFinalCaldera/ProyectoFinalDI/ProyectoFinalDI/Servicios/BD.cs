@@ -46,7 +46,7 @@ namespace ProyectoFinalDI.Servicios
                 if (conector != null) { 
 
                 conector.Close();
-                page.DisplayAlert("Exito", "Conexion cerrada correctamente", "OK");
+                //page.DisplayAlert("Exito", "Conexion cerrada correctamente", "OK");
                 return true;
 
                 } else {
