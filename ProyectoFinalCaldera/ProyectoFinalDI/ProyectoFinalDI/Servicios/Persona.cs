@@ -12,8 +12,6 @@ namespace ProyectoFinalDI.Servicios
         private static Persona _instance;
         public static Persona Instance => _instance ??= new Persona();
 
-
-        private String nombre;
         private int id_rol;
 
         public Persona() {}

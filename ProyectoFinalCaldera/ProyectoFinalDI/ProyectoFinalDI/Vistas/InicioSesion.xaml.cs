@@ -11,31 +11,45 @@ public partial class InicioSesion : ContentPage
 
     private async void InicioS_Clicked(object sender, EventArgs e)
     {
-		bool prueba = BD.Instance.AbrirConexion(this);
+        // 1. Abrir conexión con tu Singleton de BD
+        bool conexionAbierta = BD.Instance.AbrirConexion(this);
 
-		
-		if (prueba == true)
-		{
-			String usuario = Usr.Text;
-			String contraseña = Contra.Text;
-			if (usuario == null || contraseña == null)
-			{
-                await DisplayAlert("Error", "No puedes dejar campos vacios", "OK");
-				return;
-			}
-			bool inicioS = BD.Instance.InicioS(this, usuario, contraseña);
+        if (conexionAbierta)
+        {
+            string usuario = Usr.Text;
+            string contraseña = Contra.Text;
 
-			if (inicioS == true) {
-				Persona.Instance.SetRol(BD.Instance.ObtenerRol(this, usuario));
-                await Navigation.PushAsync(new Aulas());
+            // Validación básica de nulos
+            if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contraseña))
+            {
+                await DisplayAlert("Error", "Por favor, rellena todos los campos", "OK");
+                return;
             }
-			else 
-			{
-                await DisplayAlert("Error", "El usuario o la contraseña son incorrectos", "OK");
-			}
-			BD.Instance.CerrarConexion(this);
-        }
 
-		
+            // 2. Verificar credenciales
+            bool loginExitoso = BD.Instance.InicioS(this, usuario, contraseña);
+
+            if (loginExitoso)
+            {
+                // 3. Obtener el rol y guardarlo en el Singleton global de Persona
+                int rolObtenido = BD.Instance.ObtenerRol(this, usuario);
+                Persona.Instance.SetRol(rolObtenido);
+
+                // 4. REINICIAR LA APP CON EL NUEVO SHELL
+                // Esto destruye el estado anterior y ejecuta el OnAppearing del Shell
+                Application.Current.MainPage = new AppShell();
+
+                // 5. NAVEGACIÓN INMEDIATA
+                // Saltamos directamente a la página de Aulas (dentro de las pestañas)
+                await Shell.Current.GoToAsync("//AulasPage");
+
+                BD.Instance.CerrarConexion(this);
+            }
+            else
+            {
+                await DisplayAlert("Error", "Usuario o contraseña incorrectos", "OK");
+                BD.Instance.CerrarConexion(this);
+            }
+        }
     }
 }

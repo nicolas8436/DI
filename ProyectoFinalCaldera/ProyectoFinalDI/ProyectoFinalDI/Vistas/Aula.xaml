@@ -3,33 +3,26 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Vistas.Aula"
              Title="Aula"
-             Style="{DynamicResource Fondo}"
-             Shell.NavBarIsVisible="False">
+             Style="{DynamicResource Fondo}">
 
     <ScrollView>
 
-        <Grid RowDefinitions="50, *">
-
-            <!-- CABECERA VERDE -->
-            <BoxView Grid.Row="0"
-                     Style="{DynamicResource Cabecera}"/>
-
-            <HorizontalStackLayout Grid.Row="0"
-                                   BackgroundColor="Transparent">
-
-                <Image
-                    Source="iconoprincipal.png"
-                    Style="{DynamicResource ImgCabecera}"/>
+        <Shell.TitleView>
+            <HorizontalStackLayout HorizontalOptions="Fill">
+                <Image  Style="{DynamicResource ImgCabecera}"/>
 
                 <Label x:Name="TituloAula"
-                       Text="{DynamicResource TituloCabeceraAula}"
-                       Style="{DynamicResource Titulo}"
-                       VerticalOptions="Center"
-                       Margin="10,0,0,0"/>
+               Text="{DynamicResource TituloCabeceraAula}"
+               Style="{DynamicResource Titulo}"
+               VerticalOptions="Center"
+               Margin="10,0,0,0"/>
             </HorizontalStackLayout>
+        </Shell.TitleView>
 
-            <!-- CONTENIDO -->
-            <Grid Grid.Row="1">
+        
+            
+
+            <Grid Grid.Row="0">
                 <VerticalStackLayout VerticalOptions="Center"
                                      HorizontalOptions="Center">
 
@@ -124,7 +117,6 @@
                 </VerticalStackLayout>
             </Grid>
 
-        </Grid>
 
     </ScrollView>
 </ContentPage>

@@ -2,28 +2,22 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Vistas.Aulas"
-             Style="{DynamicResource Fondo}"
-             Shell.NavBarIsVisible="False">
+             Style="{DynamicResource Fondo}">
 
-    <Grid RowDefinitions="50, *">
+    <Shell.TitleView>
+        <HorizontalStackLayout HorizontalOptions="Fill">
+            <Image  Style="{DynamicResource ImgCabecera}"/>
 
-        <!-- Cabecera verde -->
-        <BoxView Grid.Row="0" Style="{DynamicResource Cabecera}"/>
-
-        <!-- Contenido de la cabecera -->
-        <HorizontalStackLayout Grid.Row="0">
-            <Image
-                Source="iconoprincipal.png"
-                Style="{DynamicResource ImgCabecera}"/>
             <Label x:Name="TituloAula"
-                   Text="{DynamicResource TituloCabeceraAulas}"
-                   Style="{DynamicResource Titulo}"
-                   VerticalOptions="Center"
-                   Margin="10,0,0,0"/>
+               Text="{DynamicResource TituloCabeceraAulas}"
+               Style="{DynamicResource Titulo}"
+               VerticalOptions="Center"
+               Margin="10,0,0,0"/>
         </HorizontalStackLayout>
-
-        <!-- Cuerpo Aulas -->
-        <ScrollView Grid.Row="1">
+    </Shell.TitleView>
+    
+        
+        <ScrollView Grid.Row="0">
             <CollectionView ItemsSource="{Binding ListaAulas}">
 
                 <!-- 2 columnas -->
@@ -125,5 +119,4 @@
             </CollectionView>
         </ScrollView>
 
-    </Grid>
 </ContentPage>

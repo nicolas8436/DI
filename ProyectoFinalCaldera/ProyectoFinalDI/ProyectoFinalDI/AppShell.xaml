@@ -7,40 +7,35 @@
     xmlns:Vistas="clr-namespace:ProyectoFinalDI.Vistas"
     xmlns:Otras="clr-namespace:ProyectoFinalDI.Vistas.OtrasPaginas"
     FlyoutBehavior="Flyout"
-    FlyoutIcon="iconoprincipal"
     Style="{DynamicResource CabeceraNavegacion}">
 
-    <Shell.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/Styles/TemaPrincipal.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Shell.Resources>
+    <FlyoutItem Title="Inicio" Icon="inicio.png">
+        <ShellContent ContentTemplate="{DataTemplate Vistas:Inicio}" Route="PantallaInicio" FlyoutItemIsVisible="False"/>
+    </FlyoutItem>
 
-    <ShellContent
-            Title="Inicio"
-            ContentTemplate="{DataTemplate Vistas:Inicio}"
-            Route="Inicio"
-            Shell.NavBarIsVisible="False"/>
+    <FlyoutItem Title="Acerca de" Icon="info.png">
+        <ShellContent ContentTemplate="{DataTemplate Otras:AcercaDe}" Route="AcercaDe"/>
+    </FlyoutItem>
 
-    <ShellContent
-            Title="Acerca de"
-            ContentTemplate="{DataTemplate Otras:AcercaDe}"
-            Route="AcercaDe" 
-            Shell.NavBarIsVisible="False"/>
+    <FlyoutItem Title="Área Aulas" 
+                x:Name="SeccionAulas" 
+                FlyoutDisplayOptions="AsMultipleItems">
 
-    <ShellContent
-            x:Name="PestanaConfig"
-            Title="Configuracion"
-            ContentTemplate="{DataTemplate Vistas:Configuracion}"
-            Route="Configuracion"
-            Shell.NavBarIsVisible="False"/>
+        <Tab Title="Aulas" Icon="aula_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate Vistas:Aulas}" Route="AulasPage" />
+        </Tab>
 
-    <ShellContent
-            x:Name="PestanaListaUsr"
-            Title="Lista Usr"
-            ContentTemplate="{DataTemplate Vistas:ListaUsr}"
-            Route="Aulas"
-            Shell.NavBarIsVisible="False"/>
+        <Tab Title="Config" Icon="config.png" x:Name="TabConfig">
+            <ShellContent ContentTemplate="{DataTemplate Vistas:Configuracion}" Route="ConfigPage" />
+        </Tab>
+
+        <Tab Title="Usuarios" Icon="user.png" x:Name="TabUsuarios">
+            <ShellContent ContentTemplate="{DataTemplate Vistas:ListaUsr}" Route="UsuariosPage" />
+        </Tab>
+
+        <Tab Title="Informes" Icon="report.png" x:Name="TabInformes">
+            <ShellContent ContentTemplate="{DataTemplate Vistas:Informes}" Route="InformesPage" />
+        </Tab>
+    </FlyoutItem>
+
 </Shell>
