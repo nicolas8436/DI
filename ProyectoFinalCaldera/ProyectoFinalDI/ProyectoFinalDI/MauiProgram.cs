@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace ProyectoFinalDI
 {
@@ -9,7 +10,8 @@ namespace ProyectoFinalDI
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .ConfigureFonts(fonts =>
+                .ConfigureSyncfusionToolkit()//SyncFusion
+                .ConfigureFonts(fonts =>//Fuentes
                 {
                     fonts.AddFont("OpenSansRegular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSansSemibold.ttf", "OpenSansSemibold");

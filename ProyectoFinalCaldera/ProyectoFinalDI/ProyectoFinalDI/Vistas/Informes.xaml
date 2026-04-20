@@ -2,19 +2,47 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalDI.Vistas.Informes"
-             Title="Informes">
-    
-    <Shell.TitleView>
-        <HorizontalStackLayout HorizontalOptions="Fill">
-            <Image  Style="{DynamicResource ImgCabecera}"/>
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Toolkit.Charts;assembly=Syncfusion.Maui.Toolkit"
+             Title="Historial por Aulas"
+             BackgroundColor="#F0F2F5">
 
-            <Label x:Name="TituloConf"
-Text="{DynamicResource TituloCabeceraConf}"
-Style="{DynamicResource Titulo}"
-VerticalOptions="Center"
-Margin="10,0,0,0"/>
-        </HorizontalStackLayout>
-    </Shell.TitleView>
-    
-    
+    <ScrollView>
+        <VerticalStackLayout x:Name="ContenedorGraficos" Padding="15" Spacing="25">
+
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame BackgroundColor="White" HasShadow="True" CornerRadius="12" HeightRequest="420" Margin="0,5" Padding="10">
+                        <VerticalStackLayout Spacing="10">
+
+                            <Label Text="{Binding Key, StringFormat='Aula {0}'}" 
+                                   HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="#1A73E8"/>
+
+                            <chart:SfCartesianChart x:Name="GraficoPrincipal" HeightRequest="320">
+
+                                <chart:SfCartesianChart.XAxes>
+                                    <chart:CategoryAxis />
+                                </chart:SfCartesianChart.XAxes>
+
+                                <chart:SfCartesianChart.YAxes>
+                                    <chart:NumericalAxis Minimum="10" Maximum="40" />
+                                </chart:SfCartesianChart.YAxes>
+
+                                <chart:SfCartesianChart.Series>
+                                    <chart:ColumnSeries ItemsSource="{Binding .}"
+                                                        XBindingPath="FechaHoraFormateada" 
+                                                        YBindingPath="TEMP_ACT"
+                                                        Fill="#1A73E8"
+                                                        EnableTooltip="True"
+                                                        Width="0.8">
+                                    </chart:ColumnSeries>
+                                </chart:SfCartesianChart.Series>
+
+                            </chart:SfCartesianChart>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

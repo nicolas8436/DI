@@ -694,5 +694,47 @@ namespace ProyectoFinalDI.Servicios
 
         //Cambiar contraseña ==============================================================================================================================
         //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+        // Tabla Lecturas Syncfusion =======================================================================================================================
+        public List<Models.RegistroTemperatura> ObtenerHistorialGlobal(Page p)
+        {
+            var lista = new List<Models.RegistroTemperatura>();
+            try
+            {
+                string sql = @"SELECT TEMP_ACT, HORA, MINUT, COD_EST, FECHA 
+                                FROM LECTURAS 
+                                ORDER BY FECHA ASC, HORA ASC, MINUT ASC
+                                limit 40";
+
+                using (var comando = new MySqlCommand(sql, conector))
+                {
+                    using (var reader = comando.ExecuteReader())
+                    {
+                        if (!reader.HasRows) return lista; 
+
+                        while (reader.Read())
+                        {
+                            lista.Add(new Models.RegistroTemperatura
+                            {
+                                TEMP_ACT = Convert.ToDouble(reader.GetValue(0)),
+                                HORA = reader.GetInt32(1),
+                                MINUT = reader.GetInt32(2),
+                                COD_EST = reader.GetString(3)
+                            });
+                        }
+                    }
+                }
+
+            }
+            catch (Exception e)
+            {
+                MainThread.BeginInvokeOnMainThread(async () => {
+                    await p.DisplayAlert("Error DB", e.Message, "OK");
+                });
+            }
+            return lista;
+        }
+        // Tabla Lecturas Syncfusion =======================================================================================================================
+
     }
 }
