@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinalDI.Servicios
 {
+
+    /// <summary>
+    /// Singeltone para el rol de la persona registrada
+    /// </summary>
     internal class Persona
     {
         private static Persona _instance;

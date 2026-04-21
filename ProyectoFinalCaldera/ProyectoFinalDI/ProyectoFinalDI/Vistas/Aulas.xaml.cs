@@ -4,10 +4,24 @@ using System.Net.Http;
 
 namespace ProyectoFinalDI.Vistas;
 
+/// <summary>
+/// Pagina de visualizacion de las aulas del centro
+/// </summary>
 public partial class Aulas : ContentPage
 {
+    /// <summary>
+    /// Listado de aulas sacado de la BD
+    /// </summary>
     public ObservableCollection<AulaClase> ListaAulas { get; set; }
+
+    /// <summary>
+    /// Variable para saber si el usuario puede configurar el aula (Rol 1 o 2)
+    /// </summary>
     public bool configurar { get; set; }
+
+    /// <summary>
+    /// Constructor de la pagina; inizializa la pagina, comprueba el rol y carga los datos de la BD
+    /// </summary>
     public Aulas()
     {
         InitializeComponent();
@@ -24,7 +38,9 @@ public partial class Aulas : ContentPage
 
 
     }
-
+    /// <summary>
+    /// Metodo CargarAulas: Este metodo actualiza la informacion de las aulas con los datos de la base de datos
+    /// </summary>
     private void CargarAulas()
     {
         if (BD.Instance.AbrirConexion(this))
@@ -40,6 +56,11 @@ public partial class Aulas : ContentPage
         }
     }
 
+    /// <summary>
+    /// Metodo del boton de configuracion, abre la pagina de configuracion del aula solo disponible para admin y superadmin 
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Configurar_Clicked(object sender, EventArgs e)
     {
         var button = sender as Button;
@@ -48,6 +69,9 @@ public partial class Aulas : ContentPage
         await Navigation.PushAsync(new Aula(aula));
     }
 
+    /// <summary>
+    /// Consumo de la API, saca la informacion necesaria de la api y se la aplica a los label correspondientes
+    /// </summary>
 private async void CargarClima()
 {
     // 1. Cliente http para hacer las peticiones
@@ -59,12 +83,12 @@ private async void CargarClima()
         try
         {
             // Peticion
-            var response = await client.GetAsync(url);
+            var peticion = await client.GetAsync(url);
 
-            if (response.IsSuccessStatusCode)
+            if (peticion.IsSuccessStatusCode)
             {
                 // Uso de paquete nuget que no se como se llama ahora mismo
-                var resultado = await response.Content.ReadAsAsync<ProyectoFinalDI.Servicios.ApiWheather>();
+                var resultado = await peticion.Content.ReadAsAsync<ProyectoFinalDI.Servicios.ApiWheather>();
 
                 //Texto sacado de la api
                 LblCiudad.Text = resultado.Name;

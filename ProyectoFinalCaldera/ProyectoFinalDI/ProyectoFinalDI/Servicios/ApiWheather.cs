@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinalDI.Servicios
 {
+    /// <summary>
+    /// Clase para almacenar los datos que leemos de la Api
+    /// </summary>
     public class ApiWheather
     {
         public TempHumedad Main { get; set; }

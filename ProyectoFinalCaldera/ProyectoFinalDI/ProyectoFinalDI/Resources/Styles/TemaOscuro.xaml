@@ -14,6 +14,7 @@
     <Color x:Key="AzulOscuro">#1E2A47</Color>
     <Color x:Key="AzulClaro">#439CBC</Color>
     <Color x:Key="AzulVerdoso">#1A5F66</Color>
+    <Color x:Key="colorGraficos">#071063</Color>
 
     <!-- ============================== Cabecera y fondo ============================== -->
     <Style TargetType="BoxView" x:Key="Cabecera">
@@ -65,6 +66,14 @@
     <!--Cuerpo negrita-->
     <Style TargetType="Label" x:Key="CuerpoNegrita">
         <Setter Property="TextColor" Value="{StaticResource Negro}"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+    </Style>
+
+    <!--Cuerpo negrita Grafico-->
+    <Style TargetType="Label" x:Key="CuerpoNegritaGrafico">
+        <Setter Property="TextColor" Value="{StaticResource colorGraficos}"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
@@ -244,5 +253,14 @@
         <Setter Property="Padding" Value="15"/>
         <Setter Property="HorizontalOptions" Value="Center"/>
         <Setter Property="MinimumWidthRequest" Value="400"/>
+    </Style>
+
+    <!-- ============================== Frame ============================== -->
+    <!--Frame Graficos-->
+    <Style TargetType="Frame" x:Key="FrameGraficos">
+        <Setter Property="BackgroundColor" Value="{StaticResource Negro}"/>
+        <Setter Property="HasShadow" Value="True"/>
+        <Setter Property="CornerRadius" Value="12"/>
+        <Setter Property="HeightRequest" Value="420"/>
     </Style>
 </ResourceDictionary>

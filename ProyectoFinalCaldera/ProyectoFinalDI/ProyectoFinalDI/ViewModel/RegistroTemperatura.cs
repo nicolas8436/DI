@@ -7,6 +7,6 @@
         public int MINUT { get; set; }
         public string COD_EST { get; set; }
         public DateTime FECHA { get; set; }
-        public string FechaHoraFormateada => $"{FECHA:dd/MM} {HORA:D2}:{MINUT:D2}";
+        public string FechaHoraFormateada => $"{FECHA:dd/MM} {HORA:D2}:{MINUT:D2}";//Mezcla texto Coge campo y lo formatea {CAMPO:FORMATO}
     }
 }

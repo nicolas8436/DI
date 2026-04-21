@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace ProyectoFinalDI.Servicios
 {
+    /// <summary>
+    /// Singletone de la Base de Datos
+    /// </summary>
     public class BD
     {
         private static BD _instance;

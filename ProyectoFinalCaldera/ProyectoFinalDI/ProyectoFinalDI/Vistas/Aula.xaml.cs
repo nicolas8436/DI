@@ -4,12 +4,30 @@ using ProyectoFinalDI.Servicios;
 using System.Text.RegularExpressions;
 using System.Transactions;
 
+/// <summary>
+/// Representa la pagina de Configuracion del aula
+/// </summary>
 public partial class Aula : ContentPage
 {
+	/// <summary>
+	/// Atributo con el nombre del aula
+	/// </summary>
 	private String aula;
+
+	/// <summary>
+	/// Atributo con la temperatura de confort del aula
+	/// </summary>
 	private String temp_conf;
+
+	/// <summary>
+	/// Atributo con la temperatura actual del aula
+	/// </summary>
 	private String temp_act;
 
+	/// <summary>
+	/// Constructor de la clase aula Inizializa los componentes y llena los label en funcion del aula a la que se accede
+	/// </summary>
+	/// <param name="aula">Nombre del aula para buscar los datos necesarios</param>
 	public Aula(String aula)
 	{
 		this.aula = aula;
@@ -20,6 +38,9 @@ public partial class Aula : ContentPage
 		AulaXX.Text += " " + aula;
     }
 
+	/// <summary>
+	/// CLase que obtiene los datos de la temperatura de confort y actual para llenar los label con esa informacion
+	/// </summary>
 	public void datos_Temp()
 	{
 		BD.Instance.AbrirConexion(this);
@@ -33,11 +54,21 @@ public partial class Aula : ContentPage
 		BD.Instance.CerrarConexion(this);
     }
 
+    /// <summary>
+    /// Vuelve a la pagina de aulas (cancela la edicion de temperatura del aula)
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Cancelar_Clicked(object sender, EventArgs e)
     {
         await Navigation.PopAsync();
     }
 
+    /// <summary>
+    /// Lee del entry y cambia la temperatura de confort del aula seleccionada
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Confirmar_Clicked(object sender, EventArgs e)
     {
         BD.Instance.AbrirConexion(this);

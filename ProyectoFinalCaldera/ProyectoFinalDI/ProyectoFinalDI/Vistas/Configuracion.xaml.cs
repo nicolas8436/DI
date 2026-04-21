@@ -6,13 +6,25 @@ using System.Security.Principal;
 
 namespace ProyectoFinalDI.Vistas;
 
+/// <summary>
+/// Clase de la pagina de configuracion de la aplicacion
+/// </summary>
 public partial class Configuracion : ContentPage
 {
+
+    /// <summary>
+    /// Inizializa los componentes de la pagina
+    /// </summary>
     public Configuracion()
     {
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Metodo que modifica los estilos de la aplicacion
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         if (e.Value)
@@ -23,8 +35,6 @@ public partial class Configuracion : ContentPage
             var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
             if (mergedDictionaries == null) return;
 
-            // 1. Buscamos si ya existe un tema cargado para eliminarlo
-            // Comprobamos por el espacio de nombres de tus archivos de estilos
             var temaExistente = mergedDictionaries.FirstOrDefault(d =>
                 d is ProyectoFinalDI.Resources.Styles.TemaClaro ||
                 d is ProyectoFinalDI.Resources.Styles.TemaOscuro ||
@@ -35,7 +45,6 @@ public partial class Configuracion : ContentPage
                 mergedDictionaries.Remove(temaExistente);
             }
 
-            // 2. Añadimos el nuevo tema según la selección
             if (radioButton == RBprincipal)
             {
                 mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaPrincipal());
@@ -52,7 +61,11 @@ public partial class Configuracion : ContentPage
     }
 
 
-
+    /// <summary>
+    /// Cambia el tamaño del texto a traves del slider y de cuanto lo movemos
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void Tamaño_ValueChanged(object sender, ValueChangedEventArgs e)
     {
         Double tamanioTextoLabelOriginal = 16;
@@ -66,6 +79,11 @@ public partial class Configuracion : ContentPage
         App.Current.Resources["TamanioTituloGLabel"] = tamanioTituloGLabelOriginal * miSlider.Value;
     }
 
+    /// <summary>
+    /// Cambio de idioma con el toggle entre esapañol e ingles
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void Idioma_Toggled(object sender, ToggledEventArgs e)
     {
         var diccionarios = Application.Current.Resources.MergedDictionaries;
@@ -82,6 +100,11 @@ public partial class Configuracion : ContentPage
             diccionarios.Add(new Espaniol());
     }
 
+    /// <summary>
+    /// Confirma el cambio de contraseña, siempre que cumpla ciertos requisitos
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Confirmar_Clicked(object sender, EventArgs e)
     {
         String contra = EntryContra.Text;
@@ -109,6 +132,11 @@ public partial class Configuracion : ContentPage
         }
     }
 
+    /// <summary>
+    /// Elimina la cuenta del usuario actual y le saca a la pantalla de inicio
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Eliminar_Clicked(object sender, EventArgs e)
     {
         BD.Instance.AbrirConexion(this);
