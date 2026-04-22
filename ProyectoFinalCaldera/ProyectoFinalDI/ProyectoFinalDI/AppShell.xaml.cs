@@ -2,13 +2,22 @@
 
 namespace ProyectoFinalDI;
 
+/// <summary>
+/// Define la estructura de navegación principal de la aplicación y gestiona la visibilidad de las secciones.
+/// </summary>
 public partial class AppShell : Shell
 {
+    /// <summary>
+    /// Inicializa la estructura de Shell definida en el XAML.
+    /// </summary>
     public AppShell()
     {
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Se ejecuta al mostrarse la aplicación para ajustar el menú lateral según el rol del usuario.
+    /// </summary>
     protected override void OnAppearing()
     {
         base.OnAppearing();

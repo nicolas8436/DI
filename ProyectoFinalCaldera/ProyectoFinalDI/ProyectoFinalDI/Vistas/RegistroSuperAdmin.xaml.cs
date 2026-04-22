@@ -4,13 +4,36 @@ using System.Text.RegularExpressions;
 
 namespace ProyectoFinalDI.Vistas;
 
+/// <summary>
+/// Clase de la pagina de Registro de usuario
+/// </summary>
 public partial class RegistroSuperAdmin : ContentPage
 {
+    /// <summary>
+    /// Almacena la infromacion del usuario seleccionado en la lista de la pagina anterior
+    /// </summary>
     UsuarioRolClase seleccionado;
+
+    /// <summary>
+    /// Lista de usuarios que se actualizara si se modifica
+    /// </summary>
     private ListaUsr actualizar;
+
+    /// <summary>
+    /// Rol del usuario (3 por defecto)
+    /// </summary>
     private int rol = 3;
+
+    /// <summary>
+    /// Indicador de si se actualiza o añade un usauario
+    /// </summary>
     private int opc = 0;
 
+    /// <summary>
+    /// Constructor par agregar un nuevo usuario en la lista
+    /// </summary>
+    /// <param name="opc">Indica que operacion se hace en este caso Insert</param>
+    /// <param name="p"> lista de usuarios a la que se le añadira el nuevo usuario</param>
     public RegistroSuperAdmin(int opc, ListaUsr p) // Agregar 
     {
         InitializeComponent();
@@ -22,6 +45,12 @@ public partial class RegistroSuperAdmin : ContentPage
         TextoRegEdtUsr.SetDynamicResource(Label.TextProperty, "TextoRegUsr");
     }
 
+    /// <summary>
+    /// Constructor para actualizar un usuario seleccionado anteriormente
+    /// </summary>
+    /// <param name="opc">Indica que operacion se hace en este caso Update</param>
+    /// <param name="usuarioSeleccionado">Indica el usuario seleccionado</param>
+    /// <param name="p">Lista que se actualizara</param>
     public RegistroSuperAdmin(int opc, UsuarioRolClase usuarioSeleccionado, ListaUsr p) // Editar
     {
         InitializeComponent();
@@ -36,6 +65,11 @@ public partial class RegistroSuperAdmin : ContentPage
         RellenarCampos(seleccionado);
     }
 
+    /// <summary>
+    /// Boton que confirma que los campos estan rellenados o modificados
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     public void BtnContinuar(object sender, EventArgs e)
     {
         if (opc == 2)
@@ -51,6 +85,11 @@ public partial class RegistroSuperAdmin : ContentPage
         Navigation.PopAsync();
     }
 
+    /// <summary>
+    /// Metodo que añade el nuevo usuario y actualiza la lista
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void Registo(object sender, EventArgs e)
     {
         if (!string.IsNullOrWhiteSpace(Usr.Text) && !string.IsNullOrWhiteSpace(Contra.Text) &&
@@ -81,6 +120,11 @@ public partial class RegistroSuperAdmin : ContentPage
         }
     }
 
+    /// <summary>
+    /// Metodo que edita el usuario seleccionado y actualiza la lista
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void Actualizacion(object sender, EventArgs e)
     {
         if (!string.IsNullOrWhiteSpace(Usr.Text) && !string.IsNullOrWhiteSpace(Nom.Text) && !string.IsNullOrWhiteSpace(Ape.Text))
@@ -108,6 +152,11 @@ public partial class RegistroSuperAdmin : ContentPage
         }
     }
 
+    /// <summary>
+    /// Metodo que registra el cambio de rol del usuario
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private void RBRol(object sender, EventArgs e)
     {
         if (RBRegistrado.IsChecked) rol = 3;
@@ -115,6 +164,10 @@ public partial class RegistroSuperAdmin : ContentPage
         else if (RBAdmin.IsChecked) rol = 2;
     }
 
+    /// <summary>
+    /// Metodo que en caso de edicion de usuario rellena los campos con la informacion antigua
+    /// </summary>
+    /// <param name="usuarioSeleccionado">Informacion del usuario seleccionado</param>
     private void RellenarCampos(UsuarioRolClase usuarioSeleccionado)
     {
         Usr.Text = usuarioSeleccionado.email;

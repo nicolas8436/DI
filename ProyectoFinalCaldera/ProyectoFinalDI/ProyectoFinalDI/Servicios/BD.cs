@@ -13,22 +13,56 @@ namespace ProyectoFinalDI.Servicios
     /// </summary>
     public class BD
     {
+
+        /// <summary>
+        /// Almacena la instancia del Singeltone
+        /// </summary>
         private static BD _instance;
+
+        /// <summary>
+        /// Obtiene la instancia del singeltone
+        /// </summary>
         public static BD Instance => _instance ??= new BD();
 
+        /// <summary>
+        /// Conexion a la BD
+        /// </summary>
         private MySqlConnection conector;
+
+        /// <summary>
+        /// Reperesentacion de la sentencia query que se envia a la BD
+        /// </summary>
         private MySqlCommand comando;
+
+        /// <summary>
+        /// Reperesenta el email(Clave principal) del usuario registrado 
+        /// </summary>
         private String actual;
+
+        /// <summary>
+        /// Cadena de conexion a la BD
+        /// </summary>
         private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;";
 
-
+        /// <summary>
+        /// Constructor de la clase
+        /// </summary>
         private BD() { }
 
+        /// <summary>
+        /// Sirve para actualizar la informacion referente al usuario registrado
+        /// </summary>
+        /// <param name="act">email del usuario registrado</param>
         public void setActual(String act)
         {
             actual = act;
         }
 
+        /// <summary>
+        /// Abre la conexion con la BD 
+        /// </summary>
+        /// <param name="page">Pagina desde la que se abre la conexion</param>
+        /// <returns>Devuelve si la conexion se ha abierto correctamente (True) o no (False)</returns>
         public bool AbrirConexion(Page page) {//Abrir conexion ======================================================
         try{
                 conector = new MySqlConnection(cadConexion);
@@ -42,6 +76,11 @@ namespace ProyectoFinalDI.Servicios
             }
         }//Abrir Conexion ===========================================================================================
 
+        /// <summary>
+        /// Cierra la conexion con la base de datos
+        /// </summary>
+        /// <param name="page">Representa la pagina desde la que se cierra la conexion</param>
+        /// <returns>Devuelve true si la conexion se ha cerrado correctamente o false si ha ocurrido algun problema +</returns>
         public bool CerrarConexion(Page page)//Cerrar conexion ======================================================
         {
             try
@@ -66,6 +105,13 @@ namespace ProyectoFinalDI.Servicios
             }
         }//Cerrar conexion ============================================================================================
 
+        /// <summary>
+        /// Inicia sesion en la aplicacion comprueba si las credenciales son validas y estan en la BD
+        /// </summary>
+        /// <param name="p">Pagina desde la que se inicia sesion</param>
+        /// <param name="usuario">Email con el que se quiere iniciar sesion</param>
+        /// <param name="contraseña">Contraseña con el que se quiere iniciar sesion</param>
+        /// <returns>Devuelve true si existe en la BD o false en caso de que no exista u ocurra algun error </returns>
         public bool InicioS(Page p, String usuario, String contraseña)//Inicio de sesion =================================================================
         {
             try {
@@ -91,6 +137,15 @@ namespace ProyectoFinalDI.Servicios
             
         }//Inicio de sesion ==============================================================================================================================
 
+        /// <summary>
+        /// Metodo para registrar a un nuevo usuario en la BD
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="usuario">Nuevo email de usuario</param>
+        /// <param name="contraseña">Contraseña del usuario</param>
+        /// <param name="nombre">Nombre del usuario</param>
+        /// <param name="apellidos">Aoellidos del usuario</param>
+        /// <returns>Devuelve true si se ha podido registrar con exito false en caso de que ocurra algun problema o las credenciales no sean validas</returns>
         public bool Registro(Page p, String usuario, String contraseña, String nombre, String apellidos)//Registro =================================================================
         {
             int filas;
@@ -149,6 +204,13 @@ namespace ProyectoFinalDI.Servicios
         //Datos************************************************************************************************************************
 
         //Confort=============================================================================================================================
+
+        /// <summary>
+        /// Metodo para sacar la temperatura de confort de un aula
+        /// </summary>
+        /// <param name="aula">Aula sobre la que se quiere conocer la temperatura de confort</param>
+        /// <param name="p">Pagina actual</param>
+        /// <returns>Devuelve un string con la temperatura de confort</returns>
         public String Temp_Conf(String aula, Page p)
         {
             try
@@ -179,6 +241,12 @@ namespace ProyectoFinalDI.Servicios
         //Confort=============================================================================================================================
 
         //Actual==============================================================================================================================
+        /// <summary>
+        /// Metodo para sacar la temperatura actual de un aula
+        /// </summary>
+        /// <param name="aula">Aula sobre la que queremos saber la temperatura actual</param>
+        /// <param name="p">Pagina actual</param>
+        /// <returns>Devuelve un string con la temperatura actual</returns>
         public String Temp_Act(String aula, Page p)
         {
             try
@@ -208,6 +276,13 @@ namespace ProyectoFinalDI.Servicios
         //Actual==============================================================================================================================
 
         //Actual==============================================================================================================================
+
+        /// <summary>
+        /// Metodo para sacar el estado de la valvula de un aula concreta
+        /// </summary>
+        /// <param name="aula">Aula de la que queremos saber el estado de la valvula</param>
+        /// <param name="p">Pagina actual</param>
+        /// <returns>Nos devuelve un string con el estado de la valvula</returns>
         public String EstadoCal(String aula, Page p)
         {
             try
@@ -242,7 +317,15 @@ namespace ProyectoFinalDI.Servicios
         //Actual==============================================================================================================================
 
         //Cambio confort =====================================================================================================================
-        public bool Cambio_Conf(String aula, Page p, String temp)//Registro =================================================================
+
+        /// <summary>
+        /// Metodo para actualizar la temperatura de confort de un aula concreta
+        /// </summary>
+        /// <param name="aula">Aula sobre la que se quiere actualizar la temperatura de confort</param>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="temp">Nueva temp de confort</param>
+        /// <returns>Devuelve true en caso de cambiar la temperatura de confort false en caso de que no se haya podido cambiar</returns>
+        public bool Cambio_Conf(String aula, Page p, String temp)
         {
             int filas;
             try
@@ -282,6 +365,12 @@ namespace ProyectoFinalDI.Servicios
         //Datos ************************************************************************************************************************
 
         // Obtener Aulas ===========================================================================================================================
+
+        /// <summary>
+        /// Metodo que nos da una lista con las distintas aulas del centro
+        /// </summary>
+        /// <param name="p">Pagina actul</param>
+        /// <returns>Devuelve una lista con las aulas</returns>
         public List<AulaClase> ObtenerAulas(Page p)
         {
             var lista = new List<AulaClase>();
@@ -319,6 +408,12 @@ namespace ProyectoFinalDI.Servicios
         // Obtener Aulas ===========================================================================================================================
 
         // Obtener Rol ===========================================================================================================================
+        /// <summary>
+        /// Metodo que nos da el rol del usuario que le pasemos
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="email">usuario del que queremos obtener el rol</param>
+        /// <returns>Devuelve un entero con el rol del usuario</returns>
         public int ObtenerRol(Page p, String email)
         {
             int Rol = 3;
@@ -346,6 +441,11 @@ namespace ProyectoFinalDI.Servicios
 
 
         // ObtenerUsuarios (y rol) ===============================================================================================================
+        /// <summary>
+        /// Metodo para obtener la lista de los uusarios en la BD
+        /// </summary>
+        /// <param name="p">Pagina actual </param>
+        /// <returns>Devuelve una lista con los usuarios registrados</returns>
         public List<UsuarioRolClase> ObtenerUsuarios(Page p)
         {
             var lista = new List<UsuarioRolClase>();
@@ -402,6 +502,11 @@ namespace ProyectoFinalDI.Servicios
 
         // BorrarUsr ===============================================================================================================
 
+        /// <summary>
+        /// Metodo para eliminar usuarios de la BD
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="usuarioSeleccionado">Usuario seleccionado para eliminar a traves de su email (Clave primaria)</param>
         public void BorrarUsr(Page p, UsuarioRolClase usuarioSeleccionado){
             try
             {
@@ -425,6 +530,16 @@ namespace ProyectoFinalDI.Servicios
         // BorrarUsr ===============================================================================================================
 
         //Registro SuperAdmin =================================================================
+        /// <summary>
+        /// Metodo para registrar un usuario nuevo en la BD con un rol en especifico
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="usuario">Indica el email del nuevo usuario</param>
+        /// <param name="contraseña">Indica la contraseña del nuevo usuario</param>
+        /// <param name="nombre">Indica el nombre del nuevo usuario</param>
+        /// <param name="apellidos">Indica los apellidos del nuevo usuario</param>
+        /// <param name="rol">Indica el rol del nuevo usuario</param>
+        /// <returns>Devuevle true en caso de que el usuario se haya guardado correctamente y false en caso contrario</returns>
         public bool Registro(Page p, String usuario, String contraseña, String nombre, String apellidos, int rol)
         {
             int filas;
@@ -482,6 +597,16 @@ namespace ProyectoFinalDI.Servicios
         }//Registro SuperAdmin ==============================================================================================================================
 
         //Actualizacion SuperAdmin ==============================================================================================================================
+
+        /// <summary>
+        /// Metodo que actualiza un usuario en la BD
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="Usr">Indica el nuevo email usuario</param>
+        /// <param name="Contra">Indica la nueva contraseña del usuario</param>
+        /// <param name="Nombre">Indica el nuevo nombre del usuario</param>
+        /// <param name="Apellidos">Indica los apellidos nuevos del usuario</param>
+        /// <param name="rol">Indica el nuevo rol del usuario</param>
         public void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Contra, string Nombre, string Apellidos, int rol)
         {
             int filas;
@@ -542,6 +667,14 @@ namespace ProyectoFinalDI.Servicios
 
 
         //No cambiamos contraseña -------------------------------------------------------------------------------------------------------------------------------
+        /// <summary>
+        /// Metodo que actualiza un usuario en la BD sin tocar la contraseña
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="Usr">Indica el nuevo email usuario</param>
+        /// <param name="Nombre">Indica el nuevo nombre del usuario</param>
+        /// <param name="Apellidos">Indica los apellidos nuevos del usuario</param>
+        /// <param name="rol">Indica el nuevo rol del usuario</param>
         public void Actualizacion(Page p, UsuarioRolClase seleccionado, string Usr, string Nombre, string Apellidos, int rol)
         {
             int filas;
@@ -604,6 +737,12 @@ namespace ProyectoFinalDI.Servicios
 
         //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
         //Obtener rol ==============================================================================================================================
+
+        /// <summary>
+        /// Metodo para obtener el rol del usuario actual
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <returns>Devuelve un numero entero que indica el rol del usuario</returns>
         public int ObtenerRol(Page p)
         {
             try
@@ -632,6 +771,12 @@ namespace ProyectoFinalDI.Servicios
         //Obtener rol ==============================================================================================================================
 
         //Eliminar Cuenta ==============================================================================================================================
+
+        /// <summary>
+        /// Metodo para elimnar una cuenta propia de usuario
+        /// </summary>
+        /// <param name="p">Pagina acual</param>
+        /// <returns>Devuelve true en caso de que el usuario se borre satisfactoriamente</returns>
         public bool EliminarActual(Page p)
         {
             try
@@ -664,6 +809,13 @@ namespace ProyectoFinalDI.Servicios
         //Eliminar Cuenta ==============================================================================================================================
 
         //Cambiar contraseña ==============================================================================================================================
+
+        /// <summary>
+        /// Metodo para que un usuario cambie su propia contrasea
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <param name="contraseña">Nueva contraseña</param>
+        /// <returns>Devuelve true en caso de que el cambio de contraseña haya ocurrido</returns>
         public bool ContraseñaActual(Page p, String contraseña)
         {
             try
@@ -699,6 +851,12 @@ namespace ProyectoFinalDI.Servicios
         //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
         // Tabla Lecturas Syncfusion =======================================================================================================================
+
+        /// <summary>
+        /// Metodo para obtener la informacion de las aulas para Syncfusion
+        /// </summary>
+        /// <param name="p">Pagina actual</param>
+        /// <returns>Devuelve una lista con los ultimos 40 registros de temperatura de un aula</returns>
         public List<Models.RegistroTemperatura> ObtenerHistorialGlobal(Page p)
         {
             var lista = new List<Models.RegistroTemperatura>();
@@ -738,6 +896,5 @@ namespace ProyectoFinalDI.Servicios
             return lista;
         }
         // Tabla Lecturas Syncfusion =======================================================================================================================
-
     }
 }

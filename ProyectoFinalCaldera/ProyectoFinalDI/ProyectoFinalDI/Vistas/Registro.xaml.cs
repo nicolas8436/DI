@@ -3,14 +3,25 @@ using System.Text.RegularExpressions;
 
 namespace ProyectoFinalDI.Vistas;
 
+/// <summary>
+/// Pagina de registro de usuario 
+/// </summary>
 public partial class Registro : ContentPage
 {
 
+    /// <summary>
+    /// Constructor de la pagina de registro, inizializa los componentes
+    /// </summary>
     public Registro()
     {
         InitializeComponent();
     }
 
+    /// <summary>
+    /// Comprueba que los campos esten rellenados de manera valida y añade al nuevo usuario
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void Registro_Clicked(object sender, EventArgs e)
     {
         bool prueba = BD.Instance.AbrirConexion(this);

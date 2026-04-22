@@ -2,13 +2,24 @@ namespace ProyectoFinalDI.Vistas;
 
 using ProyectoFinalDI.Servicios;
 
+/// <summary>
+/// Clase de la pagina de inicio de sesion
+/// </summary>
 public partial class InicioSesion : ContentPage
 {
+    /// <summary>
+    /// Constructor de inicio de sesion, inizializa los constructores
+    /// </summary>
 	public InicioSesion()
 	{
 		InitializeComponent();
 	}
 
+    /// <summary>
+    /// Metodo que comprueba e inicia sesion con el usuario y contraseña indicado
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
     private async void InicioS_Clicked(object sender, EventArgs e)
     {
         // 1. Abrir conexión con tu Singleton de BD
