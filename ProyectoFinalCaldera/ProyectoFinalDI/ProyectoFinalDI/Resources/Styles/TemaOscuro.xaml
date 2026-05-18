@@ -10,11 +10,14 @@
     <Color x:Key="Transparente">Transparent</Color>
     <Color x:Key="GrisClaro">#404040</Color>
     <Color x:Key="Rojo">#A1222F</Color>
+    <Color x:Key="RojoEliminar">#CF6679</Color>
     <Color x:Key="VerdeOscuro">#2D6A4F</Color>
     <Color x:Key="AzulOscuro">#1E2A47</Color>
     <Color x:Key="AzulClaro">#439CBC</Color>
     <Color x:Key="AzulVerdoso">#1A5F66</Color>
     <Color x:Key="colorGraficos">#071063</Color>
+    <Color x:Key="AzulOscAdd">#11427A</Color>
+
 
     <!-- ============================== Cabecera y fondo ============================== -->
     <Style TargetType="BoxView" x:Key="Cabecera">
@@ -186,12 +189,35 @@
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
     </Style>
 
+    <!-- Aulas -->
     <!-- BtnConfigAulas -->
     <Style TargetType="Button" x:Key="BtnConfigAulas">
-        <Setter Property="TextColor" Value="{StaticResource Blanco}"/>
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
         <Setter Property="FontAttributes" Value="Bold"/>
         <Setter Property="FontFamily" Value="Inter"/>
         <Setter Property="BackgroundColor" Value="{StaticResource AzulClaro}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="MinimumWidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+    </Style>
+
+    <!-- BtnEliminarAulas -->
+    <Style TargetType="Button" x:Key="BtnEliminarAulas">
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource RojoEliminar}"/>
+        <Setter Property="HorizontalOptions" Value="Start"/>
+        <Setter Property="MinimumWidthRequest" Value="150"/>
+        <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>
+    </Style>
+
+    <!-- BtnAgregarAulas -->
+    <Style TargetType="Button" x:Key="BtnAgregarAulas">
+        <Setter Property="TextColor" Value="{StaticResource Negro}"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="Inter"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource AzulOscAdd}"/>
         <Setter Property="HorizontalOptions" Value="Start"/>
         <Setter Property="MinimumWidthRequest" Value="150"/>
         <Setter Property="FontSize" Value="{DynamicResource TamanioTextoLabel}"/>

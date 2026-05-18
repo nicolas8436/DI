@@ -5,25 +5,21 @@
              Title="Acerca de"
              Style="{DynamicResource Fondo}">
 
+    <Shell.TitleView>
+        <HorizontalStackLayout HorizontalOptions="Fill">
+            <Image Style="{DynamicResource ImgCabecera}"/>
+
+            <Label x:Name="TituloAula"
+               Text="{DynamicResource SobreNosotros}"
+               Style="{DynamicResource Titulo}"
+               VerticalOptions="Center"
+               Margin="10,0,0,0"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
     <ScrollView>
 
         <Grid RowDefinitions="50, *">
-
-            <!-- CABECERA VERDE -->
-            <BoxView Grid.Row="0"
-                 Style="{DynamicResource Cabecera}"/>
-
-            <HorizontalStackLayout Grid.Row="0"
-                               BackgroundColor="Transparent">
-
-                <Image Source="iconoprincipal.png" Style="{DynamicResource ImgCabecera}"/>
-
-                <Label x:Name="TituloAula"
-                   Text="{DynamicResource TituloCabeceraAcercaDe}"
-                   Style="{DynamicResource Titulo}"
-                   VerticalOptions="Center"
-                   Margin="10,0,0,0"/>
-            </HorizontalStackLayout>
 
             <!-- CONTENIDO -->
             <Grid Grid.Row="1"

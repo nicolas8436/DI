@@ -27,36 +27,35 @@ public partial class Configuracion : ContentPage
     /// <param name="e">Argumentos el evento</param>
     private void RadioButton_CheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (e.Value)
+        ICollection<ResourceDictionary> miListaDiccionarios = Application.Current.Resources.MergedDictionaries;
+        Double tamanioLabel = (Double)App.Current.Resources["TamanioTextoLabel"];
+        Double tamanioTitulo = (Double)App.Current.Resources["TamanioTituloLabel"];
+
+        var temaPrevio = miListaDiccionarios.FirstOrDefault(d =>
+        d is TemaPrincipal || d is TemaOscuro || d is TemaClaro);
+
+        if (temaPrevio != null)
         {
-            var radioButton = sender as RadioButton;
-            if (radioButton == null) return;
+            miListaDiccionarios.Remove(temaPrevio);
+        }
 
-            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-            if (mergedDictionaries == null) return;
+        miListaDiccionarios.Add(new Resources.Styles.TamFuentes());
+        App.Current.Resources["TamanioTextoLabel"] = tamanioLabel;
+        App.Current.Resources["TamanioTituloLabel"] = tamanioTitulo;
 
-            var temaExistente = mergedDictionaries.FirstOrDefault(d =>
-                d is ProyectoFinalDI.Resources.Styles.TemaClaro ||
-                d is ProyectoFinalDI.Resources.Styles.TemaOscuro ||
-                d is ProyectoFinalDI.Resources.Styles.TemaPrincipal);
+        if (RBprincipal.IsChecked)
+        {
+            miListaDiccionarios.Add(new Resources.Styles.TemaPrincipal());
+        }
 
-            if (temaExistente != null)
-            {
-                mergedDictionaries.Remove(temaExistente);
-            }
+        if (RBoscuro.IsChecked)
+        {
+            miListaDiccionarios.Add(new Resources.Styles.TemaOscuro());
+        }
 
-            if (radioButton == RBprincipal)
-            {
-                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaPrincipal());
-            }
-            else if (radioButton == RBoscuro)
-            {
-                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaOscuro());
-            }
-            else if (radioButton == RBclaro)
-            {
-                mergedDictionaries.Add(new ProyectoFinalDI.Resources.Styles.TemaClaro());
-            }
+        if (RBclaro.IsChecked)
+        {
+            miListaDiccionarios.Add(new Resources.Styles.TemaClaro());
         }
     }
 

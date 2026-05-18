@@ -25,13 +25,20 @@ public partial class Aula : ContentPage
 	private String temp_act;
 
 	/// <summary>
-	/// Constructor de la clase aula Inizializa los componentes y llena los label en funcion del aula a la que se accede
+	/// Pagina anterior para actualizar la lista y reflejar cambios
 	/// </summary>
-	/// <param name="aula">Nombre del aula para buscar los datos necesarios</param>
-	public Aula(String aula)
+	private Aulas aulas;
+
+    /// <summary>
+    /// Constructor de la clase aula Inizializa los componentes y llena los label en funcion del aula a la que se accede
+    /// </summary>
+    /// <param name="aula">Nombre del aula para buscar los datos necesarios</param>
+    /// /// <param name="a">Pagina anterior para actualizar sus datos</param>
+    public Aula(String aula, Aulas a)
 	{
 		this.aula = aula;
-		
+		this.aulas = a;
+
 		InitializeComponent();
 		datos_Temp();
 		TituloAula.Text += " " + aula;
@@ -82,6 +89,8 @@ public partial class Aula : ContentPage
                 NuevaTemp.Text = "";
 
                 await DisplayAlert("Exito","Temperatura de confort actualizada correctamente","OK");
+				aulas.CargarAulas();
+				await Navigation.PopAsync();
             }
 			else {
                 await DisplayAlert("Error", "Fallo al actualizar la temperatura de confort", "OK"); 

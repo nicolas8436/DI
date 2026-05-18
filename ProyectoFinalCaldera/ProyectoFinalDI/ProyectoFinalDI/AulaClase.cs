@@ -31,5 +31,6 @@ namespace ProyectoFinalDI
         /// Propiedad que almacena el estado de la caldera
         /// </summary>
         public string EstadoCaldera { get; set; }
+
     }
 }

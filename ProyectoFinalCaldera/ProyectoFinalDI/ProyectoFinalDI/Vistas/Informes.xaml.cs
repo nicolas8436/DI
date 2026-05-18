@@ -1,52 +1,63 @@
 using ProyectoFinalDI.Models;
 using ProyectoFinalDI.Servicios;
-using Syncfusion.Maui.Toolkit.Charts;
 
 namespace ProyectoFinalDI.Vistas;
 
-/// <summary>
-/// Pagina de Informes(Syncfusion)
-/// </summary>
 public partial class Informes : ContentPage
 {
-    /// <summary>
-    /// Construxtor de Informes, inizializa los componentes
-    /// </summary>
     public Informes()
     {
         InitializeComponent();
     }
 
-    /// <summary>
-    /// Override que recarga la pagina para mostrar los datos de los informes
-    /// </summary>
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        CargarInformes();
+        CargarPicker();
     }
 
-    /// <summary>
-    /// Metodo que carga y formatea los datos que se van a mostrar en los informes
-    /// </summary>
-    private void CargarInformes()
+    private void CargarPicker()
     {
         try
         {
             BD.Instance.AbrirConexion(this);
-            List<RegistroTemperatura> datos = BD.Instance.ObtenerHistorialGlobal(this);//Carga los datos de la bd a la lista
+            var aulas = BD.Instance.ObtenerAulas(this);
             BD.Instance.CerrarConexion(this);
 
-            if (datos != null && datos.Any())
-            {
-                var gruposPorAula = datos.GroupBy(x => x.COD_EST).ToList();//Clasifica datos por aula
-
-                BindableLayout.SetItemsSource(ContenedorGraficos, gruposPorAula);
-            }
+            if (aulas != null)
+                PickerAulas.ItemsSource = aulas.Select(a => a.Nombre).ToList();
         }
         catch (Exception ex)
         {
-            DisplayAlert("Error", ex.Message, "OK");
+            DisplayAlert("Error", "Error al cargar aulas: " + ex.Message, "OK");
         }
+    }
+
+    private void PickerAulas_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (PickerAulas.SelectedIndex == -1) return;
+
+        string aulaSeleccionada = PickerAulas.SelectedItem.ToString();
+
+        BD.Instance.AbrirConexion(this);
+
+        // --- CARGA INFORME 1 ---
+        var datosTemp = BD.Instance.ObtenerHistorialPorAula(aulaSeleccionada);
+        if (datosTemp != null && datosTemp.Any())
+        {
+            SeriesGrafico.ItemsSource = datosTemp;
+            LabelAulaSeleccionada.Text = aulaSeleccionada;
+            FrameGrafico.IsVisible = true;
+        }
+
+        // --- CARGA INFORME 2 ---
+        var datosTiempos = BD.Instance.ObtenerTiemposActivos(aulaSeleccionada);
+        if (datosTiempos != null && datosTiempos.Any())
+        {
+            SeriesTiempos.ItemsSource = datosTiempos;
+            FrameTiempos.IsVisible = true;
+        }
+
+        BD.Instance.CerrarConexion(this);
     }
 }

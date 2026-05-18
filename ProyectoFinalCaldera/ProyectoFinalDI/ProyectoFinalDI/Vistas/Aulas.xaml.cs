@@ -41,7 +41,7 @@ public partial class Aulas : ContentPage
     /// <summary>
     /// Metodo CargarAulas: Este metodo actualiza la informacion de las aulas con los datos de la base de datos
     /// </summary>
-    private void CargarAulas()
+    public void CargarAulas()
     {
         if (BD.Instance.AbrirConexion(this))
         {
@@ -66,13 +66,38 @@ public partial class Aulas : ContentPage
         var button = sender as Button;
         var aula = button.CommandParameter.ToString();
 
-        await Navigation.PushAsync(new Aula(aula));
+        await Navigation.PushAsync(new Aula(aula, this));
+    }
+
+    /// <summary>
+    /// Metodo para eliminar un aula de la BD
+    /// </summary>
+    /// <param name="sender">Objeto que dispara el evento</param>
+    /// <param name="e">Argumentos el evento</param>
+    private async void Eliminar_Clicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var aula = button.CommandParameter as AulaClase;
+
+        BD.Instance.AbrirConexion(this);
+
+        if (BD.Instance.EliminarAula(aula.Nombre))
+        {
+            await DisplayAlert("Exito","Aula " + aula.Nombre + " eliminada","Ok");
+            CargarAulas();
+        }
+        else
+        {
+            await DisplayAlert("Error al eliminar","Ha ocurrido un error al intentar eliminar el aula","Ok");
+        }
+
+        BD.Instance.CerrarConexion(this);
     }
 
     /// <summary>
     /// Consumo de la API, saca la informacion necesaria de la api y se la aplica a los label correspondientes
     /// </summary>
-private async void CargarClima()
+    private async void CargarClima()
 {
     // 1. Cliente http para hacer las peticiones
     using (HttpClient client = new HttpClient())
@@ -106,4 +131,9 @@ private async void CargarClima()
         }
     }
 }
+
+    private void Agregar_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new AñadirAula(this));
+    }
 }

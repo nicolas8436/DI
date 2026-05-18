@@ -39,7 +39,7 @@
                        BackgroundColor="Transparent"/>
 
                 <Label x:Name="TextoRegEdtUsr"
-                       Text="Gestión de Usuario"
+                       Text="{DynamicResource TituloPagListUsr}"
                        HorizontalTextAlignment="Center"
                        Style="{DynamicResource Titulo}"/>
 

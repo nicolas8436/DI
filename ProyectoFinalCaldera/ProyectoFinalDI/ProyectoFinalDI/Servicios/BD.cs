@@ -1,4 +1,6 @@
 ﻿using MySqlConnector;
+using ProyectoFinalDI.Models;
+using ProyectoFinalDI.ViewModel;
 using ProyectoFinalDI.Vistas;
 using System;
 using System.Collections.Generic;
@@ -42,7 +44,8 @@ namespace ProyectoFinalDI.Servicios
         /// <summary>
         /// Cadena de conexion a la BD
         /// </summary>
-        private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;";
+        //private string cadConexion = "Server=192.168.0.200;Database=BBIoT_Nicolas;User=Nicolas;Password=1234;"; //Usr y Contraseña clase nicolas
+        private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;"; //Usr y Contraseña local nicolas
 
         /// <summary>
         /// Constructor de la clase
@@ -118,11 +121,9 @@ namespace ProyectoFinalDI.Servicios
                 int count;
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND PASSWORD = @pass", conector)) { 
                 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", usuario);
                     comando.Parameters.AddWithValue("@pass", contraseña);
 
-                    //Convertir a numero para ver si hay alguno
                     count = Convert.ToInt32(comando.ExecuteScalar());
                 }
 
@@ -154,10 +155,8 @@ namespace ProyectoFinalDI.Servicios
                 
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario", conector)) { 
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", usuario);
 
-                    //Convertir a numero para ver si hay alguno
                     int count = Convert.ToInt32(comando.ExecuteScalar());
 
                     if (count != 0)
@@ -178,7 +177,7 @@ namespace ProyectoFinalDI.Servicios
                         filas = comando.ExecuteNonQuery();
                     }
 
-                    if (filas > 0)  // ← Verificar que insertó
+                    if (filas > 0)  // Verificar que insertó
                     {
                         p.DisplayAlert("Usuario Registrado", "Usuario registrado correctamente", "OK");
                         this.actual = usuario;
@@ -254,7 +253,6 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("SELECT TEMP_ACT FROM LECTURAS WHERE COD_EST = @aula ORDER BY FECHA DESC, HORA DESC, MINUT DESC LIMIT 1;", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@aula", aula);
 
 
@@ -333,7 +331,6 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("INSERT INTO TEMP_PROG (TEMP, FECHA, HORA, MINUT, SEG, COD_EST) VALUES (@Temp, CURDATE(), HOUR(NOW()), MINUTE(NOW()), SECOND(NOW()), @aula);", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@aula", aula);
                     comando.Parameters.AddWithValue("@Temp", temp);
 
@@ -549,10 +546,8 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", usuario);
 
-                    //Convertir a numero para ver si hay alguno
                     int count = Convert.ToInt32(comando.ExecuteScalar());
 
                     if (count != 0)
@@ -616,11 +611,9 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", Usr);
                     comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
 
-                    //Convertir a numero para ver si hay alguno
                     int count = Convert.ToInt32(comando.ExecuteScalar());
 
                     if (count != 0)
@@ -633,7 +626,6 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario,NOMBRE = @nombre , APELLIDOS = @apellidos , PASSWORD = @pass , ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", Usr);
                     comando.Parameters.AddWithValue("@pass", Contra);
                     comando.Parameters.AddWithValue("@apellidos", Apellidos);
@@ -684,11 +676,9 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("SELECT COUNT(*) FROM USUARIOS WHERE EMAIL = @usuario AND EMAIL != @usuarioAntiguo", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", Usr);
                     comando.Parameters.AddWithValue("@usuarioAntiguo", seleccionado.email);
 
-                    //Convertir a numero para ver si hay alguno
                     int count = Convert.ToInt32(comando.ExecuteScalar());
 
                     if (count != 0)
@@ -701,7 +691,6 @@ namespace ProyectoFinalDI.Servicios
                 using (var comando = new MySqlCommand("UPDATE USUARIOS SET EMAIL = @usuario, NOMBRE = @nombre , APELLIDOS = @apellidos, ID_ROL = @rol WHERE EMAIL = @usuarioAntiguo", conector))
                 {
 
-                    //Parametros
                     comando.Parameters.AddWithValue("@usuario", Usr);
                     comando.Parameters.AddWithValue("@apellidos", Apellidos);
                     comando.Parameters.AddWithValue("@nombre", Nombre);
@@ -850,51 +839,253 @@ namespace ProyectoFinalDI.Servicios
         //Cambiar contraseña ==============================================================================================================================
         //Operaciones con el actual -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 
-        // Tabla Lecturas Syncfusion =======================================================================================================================
+        /// <summary>
+        /// Metodo para eliminar un aula de la Base de datos
+        /// </summary>
+        /// <param name="aula">Aula que vamos a eliminar</param>
+        internal bool EliminarAula(String aula)
+        {
+            try 
+            {
+                int filas;
+                using (var comando = new MySqlCommand("DELETE FROM ESTANCIAS WHERE COD_EST = @aula", conector)) {
+                    comando.Parameters.AddWithValue("@aula", aula);
+
+                    filas = comando.ExecuteNonQuery();
+
+                    if (filas == 1)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            } catch (Exception e) 
+            {
+                return false;
+            }
+        }
 
         /// <summary>
-        /// Metodo para obtener la informacion de las aulas para Syncfusion
+        /// Comprueba si el aula que estamos intentando insertar existe o no
         /// </summary>
-        /// <param name="p">Pagina actual</param>
-        /// <returns>Devuelve una lista con los ultimos 40 registros de temperatura de un aula</returns>
-        public List<Models.RegistroTemperatura> ObtenerHistorialGlobal(Page p)
+        /// <param name="Cod_Est">Codigo de la estancia que vamos a añadir</param>
+        /// <returns>Devuelve false en caso de que no exista y true si ya existe la estancia</returns>
+        internal bool ExisteAula(String Cod_Est)
         {
-            var lista = new List<Models.RegistroTemperatura>();
             try
             {
-                string sql = @"SELECT TEMP_ACT, HORA, MINUT, COD_EST, FECHA 
-                                FROM LECTURAS 
-                                ORDER BY FECHA ASC, HORA ASC, MINUT ASC
-                                limit 40";
+                int count;
+                using (var comando = new MySqlCommand("SELECT COUNT(*) FROM ESTANCIAS WHERE COD_EST = @estancia ", conector))
+                {
+
+                    comando.Parameters.AddWithValue("@estancia", Cod_Est);
+
+                    count = Convert.ToInt32(comando.ExecuteScalar());
+                }
+
+                return count > 0;
+            }
+            catch (Exception e)
+            {
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para insertar una nueva aula en la BD
+        /// </summary>
+        /// <param name="Cod_Est">Codiogo de la estancia para la BD</param>
+        /// <param name="Metros">Metros de la habitacion para la BD</param>
+        /// <param name="N_Rad">Numero de Radiadores de la habitacion</param>
+        /// <returns>Devuelve true en caso de que se añada a la BD y false en caso de que falle</returns>
+        internal bool AgregarAula(String Cod_Est, String Metros, String N_Rad)
+        {
+            try
+            {
+                int filas;
+                using (var comando = new MySqlCommand("INSERT INTO ESTANCIAS (COD_EST, METROS, N_RAD) VALUES (@Cod, @Metros, @Radiador);", conector))
+                {
+
+                    //Parametros
+                    comando.Parameters.AddWithValue("@Cod", Cod_Est);
+                    comando.Parameters.AddWithValue("@Metros", Metros);
+                    comando.Parameters.AddWithValue("@Radiador", N_Rad);
+
+                    filas = comando.ExecuteNonQuery();
+                }
+
+                if (filas > 0)  //Verificar que insertó
+                {  
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Metodo para obtener la informacion de la temperatura de las aulas para Syncfusion
+        /// </summary>
+        /// <param name="aula">Aula sobre la que se buscan datos</param>
+        /// <returns>Devuelve una lista con los ultimos 24 registros de temperatura de un aula</returns>
+        public List<RegistroTemperatura> ObtenerHistorialPorAula(string aula)
+        {
+            var lista = new List<RegistroTemperatura>();
+            try
+            {
+                string sql = "SELECT TEMP_ACT, FECHA, HORA, MINUT, COD_EST FROM LECTURAS WHERE COD_EST = @aula ORDER BY FECHA ASC, HORA ASC, MINUT ASC LIMIT 24";
 
                 using (var comando = new MySqlCommand(sql, conector))
                 {
+                    comando.Parameters.AddWithValue("@aula", aula.Trim().ToUpper());
+
                     using (var reader = comando.ExecuteReader())
                     {
-                        if (!reader.HasRows) return lista; 
-
                         while (reader.Read())
                         {
-                            lista.Add(new Models.RegistroTemperatura
+                            lista.Add(new RegistroTemperatura
                             {
-                                TEMP_ACT = Convert.ToDouble(reader.GetValue(0)),
-                                HORA = reader.GetInt32(1),
-                                MINUT = reader.GetInt32(2),
-                                COD_EST = reader.GetString(3)
+                                TEMP_ACT = Convert.ToDouble(reader["TEMP_ACT"]),
+                                FECHA = Convert.ToDateTime(reader["FECHA"]),
+                                HORA = Convert.ToInt32(reader["HORA"]),
+                                MINUT = Convert.ToInt32(reader["MINUT"]),
+                                COD_EST = reader["COD_EST"].ToString()
                             });
                         }
                     }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MainThread.BeginInvokeOnMainThread(async () => {
-                    await p.DisplayAlert("Error DB", e.Message, "OK");
-                });
+                return null;
             }
             return lista;
         }
-        // Tabla Lecturas Syncfusion =======================================================================================================================
+
+        //=========================================================================== Syncfusion Tiempo caldera valvula =
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="aula">Nombre del aula de la que vamos a sacar informacion</param>
+        /// <returns>Devuelve una lista con los tiempos de funcionamiento de la caldera y la valvula</returns>
+        public List<RegistroActividad> ObtenerTiemposActivos(string aula)
+        {
+            var lista = new List<RegistroActividad>();
+
+            // 1. Obtener estados de la Válvula del aula
+            var estadosVal = ObtenerEventos("ESTADOS_VAL", aula);
+            lista.Add(new RegistroActividad
+            {
+                Tipo = "Válvula",
+                MinutosActivo = CalcularDiferencia(estadosVal)
+            });
+
+            // 2. Obtener estados de la Caldera (General)
+            var estadosCal = ObtenerEventos("ESTADOS_CAL", null);
+            lista.Add(new RegistroActividad
+            {
+                Tipo = "Caldera",
+                MinutosActivo = CalcularDiferencia(estadosCal)
+            });
+
+            return lista;
+        }
+
+        /// <summary>
+        /// Devuelve los datos con los que vamos a llenar la lista de estados
+        /// </summary>
+        /// <param name="tabla">Tabla a la que accedemos puede ser ESTADOS_CAL o ESTADOS_VAL</param>
+        /// <param name="aula">Aula de la que sacamos los datos</param>
+        /// <returns></returns>
+        private List<dynamic> ObtenerEventos(string tabla, string aula)
+        {
+            var eventos = new List<dynamic>();
+            string sql = $"SELECT FECHA_INI, EST_VALVULA, HORA, MINUT FROM {tabla}";
+            if (aula != null) sql += " WHERE COD_EST = @aula";
+            sql += " ORDER BY FECHA_INI, HORA, MINUT";
+
+            using (var cmd = new MySqlCommand(sql, conector))
+            {
+                if (aula != null) cmd.Parameters.AddWithValue("@aula", aula);
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        DateTime fecha = rd.GetDateTime(0);
+                        TimeSpan hora = new TimeSpan(rd.GetInt32(2), rd.GetInt32(3), 0);
+                        eventos.Add(new
+                        {
+                            Momento = fecha.Add(hora),
+                            Estado = rd.GetString(1)
+                        });
+                    }
+                }
+            }
+            return eventos;
+        }
+
+        /// <summary>
+        /// Calculo del tiempo que esta activo 
+        /// </summary>
+        /// <param name="eventos">Lista con la apertura y los cierres de la valvula</param>
+        /// <returns>Devuelve el tiempo de funcionamiento de la valvula o la caldera</returns>
+        private double CalcularDiferencia(List<dynamic> eventos)
+        {
+            double totalMinutos = 0;
+            DateTime? inicio = null;
+
+            foreach (var e in eventos)
+            {
+                if (e.Estado == "O") 
+                    inicio = e.Momento;
+                else if (e.Estado == "C" && inicio != null) 
+                {
+                    totalMinutos += (e.Momento - inicio.Value).TotalMinutes;
+                    inicio = null;
+                }
+            }
+            return Math.Round(totalMinutos, 2);
+        }
+
+        //Semanal
+        /*private List<dynamic> ObtenerEventos(string tabla, string aula)
+        {
+            var eventos = new List<dynamic>();
+
+            string sql = $@"SELECT FECHA_INI, EST_VALVULA, HORA, MINUT 
+                    FROM {tabla} 
+                    WHERE FECHA_INI >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)";
+
+            if (aula != null) { sql += " AND COD_EST = @aula"; }
+            sql += " ORDER BY FECHA_INI ASC, HORA ASC, MINUT ASC";
+
+            using (var cmd = new MySqlCommand(sql, conector))
+            {
+                if (aula != null) cmd.Parameters.AddWithValue("@aula", aula);
+                using (var rd = cmd.ExecuteReader())
+                {
+                    while (rd.Read())
+                    {
+                        DateTime fecha = rd.GetDateTime(0);
+                        TimeSpan hora = new TimeSpan(rd.GetInt32(2), rd.GetInt32(3), 0);
+                        eventos.Add(new
+                        {
+                            Momento = fecha.Add(hora),
+                            Estado = rd.GetString(1)
+                        });
+                    }
+                }
+            }
+            return eventos;
+        }*/
+
     }
 }

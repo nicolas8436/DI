@@ -106,6 +106,9 @@
 	  <MauiXaml Update="Vistas\Aulas.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Vistas\AñadirAula.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Vistas\Configuracion.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

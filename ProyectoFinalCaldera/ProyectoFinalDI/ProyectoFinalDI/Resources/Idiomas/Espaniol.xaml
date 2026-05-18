@@ -4,12 +4,22 @@
              x:Class="ProyectoFinalDI.Resources.Idiomas.Espaniol">
 
 
+
+    <!-- ========================================= Menus ========================================= -->
+    <x:String x:Key="inicioS">Inicio Sesion</x:String>
+    <x:String x:Key="SobreNosotros">Acerca de</x:String>
+    <x:String x:Key="Aulas">Aulas</x:String>
+    <x:String x:Key="Informes">Informes</x:String>
+    <x:String x:Key="ListaUsr">Usuarios</x:String>
+    <x:String x:Key="Configuracion">Configuracion</x:String>
+
     <!-- ========================================= Pagina Aulas ========================================= -->
     <x:String x:Key="TituloCabeceraAulas">Aulas del centro</x:String>
     <x:String x:Key="TempConfAulas">Temp Confort:</x:String>
     <x:String x:Key="TempActAulas">Temp Actual:</x:String>
     <x:String x:Key="ValvulaAulas">Estado válvula:</x:String>
     <x:String x:Key="BtnConfAulas">Configurar</x:String>
+    <x:String x:Key="BtnEliminarAula">Eliminar</x:String>
 
     <!-- ========================================== Pagina Aula ========================================= -->
     <x:String x:Key="TituloCabeceraAula">Configuracion de aula</x:String>
@@ -20,6 +30,18 @@
     <x:String x:Key="NuevaTempAula">Nueva temp Confort:</x:String>
     <x:String x:Key="BtnConfirmarAula">Confirmar</x:String>
     <x:String x:Key="BtnCancelarAula">Cancelar</x:String>
+    <x:String x:Key="AgregarAula">Agregar una nueva aula</x:String>
+
+    <!-- ========================================== Pagina AñadirAula ========================================= -->
+    <x:String x:Key="TituloCabeceraAddAula">Añadir nueva Aula</x:String>
+    <x:String x:Key="DatosNAula">Datos de la nueva aula</x:String>
+    <x:String x:Key="NombreAula">Nombre del aula</x:String>
+    <x:String x:Key="Metros">Metros del aula</x:String>
+    <x:String x:Key="NumRadiadores">Numero de radiadores</x:String>
+
+    <x:String x:Key="EntryNombre">Nombre (A00)</x:String>
+    <x:String x:Key="EntryMetros">Metros 1 a 50</x:String>
+    <x:String x:Key="EntryRadiadores">Radiadores 1 a 10</x:String>
 
     <!-- ===================================== Pagina Configuracion ===================================== -->
     <x:String x:Key="TituloCabeceraConf">Configuracion</x:String>
@@ -45,6 +67,15 @@
 
 
     <!-- ======================================== Pagina Graficos (syncfusion) ======================================= -->
+    <x:String x:Key="Picker">Seleccione un aula: </x:String>
+    
+    <x:String x:Key="Informe1Titulo">Temperatura (Ultimas 24h)</x:String>
+    <x:String x:Key="Informe1Y">Grados Cº</x:String>
+    
+    <x:String x:Key="Informe2Titulo">Tiempo de funcionamiento</x:String>
+    <x:String x:Key="Informe2Y">Minutos</x:String>
+    <x:String x:Key="Informe2Valvula">Valvula</x:String>
+    <x:String x:Key="Informe2Caldera">Caldera</x:String>
 
     <!-- ======================================== Pagina Lista de Usr ======================================= -->
     <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
@@ -60,6 +91,8 @@
     <x:String x:Key="BtnEditarLitUsr">Editar</x:String>
 
     <!-- ======================================== Pagina SuperA ======================================= -->
+    <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
+    
     <x:String x:Key="TituloReg">Registro de Usuario</x:String>
     <x:String x:Key="TituloEdit">Edicion de Usuario</x:String>
 
@@ -74,8 +107,8 @@
     <x:String x:Key="SuperRol">Super</x:String>
     <x:String x:Key="AdminRol">Admin</x:String>
     <x:String x:Key="RegistradoRol">Usuario</x:String>
+    
     <!-- ======================================== Pagina Acerca de ======================================= -->
-    <x:String x:Key="TituloCabeceraAcercaDe">Acerca de</x:String>
     <x:String x:Key="Texto1AcercaDe">Pagina par el control y la monitorizacion de las aulas del instituto</x:String>
     <x:String x:Key="Texto2AcercaDe">Creada con maui, usando distintas apis y syncfusion, sin animo de lucro</x:String>
     <x:String x:Key="Texto3AcercaDe">Creada por Nicolas Hijon, 2ºDAM</x:String>

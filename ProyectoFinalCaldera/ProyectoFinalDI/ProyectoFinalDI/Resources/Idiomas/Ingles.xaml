@@ -4,12 +4,22 @@
              x:Class="ProyectoFinalDI.Resources.Idiomas.Ingles">
 
 
+
+    <!-- ========================================= Menus ========================================= -->
+    <x:String x:Key="inicioS">Login</x:String>
+    <x:String x:Key="SobreNosotros">About Us</x:String>
+    <x:String x:Key="Aulas">Classrooms</x:String>
+    <x:String x:Key="Informes">Reports</x:String>
+    <x:String x:Key="ListaUsr">Users</x:String>
+    <x:String x:Key="Configuracion">Settings</x:String>
+    
     <!-- ========================================= Classrooms Page ========================================= -->
     <x:String x:Key="TituloCabeceraAulas">Center classrooms</x:String>
     <x:String x:Key="TempConfAulas">Comfort Temp:</x:String>
     <x:String x:Key="TempActAulas">Current Temp:</x:String>
     <x:String x:Key="ValvulaAulas">Valve status:</x:String>
     <x:String x:Key="BtnConfAulas">Config</x:String>
+    <x:String x:Key="BtnEliminarAula">Delete</x:String>
 
     <!-- ========================================== Classroom Page ========================================= -->
     <x:String x:Key="TituloCabeceraAula">Classroom config</x:String>
@@ -20,6 +30,18 @@
     <x:String x:Key="NuevaTempAula">New comfort temp:</x:String>
     <x:String x:Key="BtnConfirmarAula">Confirm</x:String>
     <x:String x:Key="BtnCancelarAula">Cancel</x:String>
+    <x:String x:Key="AgregarAula">Add a new classroom</x:String>
+
+    <!-- ========================================== AddAula Page ========================================= -->
+    <x:String x:Key="TituloCabeceraAddAula">Add New Classroom</x:String>
+    <x:String x:Key="DatosNAula">New classroom details</x:String>
+    <x:String x:Key="NombreAula">Classroom name</x:String>
+    <x:String x:Key="Metros">Classroom size</x:String>
+    <x:String x:Key="NumRadiadores">Number of radiators</x:String>
+    <x:String x:Key="EntryNombre">Name (A00)</x:String>
+    <x:String x:Key="EntryMetros">Size 1 to 50</x:String>
+    <x:String x:Key="EntryRadiadores">Radiators 1 to 10</x:String>
+
 
     <!-- ===================================== Settings Page ===================================== -->
     <x:String x:Key="TituloCabeceraConf">Settings</x:String>
@@ -43,6 +65,15 @@
     <x:String x:Key="BtnEliminarCuentaConf">Delete account</x:String>
 
     <!-- ======================================== Graphs Page (syncfusion) ======================================= -->
+    <x:String x:Key="Picker">Select a classroom:</x:String>
+    
+    <x:String x:Key="Informe1Titulo">Temperature (Last 24h)</x:String>
+    <x:String x:Key="Informe1Y">Degrees Cº</x:String>
+    
+    <x:String x:Key="Informe2Titulo">Operating Time</x:String>
+    <x:String x:Key="Informe2Y">Minutes</x:String>
+    <x:String x:Key="Informe2Valvula">Valve</x:String>
+    <x:String x:Key="Informe2Caldera">Boiler</x:String>
 
     <!-- ======================================== User List Page ======================================= -->
     <x:String x:Key="TituloPagListUsr">User Management</x:String>

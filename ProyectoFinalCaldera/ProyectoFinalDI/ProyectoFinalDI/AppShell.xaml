@@ -9,11 +9,11 @@
     FlyoutBehavior="Flyout"
     Style="{DynamicResource CabeceraNavegacion}">
 
-    <FlyoutItem Title="Inicio" Icon="inicio.png">
+    <FlyoutItem Title="{DynamicResource inicioS}" Icon="inicio.png">
         <ShellContent ContentTemplate="{DataTemplate Vistas:Inicio}" Route="PantallaInicio" FlyoutItemIsVisible="False"/>
     </FlyoutItem>
 
-    <FlyoutItem Title="Acerca de" Icon="info.png">
+    <FlyoutItem Title="{DynamicResource SobreNosotros}" Icon="info.png">
         <ShellContent ContentTemplate="{DataTemplate Otras:AcercaDe}" Route="AcercaDe"/>
     </FlyoutItem>
 
@@ -21,19 +21,19 @@
                 x:Name="SeccionAulas" 
                 FlyoutDisplayOptions="AsMultipleItems">
 
-        <Tab Title="Aulas" Icon="aula_icon.png">
+        <Tab Title="{DynamicResource Aulas}">
             <ShellContent ContentTemplate="{DataTemplate Vistas:Aulas}" Route="AulasPage" />
         </Tab>
 
-        <Tab Title="Config" Icon="config.png" x:Name="TabConfig">
+        <Tab Title="{DynamicResource Configuracion}" x:Name="TabConfig">
             <ShellContent ContentTemplate="{DataTemplate Vistas:Configuracion}" Route="ConfigPage" />
         </Tab>
 
-        <Tab Title="Usuarios" Icon="user.png" x:Name="TabUsuarios">
+        <Tab Title="{DynamicResource ListaUsr}" x:Name="TabUsuarios">
             <ShellContent ContentTemplate="{DataTemplate Vistas:ListaUsr}" Route="UsuariosPage" />
         </Tab>
 
-        <Tab Title="Informes" Icon="report.png" x:Name="TabInformes">
+        <Tab Title="{DynamicResource Informes}" x:Name="TabInformes">
             <ShellContent ContentTemplate="{DataTemplate Vistas:Informes}" Route="InformesPage" />
         </Tab>
     </FlyoutItem>

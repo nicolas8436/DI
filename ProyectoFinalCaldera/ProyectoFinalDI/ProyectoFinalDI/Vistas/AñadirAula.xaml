@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalDI.Vistas.AñadirAula"
+             Title="AñadirAula"
+             Style="{DynamicResource Fondo}">
+    
+    <Shell.TitleView>
+        <HorizontalStackLayout HorizontalOptions="Fill">
+            <Image Style="{DynamicResource ImgCabecera}"/>
+
+            <Label x:Name="TituloAula"
+                   Text="{DynamicResource TituloCabeceraAula}"
+                   Style="{DynamicResource Titulo}"
+                   VerticalOptions="Center"
+                   Margin="10,0,0,0"/>
+        </HorizontalStackLayout>
+    </Shell.TitleView>
+
+    <ScrollView>
+        <Grid Grid.Row="0">
+            <VerticalStackLayout VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+
+                <Border Style="{DynamicResource Border}"
+                        MinimumHeightRequest="400"
+                        MinimumWidthRequest="400">
+
+                    <Grid RowDefinitions="Auto,Auto">
+
+                        <Border Grid.Row="0"
+                                Style="{DynamicResource CabeceraBorder}"
+                                Margin="-15,-15,-15,0">
+
+                            <Label x:Name="AulaXX"
+                                   Text="{DynamicResource DatosNAula}"
+                                   HorizontalOptions="Center"
+                                   Style="{DynamicResource Titulo}"/>
+                        </Border>
+
+                        <VerticalStackLayout Grid.Row="1"
+                                             Spacing="10"
+                                             Padding="0,15,0,0"
+                                             HorizontalOptions="Center"
+                                             VerticalOptions="Center">
+                            <!--nombre-->
+                            <Label Text="{DynamicResource NombreAula}"
+                                   Style="{DynamicResource CuerpoNegrita}"
+                                   Margin="0,15,0,0"/>
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="10">
+
+                                <Entry x:Name="EntryNombre"
+                                       Placeholder="{DynamicResource EntryNombre}"
+                                       Keyboard="Numeric"
+                                       HorizontalOptions="Fill"
+                                       Style="{DynamicResource EntryNormal}"/>
+                            </Grid>
+
+                            <!--Metros-->
+                            <Label Text="{DynamicResource Metros}"
+                                    Style="{DynamicResource CuerpoNegrita}"
+                                    Margin="0,15,0,0"/>
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="10">
+
+                                <Entry x:Name="EntryMetros"
+                                        Placeholder="{DynamicResource EntryMetros}"
+                                        Keyboard="Numeric"
+                                        HorizontalOptions="Fill"
+                                        Style="{DynamicResource EntryNormal}"/>
+                            </Grid>
+
+                            <!--Radiador-->
+                            <Label Text="{DynamicResource NumRadiadores}"
+                                   Style="{DynamicResource CuerpoNegrita}"
+                                    Margin="0,15,0,0"/>
+
+                            <Grid ColumnDefinitions="*,Auto"
+                                  ColumnSpacing="10">
+
+                                <Entry x:Name="EntryRadiadores"
+                                       Placeholder="{DynamicResource EntryRadiadores}"
+                                       Keyboard="Numeric"
+                                       HorizontalOptions="Fill"
+                                       Style="{DynamicResource EntryNormal}"/>
+                            </Grid>
+                        </VerticalStackLayout>
+                    </Grid>
+                </Border>
+
+                <HorizontalStackLayout HorizontalOptions="Center">
+
+                    <Button Text="{DynamicResource BtnCancelarAula}"
+                            Clicked="Cancelar_Clicked"
+                            Margin="7,-5,7,25"
+                            Style="{DynamicResource BtnCancelar}"/>
+
+                    <Button Text="{DynamicResource BtnConfirmarAula}"
+                            Clicked="Confirmar_Clicked"
+                            Margin="7,-5,7,25"
+                            Style="{DynamicResource BtnConfirmar}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

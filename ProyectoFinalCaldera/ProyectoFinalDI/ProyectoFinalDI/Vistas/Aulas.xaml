@@ -30,10 +30,17 @@
                     </HorizontalStackLayout>
 
                     <Image x:Name="ImgClima" HeightRequest="80" HorizontalOptions="Center" />
+
                     
                 </VerticalStackLayout>
             </Border>
 
+            <Button
+                Text="{DynamicResource AgregarAula}"
+                Style="{DynamicResource BtnAgregarAulas}"
+                HorizontalOptions="Center"
+                Clicked="Agregar_Clicked"/>
+            
             <CollectionView ItemsSource="{Binding ListaAulas}">
 
             <CollectionView.ItemsLayout>
@@ -65,7 +72,8 @@
                                   ColumnDefinitions="*,*">
 
                                 <Grid RowDefinitions="Auto,Auto"
-                                      ColumnDefinitions="*,*">
+                                      ColumnDefinitions="*,*"
+                                      Margin="0,20,0,0">
 
                                     <Label Text="{DynamicResource TempActAulas}"
                                            Margin="0,45,0,0"
@@ -115,7 +123,18 @@
                                             VerticalOptions="End"
                                             HorizontalOptions="Center"
                                             IsVisible="{Binding BindingContext.configurar, Source={x:Reference PagAulas}}"/>
-                                </VerticalStackLayout>
+
+                                    <Button x:Name="BotonEliminar"
+                                            Text="{DynamicResource BtnEliminarAula}"
+                                            CommandParameter="{Binding .}"
+                                            Clicked="Eliminar_Clicked"
+                                            Style="{DynamicResource BtnEliminarAulas}"
+                                            Margin="0,5,0,0"
+                                            VerticalOptions="End"
+                                            HorizontalOptions="Center"
+                                            IsVisible="{Binding BindingContext.configurar, Source={x:Reference PagAulas}}"/>
+                                    
+                                    </VerticalStackLayout>
                             </Grid>
                         </Grid>
                     </Border>
