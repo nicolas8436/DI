@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http;
 
 namespace ProyectoFinalDI.Servicios
 {
@@ -43,4 +44,28 @@ namespace ProyectoFinalDI.Servicios
     {
         public string Icon { get; set; }
     }
+
+    /// <summary>
+    /// Servicio para gestionar las peticiones de clima a la API
+    /// </summary>
+    public class ClimaServicio
+    {
+        public async Task<ApiWheather> ObtenerClimaAsync()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = "https://api.openweathermap.org/data/2.5/weather?q=Cuenca,es&appid=c64a0e8b3e404ede2c9ee219f5719c7c&lang=es&units=metric";
+
+                var peticion = await client.GetAsync(url);
+
+                if (peticion.IsSuccessStatusCode)
+                {
+                    return await peticion.Content.ReadAsAsync<ApiWheather>();
+                }
+
+                return null;
+            }
+        }
+    }
 }
+

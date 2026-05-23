@@ -90,9 +90,7 @@
     <x:String x:Key="BtnEliminarListUsr">Eliminar</x:String>
     <x:String x:Key="BtnEditarLitUsr">Editar</x:String>
 
-    <!-- ======================================== Pagina SuperA ======================================= -->
-    <x:String x:Key="TituloPagListUsr">Gestion de Usuarios</x:String>
-    
+    <!-- ======================================== Pagina SuperA ======================================= -->    
     <x:String x:Key="TituloReg">Registro de Usuario</x:String>
     <x:String x:Key="TituloEdit">Edicion de Usuario</x:String>
 

@@ -44,8 +44,8 @@ namespace ProyectoFinalDI.Servicios
         /// <summary>
         /// Cadena de conexion a la BD
         /// </summary>
-        //private string cadConexion = "Server=192.168.0.200;Database=BBIoT_Nicolas;User=Nicolas;Password=1234;"; //Usr y Contraseña clase nicolas
-        private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;"; //Usr y Contraseña local nicolas
+        private string cadConexion = "Server=192.168.0.200;Database=BBIoT_Nicolas;User=Nicolas;Password=1234;"; //Usr y Contraseña clase nicolas
+        //private string cadConexion = "Server=127.0.0.1;Database=DI_AULA;User=nicolas;Password=nicolas;"; //Usr y Contraseña local nicolas
 
         /// <summary>
         /// Constructor de la clase

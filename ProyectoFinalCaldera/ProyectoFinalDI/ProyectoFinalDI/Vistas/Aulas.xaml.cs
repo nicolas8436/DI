@@ -1,6 +1,5 @@
 using System.Collections.ObjectModel;
 using ProyectoFinalDI.Servicios;
-using System.Net.Http;
 
 namespace ProyectoFinalDI.Vistas;
 
@@ -98,31 +97,25 @@ public partial class Aulas : ContentPage
     /// Consumo de la API, saca la informacion necesaria de la api y se la aplica a los label correspondientes
     /// </summary>
     private async void CargarClima()
-{
-    // 1. Cliente http para hacer las peticiones
-    using (HttpClient client = new HttpClient())
     {
-        // 2. Url para pedir a la api
-        string url = "https://api.openweathermap.org/data/2.5/weather?q=Cuenca,es&appid=c64a0e8b3e404ede2c9ee219f5719c7c&lang=es&units=metric";
-
         try
         {
-            // Peticion
-            var peticion = await client.GetAsync(url);
+            ClimaServicio climaServicio = new ClimaServicio();
 
-            if (peticion.IsSuccessStatusCode)
+            var resultado = await climaServicio.ObtenerClimaAsync();
+
+            if (resultado != null)
             {
-                // Uso de paquete nuget que no se como se llama ahora mismo
-                var resultado = await peticion.Content.ReadAsAsync<ProyectoFinalDI.Servicios.ApiWheather>();
-
-                //Texto sacado de la api
                 LblCiudad.Text = resultado.Name;
                 LblTemp.Text = $"{resultado.Main.Temp}°C";
                 LblHumedad.Text = $"Humedad: {resultado.Main.Humidity}%";
 
-                // Icono
-                string iconCode = resultado.Weather[0].Icon;
-                ImgClima.Source = $"https://openweathermap.org/img/wn/{iconCode}@2x.png";
+                string icono = resultado.Weather[0].Icon;
+                ImgClima.Source = $"https://openweathermap.org/img/wn/{icono}@2x.png";
+            }
+            else
+            {
+                await DisplayAlert("Error", "No se pudo obtener una respuesta válida de la API", "OK");
             }
         }
         catch (Exception ex)
@@ -130,7 +123,6 @@ public partial class Aulas : ContentPage
             await DisplayAlert("Error", "No se pudo cargar el clima", "OK");
         }
     }
-}
 
     private void Agregar_Clicked(object sender, EventArgs e)
     {
